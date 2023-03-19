@@ -63,8 +63,8 @@
       </div>
       <form action="">
       <div class="flex flex-col text-sm rounded-md">
-        <input class="mb-5 rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-pcolor " type="text" placeholder="Username or Email id" />
-        <input class="border rounded-[4px] p-3 hover:outline-none focus:outline-none hover:border-pcolor" type="password" placeholder="Password" />
+        <input class="mb-5 rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-pcolor " type="text" placeholder="Entrez votre Email" />
+        <input class="border rounded-[4px] p-3 hover:outline-none focus:outline-none hover:border-pcolor" type="password" placeholder="Mot de passe" />
       </div>
       <button class="mt-5 w-full border p-2 bg-gradient-to-r from-pcolor bg-black text-white rounded-[4px] hover:bg-stone-600 scale-105 duration-300" type="submit">Connexion</button>
       <div class="mt-5 flex justify-between text-sm text-gray-600">
