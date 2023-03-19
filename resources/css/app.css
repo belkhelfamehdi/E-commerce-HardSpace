@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+#menu {
+    transition: all 0.3s ease-out;
+}
+
+#menu-toggle:checked+#menu {}
+
+@screen md {
+    .is-Sticky {
+        background-color: #0c0a0a;
+        border-bottom: 1px solid #323232;
+        @apply border-b border-solid
+    }
+}
+
+@media (min-width: 768px) {
+    #navigation {
+        display: flex !important;
+    }
+}
+
+.ind {
+    @apply w-2 h-2 rounded-full
+}
+
+.slider {
+    margin: 0 40px;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.slider .image-items {
+    height: 100%;
+}
+
+.slider .image-items .image {
+    height: 100%;
+}
+
+.slider .image-items .image img {
+    height: 100%;
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.arrowButton {
+    display: none;
+    position: absolute !important;
+    top: 50% !important;
+    color: black !important;
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50% !important;
+    border-color: 1px solide #0c0a0a;
+    background-color: white !important;
+    padding: 10px !important;
+}
+
+.arrowButton.left {
+    left: 0 !important;
+}
+
+.arrowButton.right {
+    right: 0 !important;
+}
+
+.arrowButton::after {
+    font-size: 15px !important;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #FF6F00 !important;
+}
+
+@media only screen and (max-width:767px) {
+    .slider {
+        margin: 0 20px;
+    }
+}
+
+@media only screen and (max-width:474px) {
+    #btnS {
+        @apply w-1/4 my-5 block
+    }
+    #inl {
+        @apply w-4/5 pr-0
+    }
+}
+
+.trans-img:hover img {
+    @apply transform scale-110;
+}
+
+.scard::before {
+    @apply content-[''] absolute top-[-50%] w-full h-full bg-pcolor skew-y-[354deg] transition-all duration-[0.5s]
+}
+
+.scard:hover::before {
+    @apply top-[-60%] skew-y-[390deg]
+}
+
+.scard:hover img {
+    @apply max-w-full scale-75 transition-all duration-[0.5s]
+}
+
+.scard:hover .scard-infos .buy {
+    @apply top-[10px] opacity-100
+}
+
+.sort {
+    @apply transition ease-out duration-200 transform opacity-0 scale-95
+}
+
+.menu-f {
+    @apply transition ease-in-out duration-300 transform translate-x-0
+}
+
+.menu-f.active {
+    @apply transition ease-in-out duration-300 transform translate-x-0
+}
+
+.backd {
+    @apply transition-all ease-in-out duration-300 opacity-0
+}
+
+.backd.open {
+    @apply opacity-100 flex
+}
+
+#list li a {
+    @apply transition-all ease-in-out duration-300
+}
+
+#list li a:hover {
+    @apply text-pcolor
+}
+
+@tailwind utilities;
