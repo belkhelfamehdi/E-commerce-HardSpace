@@ -55,37 +55,43 @@
 @endsection
 @section('content')
 <section>
-<div class="flex items-center justify-center h-screen md:my-24">
+<div class="flex items-center justify-center h-screen md:my-20">
     <!-- Login Container -->
-    <div class="min-w-fit max-md:w-full flex-col border bg-white px-6 py-14 shadow-md rounded-[4px] ">
+    <div class="min-w-fit w-96 max-md:w-full flex-col border bg-white px-6 py-14 shadow-md rounded-[4px] ">
       <div class="mb-8 flex justify-center">
         <img id="logo" class="max-md:relative object-contain h-24 w-24" src="{{url('frontend/assets/images/logo/Logo_black.png')}}">
       </div>
       <form action="{{route('login')}}" method="POST">
       @csrf
+      <ul class="mb-5 text-red-700 list-disc list-inside">
+        @error('email')
+            <li>{{ $message }}</li>
+        @enderror
+        @error('password')
+        <li>{{ $message }}</li>
+    @enderror 
+    </ul>
       <div class="flex flex-col text-sm rounded-md">
-        <input name="email" class="mb-5 rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-pcolor " type="text" placeholder="Entrez votre Email" />
-        <input name="password" class="border rounded-[4px] p-3 hover:outline-none focus:outline-none hover:border-pcolor" type="password" placeholder="Mot de passe" />
+        <input name="email" class="mb-2 rounded-[4px] border p-3 hover:outline-none focus:ring-pcolor focus:border-pcolor hover:border-pcolor " type="text" placeholder="Entrez votre Email" />
+         
+        <input name="password" class="border mt-3 mb-2 rounded-[4px] p-3 hover:outline-none focus:ring-pcolor focus:border-pcolor hover:border-pcolor" type="password" placeholder="Mot de passe" />
+
+        <div class="block mt-4">
+          <label for="remember_me" class="flex items-center">
+              <x-checkbox id="remember_me" name="remember" />
+              <span class="ml-2 text-sm text-gray-600">{{ __('Se souvenir de moi') }}</span>
+          </label>
+      </div>
+
       </div>
       <button class="mt-5 w-full border p-2 bg-gradient-to-r from-pcolor bg-black text-white rounded-[4px] hover:bg-stone-600 scale-105 duration-300" type="submit">Connexion</button>
+      </form>
       <div class="mt-5 flex justify-between text-sm text-gray-600">
         <a href="#">Mot de passe oublié ?</a>
-        <a href="#">S'inscrire</a>
+        <a href="#">Créer un compte</a>
       </div>
-      </form>
-      <div class="flex justify-center mt-5 text-sm">
-        <p class="text-gray-400">Se connecter avec</p>
-      </div>
-      <div class="mt-5 flex justify-center gap-3    ">
-        <img class="h-7 grayscale cursor-pointer hover:grayscale-0 scale-105 duration-300" src="{{ url('frontend/assets/images/icons/google.png')}}">
-        <img class="h-7 grayscale cursor-pointer hover:grayscale-0 scale-105 duration-300" src="{{ url('frontend/assets/images/icons/facebook.png')}}">
-      </div>
-      <div class="mt-5 flex text-center text-sm text-gray-400">
-        <p>
-          This site is protected by reCAPTCHA and the Google <br />
-          <a class="underline" href="">Privacy Policy</a>  and <a class="underline" href="">Terms of Service</a>  apply.
-        </p>
-      </div>
+
+      
     </div>
   </div>
 </section>

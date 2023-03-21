@@ -103,10 +103,10 @@
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
                 <div class=" max-lg:mx-auto justify-center">
                     <div class="justify-center">
-                        <img class="h-16 w-16 mx-auto" src="{{url('frontend/assets/images/logo/Logo_white.png')}}" alt="">
+                        <img class="h-20 w-20 mx-auto" src="{{url('frontend/assets/images/logo/Logo_white.png')}}" alt="">
                     </div>
 
-                    <p class=" mt-4 text-center  text-white dark:text-gray-400">
+                    <p class=" mt-4 text-center text-xl font-bold  text-white dark:text-gray-400">
                        Haute qualité, Haute performance
                     </p>
 
