@@ -102,7 +102,7 @@
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
                 <div class=" max-lg:mx-auto">
                     <div>
-                        <img class="h-16 w-16 mx-auto" src="{{url('frontend/images/logo/logo_white.png')}}" alt="">
+                        <img class="h-16 w-16 mx-auto" src="{{url('frontend/assets/images/logo/Logo_white.png')}}" alt="">
                     </div>
 
                     <p class="max-w-xs mt-4 text-center text-white dark:text-gray-400">

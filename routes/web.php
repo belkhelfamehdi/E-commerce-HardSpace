@@ -22,7 +22,7 @@ Route::get('store', function () {
 })->name('store');
 
 Route::get('product', function () {
-    return view('frontend.fontend_layout.product');
+    return view('frontend.frontend_layout.product');
 })->name('product');
 
 Route::middleware([
