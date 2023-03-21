@@ -55,17 +55,17 @@
 @endsection
 @section('content')
 <section>
-<div class="flex items-center justify-center h-screen md:mt-20">
+<div class="flex items-center justify-center h-screen md:my-24">
     <!-- Login Container -->
     <div class="min-w-fit max-md:w-full flex-col border bg-white px-6 py-14 shadow-md rounded-[4px] ">
       <div class="mb-8 flex justify-center">
         <img id="logo" class="max-md:relative object-contain h-24 w-24" src="{{url('frontend/assets/images/logo/Logo_black.png')}}">
       </div>
-      <form action="">
+      <form action="{{route('login')}}" method="POST">
       @csrf
       <div class="flex flex-col text-sm rounded-md">
-        <input class="mb-5 rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-pcolor " type="text" placeholder="Entrez votre Email" />
-        <input class="border rounded-[4px] p-3 hover:outline-none focus:outline-none hover:border-pcolor" type="password" placeholder="Mot de passe" />
+        <input name="email" class="mb-5 rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-pcolor " type="text" placeholder="Entrez votre Email" />
+        <input name="password" class="border rounded-[4px] p-3 hover:outline-none focus:outline-none hover:border-pcolor" type="password" placeholder="Mot de passe" />
       </div>
       <button class="mt-5 w-full border p-2 bg-gradient-to-r from-pcolor bg-black text-white rounded-[4px] hover:bg-stone-600 scale-105 duration-300" type="submit">Connexion</button>
       <div class="mt-5 flex justify-between text-sm text-gray-600">

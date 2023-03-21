@@ -35,7 +35,7 @@
 
             <div  class="max-md:hidden max-md:text-black max-md:dark:text-white text-sm bg-white dark:bg-dcolor md:bg-transparent max-md:fixed max-md:h-screen z-40 top-0 left-0  md:relative mx-auto w-full text-center md:flex md:order-2 md:flex-grow md:w-auto" id="navigation">
                 <ul class="nav-i max-md:relative max-md:top-20 pt-5 md:pt-0 md:flex-grow md:justify-center flex max-md:flex-col">
-                    <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="{{route('store')}}" class="capitalize">Boutique</a></li>
+                    <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="{{route('store')}}" class="capitalize">Produits</a></li>
                     <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="" class="capitalize">Catégories</a></li>
                     <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="" class="capitalize">Services</a></li>
                     <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="" class="capitalize">Contactez-nous</a></li>
@@ -99,8 +99,8 @@
     <section class="h-auto bg-scolor dark:bg-dcolor">
         <div class="container relative mx-auto pb-20 px-4 py-4 flex flex-wrap text-black dark:text-gray-200">
             <div class="my-7 text-center mx-auto ">
-                <h1 class="text-2xl font-semibold my-3">Catégories Populaires</h1>
-                <p class="my-5 text-md font-medium">Parcourez nos catégories les plus populaires et trouvez facilement ce <br> 
+                <h1 class="text-2xl font-semibold my-3">Nos catégories</h1>
+                <p class="my-5 text-md font-medium">Parcourez nos catégories et trouvez facilement ce <br> 
                     que vous cherchez parmi notre sélection de produits de qualité supérieure.</p>
             </div>
             <div class="slider mySwiper my-7">

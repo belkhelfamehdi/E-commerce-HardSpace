@@ -24,6 +24,7 @@
                 <a href="{{route('index')}}" class="flex items-center">
                     <img id="logo" class="max-md:relative z-50 object-contain h-12 w-12" src="{{url('frontend/assets/images/logo/Logo_white.png')}}" data-src="{{url('frontend/assets/images/logo/Logo_black.png')}}"
                         alt="">
+                        <span class="mx-3 font-semibold text-xl">Hard<span class="text-pcolor">Space</span></span>
                 </a>
                 <div x-data="{ open: false }">
                     <button class="md:hidden text-gray-200 w-10 h-10  z-50 focus:outline-none nav-toggler" :class="{'text-black dark:text-gray-200 fixed right-6 top-6': open,' text-gray-200 relative': !open }" id="humburger" @click="open = !open" data-target="#navigation">
@@ -38,9 +39,9 @@
 
                 <div  class="max-md:hidden max-md:text-black max-md:dark:text-white text-sm bg-white dark:bg-dcolor md:bg-transparent max-md:fixed max-md:h-screen z-40 top-0 left-0  md:relative mx-auto w-full text-center md:flex md:order-2 md:flex-grow md:w-auto" id="navigation">
                     <ul class="nav-i max-md:relative max-md:top-20 pt-5 md:pt-0 md:flex-grow md:justify-center flex max-md:flex-col">
-                        <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="{{route('store')}}" class="capitalize">Boutique</a></li>
+                        <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="{{route('store')}}" class="capitalize">Produits</a></li>
+                        <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="" class="capitalize">Composants</a></li>
                         <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="" class="capitalize">Catégories</a></li>
-                        <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="" class="capitalize">Services</a></li>
                         <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="" class="capitalize">Contactez-nous</a></li>
                     </ul>
                     <div class="btn-i max-md:relative max-md:top-20 pt-5 justify-center md:pt-0 mt-2 lg:pr-4 flex w-auto " x-data = "{search : false}">
@@ -100,13 +101,13 @@
         </div>
         <div class="max-w-screen-xl px-4 py-16 mx-auto space-y-8 sm:px-6 lg:space-y-16 lg:px-8 ">
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
-                <div class=" max-lg:mx-auto">
-                    <div>
+                <div class=" max-lg:mx-auto justify-center">
+                    <div class="justify-center">
                         <img class="h-16 w-16 mx-auto" src="{{url('frontend/assets/images/logo/Logo_white.png')}}" alt="">
                     </div>
 
-                    <p class="max-w-xs mt-4 text-center text-white dark:text-gray-400">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse non cupiditate quae nam molestias.
+                    <p class=" mt-4 text-center  text-white dark:text-gray-400">
+                       Haute qualité, Haute performance
                     </p>
 
                     <ul class="flex justify-center gap-6 mt-8 ">
@@ -199,19 +200,24 @@
                             <ul class="space-y-4 text-sm">
                                 <li>
                                     <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
-                          Lorem ipsum
+                          Accueil
                           </a>
                                 </li>
 
                                 <li>
                                     <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
-                          Lorem ipsum
+                          Produits
                           </a>
                                 </li>
 
                                 <li>
                                     <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
-                          Lorem ipsum
+                          Connexion
+                          </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
+                          S'inscrire
                           </a>
                                 </li>
                             </ul>
@@ -219,31 +225,25 @@
                     </div>
 
                     <div>
-                        <p class="font-medium text-white">Legal</p>
+                        <p class="font-medium text-white">A propos de nous</p>
 
                         <nav aria-label="Footer Navigation - Legal" class="mt-6">
                             <ul class="space-y-4 text-sm">
                                 <li>
                                     <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
-                          Lorem ipsum
+                          Qui somme nous?
                           </a>
                                 </li>
 
                                 <li>
                                     <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
-                          Lorem ipsum
+                          FAQ
                           </a>
                                 </li>
 
                                 <li>
                                     <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
-                          Lorem ipsum
-                          </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
-                          Lorem ipsum
+                          Contactez-nous
                           </a>
                                 </li>
                             </ul>
