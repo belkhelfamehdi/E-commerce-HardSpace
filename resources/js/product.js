@@ -34,6 +34,54 @@ $(document).ready(function() {
             $('.nav-i').toggleClass('hidden');
         }
     });
+
+    $('.thumbnails > div > img').on("click", function() {
+        const newImageSrc = $(this).attr('src');
+        const mainImage = $('.main-image > div > img');
+
+        mainImage.fadeOut(100, function() {
+            mainImage.attr('src', newImageSrc);
+            mainImage.fadeIn(100);
+        });
+    });
+
+    var imageSrcArray = [];
+
+    var currentImageIndex = 0;
+    var imageDiv = $('.thumbnails');
+
+    $('#hero').attr('src', imageSrcArray[currentImageIndex]);
+    imageDiv.find('img').each(function() {
+        imageSrcArray.push($(this).attr('src'));
+    });
+
+    function updateImage() {
+        $('#hero').fadeOut(100, function() {
+            $(this).attr('src', imageSrcArray[currentImageIndex]).fadeIn(100);
+        });
+    }
+
+    // handle the next button click
+    $('#next-mobile').click(function() {
+        currentImageIndex++;
+        if (currentImageIndex >= imageSrcArray.length) {
+            currentImageIndex = 0;
+        }
+        updateImage();
+    });
+
+    // handle the previous button click
+    $('#previous-mobile').click(function() {
+        currentImageIndex--;
+        if (currentImageIndex < 0) {
+            currentImageIndex = imageSrcArray.length - 1;
+        }
+        updateImage();
+    });
+
+    // initialize the first image
+    updateImage();
+
 });
 
 // Total increment/decrement

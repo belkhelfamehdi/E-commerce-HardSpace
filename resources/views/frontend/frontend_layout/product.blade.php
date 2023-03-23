@@ -6,67 +6,7 @@
   @section('content')
     <section class="mb-20">
       <div class="bg-black opacity-75 absolute w-screen h-screen hidden z-50" id="light-1"></div>
-      <div class="absolute top-16 min-w-fit container mx-auto xl:flex flex-col gap-8 justify-center invisible z-50" id="light-2">
-          <div class="h-fit w-full mx-auto">
-              <div class="flex items-center justify-center w-[35%] rounded-xl m-auto bg-orange xl:w-[28%]">
-                  <button class="bg-white relative left-6 rounded-full flex justify-center items-center pr-4 pl-3 py-3 ml-3 z-20 group" id="previous">
-                  <svg
-                    width="12"
-                    height="18"
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="stroke-[#1D2026] group-hover:stroke-orange transition"
-                    id="previous"
-                  >
-                    <path
-                      d="M11 1 3 9l8 8"
-                      stroke-width="3"
-                      fill="none"
-                      fill-rule="evenodd"
-                      id="previous"
-                    />
-                  </svg>
-                </button>
-
-                  <img src="{{url('frontend/assets/images/products/casque.webp')}}" alt="sneaker" class="rounded-xl" id="hero-lightbox" />
-
-                  <button class="bg-white relative right-6 rounded-full flex justify-center items-center pr-3 pl-4 py-3 mr-3 z-20 group" id="next">
-                  <svg
-                    width="13"
-                    height="18"
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="stroke-[#1D2026] group-hover:stroke-orange transition"
-                    id="next"
-                  >
-                    <path
-                      d="m2 1 8 8-8 8"
-                      stroke-width="3"
-                      fill="none"
-                      fill-rule="evenodd"
-                      id="next"
-                    />
-                  </svg>
-                </button>
-              </div>
-          </div>
-
-          <div class="thumbnails thumbnails-light w-1/3 flex justify-between gap-4 m-auto lg:mt-6 xl:w-1/4">
-              <div id="1" class="w-1/5 cursor-pointer bg-pcolor rounded-xl ring-active">
-                  <img src="{{url('frontend/assets/images/products/casque.webp')}}" id="thumbLight-1" />
-              </div>
-
-              <div id="2" class="w-1/5 cursor-pointer bg-pcolor rounded-xl">
-                  <img src="{{url('frontend/assets/images/products/casque.webp')}}" alt="thumbnail" class="rounded-xl hover:opacity-50 transition" id="thumbLight-2" />
-              </div>
-
-              <div id="3" class="w-1/5 cursor-pointer bg-pcolor rounded-xl">
-                  <img src="{{url('frontend/assets/images/products/casque.webp')}}" alt="thumbnail" class="rounded-xl hover:opacity-50 transition" id="thumbLight-3" />
-              </div>
-
-              <div id="4" class="w-1/5 cursor-pointer bg-pcolor rounded-xl">
-                  <img src="{{url('frontend/assets/images/products/casque.webp')}}" alt="thumbnail" class="rounded-xl hover:opacity-50 transition" id="thumbLight-4" />
-              </div>
-          </div>
-      </div>
+      
 
       <!-- Contents -->
       <div class="container mx-auto text-base">
@@ -75,8 +15,8 @@
           <main class="w-full flex flex-col lg:flex-row">
               <!-- Gallery -->
               <section class="h-fit flex-col gap-8 mt-16 sm:flex sm:flex-row sm:gap-4 sm:h-full sm:mt-24 sm:mx-2 md:gap-8 md:mx-4 lg:flex-col lg:mx-0 lg:mt-36">
-                  <picture class="relative flex items-center rounded-lg bg-pcolor">
-                      <button class="bg-white w-10 h-10 flex items-center justify-center pr-1 rounded-full absolute left-6 z-10 sm:hidden" id="previous-mobile">
+                  <picture class="main-image relative flex items-center rounded-lg bg-pcolor ">
+                      <button class="bg-white w-10 h-10 flex items-center justify-center pr-1 rounded-full absolute left-1 z-10 sm:hidden" id="previous-mobile">
                     <svg
                       width="12"
                       height="18"
@@ -93,9 +33,11 @@
                       />
                     </svg>
                   </button>
+                  <div class="Picture mx-auto">
                       <img src="{{url('frontend/assets/images/products/casque.webp')}}"
                           id="hero" />
-                      <button class="bg-white w-10 h-10 flex items-center justify-center pl-1 rounded-full absolute right-6 z-10 sm:hidden" id="next-mobile">
+                  </div>
+                      <button class="bg-white w-10 h-10 flex items-center justify-center pl-1 rounded-full absolute right-1 z-10 sm:hidden" id="next-mobile">
                     <svg
                       width="13"
                       height="18"
@@ -120,7 +62,7 @@
                       </div>
 
                       <div id="2" class="w-1/5 bg-pcolor cursor-pointer rounded-xl sm:w-28 md:w-32 lg:w-[72px] xl:w-[78px]">
-                          <img src="{{url('frontend/assets/images/products/casque.webp')}}" alt="thumbnail" class="rounded-xl hover:opacity-50 transition" id="thumb-2" />
+                          <img src="{{url('frontend/assets/images/products/clavier.webp')}}" alt="thumbnail" class="rounded-xl hover:opacity-50 transition" id="thumb-2" />
                       </div>
 
                       <div id="3" class="w-1/5 bg-pcolor cursor-pointer rounded-xl sm:w-28 md:w-32 lg:w-[72px] xl:w-[78px]">
