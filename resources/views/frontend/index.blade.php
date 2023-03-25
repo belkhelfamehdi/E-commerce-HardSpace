@@ -57,10 +57,10 @@
                   <div class="def-i">
                     <span class="search" @click="search = !search"><i class="fa-solid fa-magnifying-glass mr-4 fa-lg md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-300 hover:text-pcolor"></i></span>
                     <span class="relative user"><a href="{{route('login')}}"><i class="fa-solid fa-user fa-lg mx-4 md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-300 hover:text-pcolor justify-between"></i></a>
-                        <div class="login absolute top-5 -left-40 p-3 h-auto w-auto min-w-fit text-black bg-white z-50 opacity-0 transition-opacity ease-in-out duration-150 shadow-[0px_3px_6px_0px_#f7fafc] pointer-events-none">
+                        <div class="login absolute top-[18px] -left-40 p-3 h-auto w-auto min-w-fit text-black bg-white z-50 opacity-0 transition-opacity ease-in-out duration-150 shadow-[0px_3px_6px_0px_#f7fafc] pointer-events-none">
                             <form action="{{route('login')}}" method="POST" class="font-normal">
-                                <input class="m-2 w-52 h-auto p-1 border-gray-300 text-xs placeholder:text-gray-600" type="email" placeholder="E-mail">
-                                <input class="m-2 w-52 h-auto p-1 border-gray-300 text-xs placeholder:text-gray-600" type="password" placeholder="Password">
+                                <input class="m-2 w-52 h-auto p-1 border-gray-300 text-xs focus:outline-none focus:ring-0 focus:border-gray-300 placeholder:text-gray-600" type="email" placeholder="E-mail">
+                                <input class="m-2 w-52 h-auto p-1 border-gray-300 text-xs focus:outline-none focus:ring-0 focus:border-gray-300 placeholder:text-gray-600" type="password" placeholder="Password">
                                 <button class="m-2 px-6 py-2 rounded-sm text-white bg-pcolor" type="submit">Connexion</button>
                             </form>
                             <div class="flex m-2 text-gray-600 text-xs hover:text-pcolor">
