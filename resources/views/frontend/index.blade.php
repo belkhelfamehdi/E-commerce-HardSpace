@@ -10,11 +10,11 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{url('frontend/assets/vendor/css/swiper-bundle.min.css')}}"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{url('frontend/assets/vendor/css/swiper-bundle.min.css')}}"/>
 </head>
-<body class="font-roboto dark:bg-dcolor ">
+<body class="font-roboto ">
     <!-- Start Header Section -->
     <header class="text-white relative h-auto xl:h-screen bg-no-repeat bg-cover max-w-full ease-in duration-200" id="background-image">
       <nav class="md:fixed z-30 md:top-0 w-full ease-in duration-200">
@@ -25,17 +25,17 @@
                     <span class="mx-3 font-semibold text-xl">Hard<span class="text-pcolor">Space</span></span>
             </a>
             <div x-data="{ open: false }">
-                <button class="md:hidden text-gray-200 w-10 h-10  z-50 focus:outline-none nav-toggler" :class="{'text-black dark:text-gray-200 fixed right-6 top-6': open,' text-gray-200 relative': !open }" id="humburger" @click="open = !open" data-target="#navigation">
-                          <span class="sr-only">Open main menu</span>
-                          <div class="block w-5 absolute left-1/2 top-1/2   transform  -translate-x-1/2 -translate-y-1/2">
-                              <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out" :class="{'rotate-45': open,' -translate-y-1.5': !open }"></span>
-                              <span aria-hidden="true" class="block absolute  h-0.5 w-5 bg-current   transform transition duration-500 ease-in-out" :class="{'opacity-0': open } "></span>
-                              <span aria-hidden="true" class="block absolute  h-0.5 w-5 bg-current transform  transition duration-500 ease-in-out" :class="{'-rotate-45': open, ' translate-y-1.5': !open}"></span>
-                          </div>
-                      </button>
+                <button class="md:hidden text-gray-200 w-10 h-10  z-50 focus:outline-none nav-toggler" :class="{'text-black fixed right-6 top-6': open,' text-gray-200 relative': !open }" id="humburger" @click="open = !open" data-target="#navigation">
+                        <span class="sr-only">Open main menu</span>
+                        <div class="block w-5 absolute left-1/2 top-1/2   transform  -translate-x-1/2 -translate-y-1/2">
+                            <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out" :class="{'rotate-45': open,' -translate-y-1.5': !open }"></span>
+                            <span aria-hidden="true" class="block absolute  h-0.5 w-5 bg-current   transform transition duration-500 ease-in-out" :class="{'opacity-0': open } "></span>
+                            <span aria-hidden="true" class="block absolute  h-0.5 w-5 bg-current transform  transition duration-500 ease-in-out" :class="{'-rotate-45': open, ' translate-y-1.5': !open}"></span>
+                        </div>
+                </button>
             </div>
 
-            <div  class="max-md:hidden max-md:text-black max-md:dark:text-white text-sm bg-white dark:bg-dcolor md:bg-transparent max-md:fixed max-md:h-screen z-40 top-0 left-0  md:relative mx-auto w-full text-center md:flex md:order-2 md:flex-grow md:w-auto" id="navigation">
+            <div  class="max-md:hidden max-md:text-black max-md:dark:text-white text-sm bg-white md:bg-transparent max-md:fixed max-md:h-screen z-40 top-0 left-0  md:relative mx-auto w-full text-center md:flex md:order-2 md:flex-grow md:w-auto" id="navigation">
                 <ul class="nav-i max-md:relative max-md:top-20 pt-5 md:pt-0 md:flex-grow md:justify-center flex max-md:flex-col">
                     <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="{{route('store')}}" class="capitalize">Produits</a></li>
                     <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="" class="capitalize">Composants</a></li>
@@ -55,14 +55,35 @@
                     </div>
                   </div>
                   <div class="def-i">
-                    <span class="search" @click="search = !search"><i class="fa-solid fa-magnifying-glass mr-4 fa-lg md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-100 hover:scale-105 hover:text-pcolor"></i></span>
-                    <span class="account"><i class="fa-solid fa-user fa-lg mx-4 md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-100 hover:scale-105 hover:text-pcolor justify-between"></i></span>
-                    <span class="cart"><i class="fa-solid fa-cart-shopping ml-4 fa-lg md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-100 hover:scale-105 hover:text-pcolor"></i></span>
+                    <span class="search" @click="search = !search"><i class="fa-solid fa-magnifying-glass mr-4 fa-lg md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-300 hover:text-pcolor"></i></span>
+                    <span class="relative user"><a href="{{route('login')}}"><i class="fa-solid fa-user fa-lg mx-4 md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-300 hover:text-pcolor justify-between"></i></a>
+                        <div class="login absolute top-5 -left-40 p-3 h-auto w-auto min-w-fit text-black bg-white z-50 opacity-0 transition-opacity ease-in-out duration-150 shadow-[0px_3px_6px_0px_#f7fafc] pointer-events-none">
+                            <form action="{{route('login')}}" method="POST" class="font-normal">
+                                <input class="m-2 w-52 h-auto p-1 border-gray-300 text-xs placeholder:text-gray-600" type="email" placeholder="E-mail">
+                                <input class="m-2 w-52 h-auto p-1 border-gray-300 text-xs placeholder:text-gray-600" type="password" placeholder="Password">
+                                <button class="m-2 px-6 py-2 rounded-sm text-white bg-pcolor" type="submit">Connexion</button>
+                            </form>
+                            <div class="flex m-2 text-gray-600 text-xs hover:text-pcolor">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 my-auto">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                                <a href="">Mot de passe oublié ?</a>
+                            </div>
+                            <div class="flex m-2 text-gray-600 text-xs hover:text-pcolor">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 my-auto">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                                <a href="">Créer un compte</a>
+                                  
+                            </div>
+                        </div>
+                    </span>
+                    <span class="cart"><i class="fa-solid fa-cart-shopping ml-4 fa-lg md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-300 hover:text-pcolor"></i></span>
                   </div>
                 </div>
             </div>
         </div>
-    </nav>
+        </nav>
 
         <div class="container relative mx-auto pb-20 px-4 py-4 flex flex-wrap">
             <div class="sm:w-full lg:w-3/5 px-2 md:pt-20 md:mt-20 pt-8">
@@ -77,13 +98,13 @@
         </div>
         <div class="my-auto">
             <button type="button" id="prev-btn" class="hidden absolute top-0 left-0 z-20 md:flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 ">
-                    <svg aria-hidden="true" class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 group-hover:bg-white/50 ">
+                    <svg aria-hidden="true" class="w-5 h-5 text-white sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                 </span>
             </button>
             <button type="button" id="next-btn" class="hidden absolute top-0 right-0 z-20 md:flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 ">
-                    <svg aria-hidden="true" class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 group-hover:bg-white/50 ">
+                    <svg aria-hidden="true" class="w-5 h-5 text-white sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </span>
             </button>
         </div>
@@ -98,8 +119,8 @@
     <!-- End Header Section -->
 
     <!-- Start Caterogies Section -->
-    <section class="h-auto bg-scolor dark:bg-dcolor">
-        <div class="container relative mx-auto pb-20 px-4 py-4 flex flex-wrap text-black dark:text-gray-200">
+    <section class="h-auto bg-scolor">
+        <div class="container relative mx-auto pb-20 px-4 py-4 flex flex-wrap text-black">
             <div class="my-7 text-center mx-auto ">
                 <h1 class="text-2xl font-semibold my-3">Nos catégories</h1>
                 <p class="my-5 text-md font-medium">Parcourez nos catégories et trouvez facilement ce <br> 
@@ -188,7 +209,7 @@
     </section>
     <!-- End Caterogies Section -->
     <!-- Start Caterogies Section -->
-    <section class="text-black dark:text-gray-200 dark:bg-dcolor  my-16">
+    <section class="text-black  my-16">
 
         <div class="my-7 text-center mx-auto ">
             <h1 class="text-2xl font-semibold my-3">Produits recommandés</h1>
@@ -199,15 +220,15 @@
         <div id="Projects" class="container w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 my-10">
 
         <!--CARD 1-->
-        <div class="w-72 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+        <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
                     <a href="#">
                         <img src="{{url('frontend/assets/images/products/ASUS-27.webp')}}"
                         alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
                 <div class="px-4 py-3 w-72">
                     <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-                    <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">ASUS TUF VG27AQ 27''</p>
+                    <p class="text-lg font-bold text-black truncate block capitalize">ASUS TUF VG27AQ 27''</p>
                     <div class="flex items-center">
-                        <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
                         <del>
                             <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
                         </del>
@@ -225,15 +246,15 @@
         <!--END CARD2-->
 
         <!--CARD 2-->
-        <div class="w-72 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+        <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
             <a href="#">
                 <img src="{{url('frontend/assets/images/products/clavier.webp')}}"
                         alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
                 <div class="px-4 py-3 w-72">
                     <span class="text-gray-400 mr-3 uppercase text-xs">Skyloong</span>
-                    <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">Skyloong SK66</p>
+                    <p class="text-lg font-bold text-black truncate block capitalize">Skyloong SK66</p>
                     <div class="flex items-center">
-                        <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
                         <del>
                             <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
                         </del>
@@ -251,15 +272,15 @@
         <!--END CARD 2-->
 
         <!--CARD 3-->
-        <div class="w-72 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+        <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
             <a href="#">
                 <img src="{{url('frontend/assets/images/products/casque.webp')}}"
                         alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
                 <div class="px-4 py-3 w-72">
                     <span class="text-gray-400 mr-3 uppercase text-xs">Razer</span>
-                    <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">Razer Kraken V3 HyperSense</p>
+                    <p class="text-lg font-bold text-black truncate block capitalize">Razer Kraken V3 HyperSense</p>
                     <div class="flex items-center">
-                        <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
                         <del>
                             <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
                         </del>
@@ -277,15 +298,15 @@
         <!--END CARD 3-->
 
         <!--CARD 4-->
-        <div class="w-72 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+        <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
             <a href="#">
                 <img src="{{url('frontend/assets/images/products/souris.webp')}}"
                         alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
                 <div class="px-4 py-3 w-72">
                     <span class="text-gray-400 mr-3 uppercase text-xs">Razer</span>
-                    <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">Razer DeathAdder Essential</p>
+                    <p class="text-lg font-bold text-black truncate block capitalize">Razer DeathAdder Essential</p>
                     <div class="flex items-center">
-                        <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
                         <del>
                             <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
                         </del>
@@ -303,15 +324,15 @@
         <!--END CARD 4-->
 
         <!--CARD 5-->
-        <div class="w-72 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+        <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
             <a href="#">
                 <img src="{{url('frontend/assets/images/products/micro.png')}}"
                         alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
                 <div class="px-4 py-3 w-72">
                     <span class="text-gray-400 mr-3 uppercase text-xs">Fifine</span>
-                    <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">Fifine Ampligame A6V</p>
+                    <p class="text-lg font-bold text-black truncate block capitalize">Fifine Ampligame A6V</p>
                     <div class="flex items-center">
-                        <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
                         <del>
                             <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
                         </del>
@@ -329,15 +350,15 @@
         <!--END CARD 5-->
 
         <!--CARD 6-->
-        <div class="w-72 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+        <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
             <a href="#">
                 <img src="{{url('frontend/assets/images/products/laptop.webp')}}"
                         alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
                 <div class="px-4 py-3 w-72">
                     <span class="text-gray-400 mr-3 uppercase text-xs">Origin</span>
-                    <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">EVO16-S 16-inch Gaming Laptop</p>
+                    <p class="text-lg font-bold text-black truncate block capitalize">EVO16-S 16-inch Gaming Laptop</p>
                     <div class="flex items-center">
-                        <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
                         <del>
                             <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
                         </del>
@@ -359,7 +380,7 @@
     </section>
     <!-- End Caterogies Section -->
     <!-- Start New Arrival Section -->
-    <section class="text-black dark:text-gray-200 my-20 dark:bg-dcolor">
+    <section class="text-black my-20">
         <div class="my-7 text-center mx-auto ">
             <h1 class="text-2xl font-semibold my-3">Nouvel arrivage</h1>
             <p class="my-5 text-md font-medium">Découvrez notre dernière <br>
@@ -369,15 +390,15 @@
         <div id="Projects" class="container w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 my-10">
 
             <!--CARD 1-->
-            <div class="w-64 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <div class="w-64 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
                         <a href="#">
                             <img src="{{url('frontend/assets/images/products/ASUS-27.webp')}}"
                             alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
                     <div class="px-4 py-3 w-72">
                         <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-                        <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">ASUS TUF VG27AQ 27''</p>
+                        <p class="text-lg font-bold text-black truncate block capitalize">ASUS TUF VG27AQ 27''</p>
                         <div class="flex items-center">
-                            <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
+                            <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
                             <del>
                                 <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
                             </del>
@@ -394,15 +415,15 @@
             </div>
             <!--END CARD 1-->
             <!--CARD 2-->
-            <div class="w-64 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <div class="w-64 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
                 <a href="#">
                     <img src="{{url('frontend/assets/images/products/ASUS-27.webp')}}"
                     alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
                 <div class="px-4 py-3 w-72">
                     <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-                    <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">ASUS TUF VG27AQ 27''</p>
+                    <p class="text-lg font-bold text-black truncate block capitalize">ASUS TUF VG27AQ 27''</p>
                     <div class="flex items-center">
-                        <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
                         <del>
                             <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
                         </del>
@@ -419,15 +440,15 @@
                 </div>
             <!--END CARD 2-->
             <!--CARD 3-->
-            <div class="w-64 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <div class="w-64 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
                     <a href="#">
                         <img src="{{url('frontend/assets/images/products/ASUS-27.webp')}}"
                         alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
                     <div class="px-4 py-3 w-72">
                         <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-                        <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">ASUS TUF VG27AQ 27''</p>
+                        <p class="text-lg font-bold text-black truncate block capitalize">ASUS TUF VG27AQ 27''</p>
                         <div class="flex items-center">
-                            <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
+                            <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
                             <del>
                                 <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
                             </del>
@@ -444,15 +465,15 @@
             </div>
             <!--END CARD 3-->
             <!--CARD 4-->
-            <div class="w-64 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <div class="w-64 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
                 <a href="#">
                     <img src="{{url('frontend/assets/images/products/ASUS-27.webp')}}"
                     alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
                 <div class="px-4 py-3 w-72">
                     <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-                    <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">ASUS TUF VG27AQ 27''</p>
+                    <p class="text-lg font-bold text-black truncate block capitalize">ASUS TUF VG27AQ 27''</p>
                     <div class="flex items-center">
-                        <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
                         <del>
                             <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
                         </del>
@@ -472,7 +493,7 @@
     </section>
     <!-- End New Arrival Section -->
     <!-- Start Services Section -->
-    <section class="dark:bg-dcolor text-black dark:text-gray-200 border-t border-b border-scolor border-solid">
+    <section class="dark:bg-dcolor text-black border-t border-b border-scolor border-solid">
         <div class="container grid w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 py-14 my-14">
             <div class="w-auto justify-items-center text-3xl text-center mx-10">
                 <i class="fa-solid fa-dollar-sign fa-2xl  mx-auto"></i>
@@ -496,7 +517,7 @@
     </section>
     <!-- End Services Section -->
     <!-- Start Footer-->
-    <footer aria-label="Site Footer" class="bg-black dark:bg-gray-900 max-w-full">
+    <footer aria-label="Site Footer" class="bg-black max-w-full">
       <div>
           <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
               <div class="lg:flex lg:items-start lg:gap-8">
@@ -535,13 +556,13 @@
                       <img class="h-16 w-16 mx-auto" src="{{url('frontend/assets/images/logo/Logo_white.png')}}" alt="">
                   </div>
 
-                  <p class=" mt-4 text-center  text-white dark:text-gray-400">
+                  <p class=" mt-4 text-center  text-white">
                      Haute qualité, Haute performance
                   </p>
 
                   <ul class="flex justify-center gap-6 mt-8 ">
                       <li>
-                          <a href="/" rel="noreferrer" target="_blank" class="text-gray-400 transition hover:text-pcolor dark:text-gray-200">
+                          <a href="/" rel="noreferrer" target="_blank" class="text-gray-400 transition hover:text-pcolor">
                               <span class="sr-only">Facebook</span>
 
                               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -555,7 +576,7 @@
                       </li>
 
                       <li>
-                          <a href="/" rel="noreferrer" target="_blank" class="text-gray-400 transition hover:text-pcolor dark:text-gray-200">
+                          <a href="/" rel="noreferrer" target="_blank" class="text-gray-400 transition hover:text-pcolor">
                               <span class="sr-only">Instagram</span>
 
                               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -569,7 +590,7 @@
                       </li>
 
                       <li>
-                          <a href="/" rel="noreferrer" target="_blank" class="text-gray-400 transition hover:text-pcolor dark:text-gray-200">
+                          <a href="/" rel="noreferrer" target="_blank" class="text-gray-400 transition hover:text-pcolor">
                               <span class="sr-only">Twitter</span>
 
                               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -589,31 +610,31 @@
                       <nav aria-label="Footer Navigation - Services" class="mt-6">
                           <ul class="space-y-4 text-sm">
                               <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
+                                  <a href="#" class="text-white transition hover:text-pcolor">
                         Lorem ipsum
                         </a>
                               </li>
 
                               <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
+                                  <a href="#" class="text-white transition hover:text-pcolor">
                         Lorem ipsum
                         </a>
                               </li>
 
                               <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
+                                  <a href="#" class="text-white transition hover:text-pcolor">
                         Lorem ipsum
                         </a>
                               </li>
 
                               <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
+                                  <a href="#" class="text-white transition hover:text-pcolor">
                           Lorem ipsum
                         </a>
                               </li>
 
                               <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
+                                  <a href="#" class="text-white transition hover:text-pcolor">
                         Lorem ipsum
                         </a>
                               </li>
@@ -628,24 +649,24 @@
                       <nav aria-label="Footer Navigation - Company" class="mt-6">
                           <ul class="space-y-4 text-sm">
                               <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
+                                  <a href="#" class="text-white transition hover:text-pcolor">
                         Accueil
                         </a>
                               </li>
 
                               <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
+                                  <a href="#" class="text-white transition hover:text-pcolor">
                         Produits
                         </a>
                               </li>
 
                               <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
+                                  <a href="#" class="text-white transition hover:text-pcolor">
                         Connexion
                         </a>
                               </li>
                               <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
+                                  <a href="#" class="text-white transition hover:text-pcolor">
                         S'inscrire
                         </a>
                               </li>
@@ -659,19 +680,19 @@
                       <nav aria-label="Footer Navigation - Legal" class="mt-6">
                           <ul class="space-y-4 text-sm">
                               <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
+                                  <a href="#" class="text-white transition hover:text-pcolor">
                         Qui somme nous?
                         </a>
                               </li>
 
                               <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
+                                  <a href="#" class="text-white transition hover:text-pcolor">
                         FAQ
                         </a>
                               </li>
 
                               <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
+                                  <a href="#" class="text-white transition hover:text-pcolor">
                         Contactez-nous
                         </a>
                               </li>
@@ -681,11 +702,11 @@
               </div>
           </div>
 
-          <p class="text-xs text-gray-500 dark:text-gray-400 border-t border-gray-100 pt-8">
+          <p class="text-xs text-gray-500 border-t border-gray-100 pt-8">
               &copy; 2023. HardSpace. All rights reserved.
           </p>
       </div>
-  </footer>
+    </footer>
     
     <!-- End Footer-->
     <script src="{{url('frontend/assets/vendor/js/jquery-3.6.4.min.js')}}"></script>
