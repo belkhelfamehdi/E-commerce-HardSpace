@@ -45,6 +45,7 @@
                 <div class="btn-i max-md:relative max-md:top-20 pt-5 justify-center md:pt-0 mt-2 lg:pr-4 flex w-auto " x-data = "{search : false}">
                 <div class="searchbar absolute right-8 md:right-0 md:-top-4 flex ml-96 mb-5 transition-all ease-in-out duration-300" :class = "{'invisible opacity-0 translate-x-2':!search, 'visible opacity-100 translate-x-0': search}">
                     <form action="" class="flex">
+                    @csrf
                     <input type="text" class="bg-gray-200 text-black focus:outline-none focus:ring-2 focus:ring-pcolor focus:border-transparent rounded-sm py-2 px-4 block w-52 md:w-64 appearance-none leading-normal" placeholder="Rechercher un produit">
                     <div class="bg-pcolor w-12 h-[42px]">
                         <span><i class="search fa-solid fa-magnifying-glass fa-lg text-white mt-5 cursor-pointer"></i></span>
@@ -57,9 +58,18 @@
                 <div class="def-i">
                     <span class="search" @click="search = !search"><i class="fa-solid fa-magnifying-glass mr-4 fa-lg md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-300 hover:text-pcolor"></i></span>
                     <span class="relative user"><a href="{{route('login')}}"><i class="fa-solid fa-user fa-lg mx-4 md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-300 hover:text-pcolor justify-between"></i></a>
+                        @if(Auth::guest())
                         <div class="login absolute top-[18px] -left-40 p-3 h-auto w-auto min-w-fit text-black bg-white z-50 opacity-0 transition-opacity ease-in-out duration-150 shadow-[0px_3px_6px_0px_#f7fafc] pointer-events-none">
                             <form action="{{route('login')}}" method="POST" class="font-normal">
                                 @csrf
+                                <ul class="m-2 text-red-700 text-xs text-left list-disc list-inside">
+                                    @error('email')
+                                        <li>{{ $message }}</li>
+                                    @enderror
+                                    @error('password')
+                                    <li>{{ $message }}</li>
+                                    @enderror 
+                                </ul>
                                 <input class="m-2 w-52 h-auto p-1 border-gray-300 text-xs focus:outline-none focus:ring-0 focus:border-gray-300 placeholder:text-gray-600" name="email" type="email" placeholder="E-mail">
                                 <input class="m-2 w-52 h-auto p-1 border-gray-300 text-xs focus:outline-none focus:ring-0 focus:border-gray-300 placeholder:text-gray-600" name="password" type="password" placeholder="Password">
                                 <button class="m-2 px-6 py-2 rounded-sm text-white bg-pcolor" type="submit">Connexion</button>
@@ -77,6 +87,21 @@
                                 <a href="{{route('register')}}">Créer un compte</a>
                             </div>
                         </div>
+                        @else
+                        <div class="login absolute top-[18px] -left-0 p-3 h-auto w-auto min-w-fit text-black bg-white z-50 opacity-0 transition-opacity ease-in-out duration-150 shadow-[0px_3px_6px_0px_#f7fafc] pointer-events-none">
+                            <div class="flex m-2 text-gray-600 text-xs hover:text-pcolor">
+                                <form action="{{route('logout')}}" method="POST">
+                                    @csrf
+                                <div class="flex m-2 text-gray-600 text-xs hover:text-pcolor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 my-auto">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                    <button type="submit">Déconnexion</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                        @endif
                     </span>
                     <span class="cart"><i class="fa-solid fa-cart-shopping ml-4 fa-lg md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-300 hover:text-pcolor"></i></span>
                 </div>

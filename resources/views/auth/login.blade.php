@@ -69,7 +69,7 @@
         @enderror
         @error('password')
         <li>{{ $message }}</li>
-    @enderror 
+        @enderror 
     </ul>
       <div class="flex flex-col text-sm rounded-md">
         <input name="email" class="mb-2 rounded-[4px] border p-3 hover:outline-none focus:ring-pcolor focus:border-pcolor hover:border-pcolor " type="text" placeholder="Entrez votre Email" />
