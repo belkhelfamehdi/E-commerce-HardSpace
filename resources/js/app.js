@@ -104,8 +104,10 @@ $(document).ready(function() {
         $('.login').removeClass('pointer-events-none');
     });
     $('.user').mouseleave(function() {
-        $('.login').addClass('opacity-0');
-        $('.login').addClass('pointer-events-none');
+        if (!$('.login *:focus').length) {
+            $('.login').addClass('opacity-0');
+            $('.login').addClass('pointer-events-none');
+        }
     });
 });
 
