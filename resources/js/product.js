@@ -82,6 +82,15 @@ $(document).ready(function() {
     // initialize the first image
     updateImage();
 
+    $('.user').mouseenter(function() {
+        $('.login').removeClass('opacity-0');
+        $('.login').removeClass('pointer-events-none');
+    });
+    $('.user').mouseleave(function() {
+        $('.login').addClass('opacity-0');
+        $('.login').addClass('pointer-events-none');
+    });
+
 });
 
 // Total increment/decrement

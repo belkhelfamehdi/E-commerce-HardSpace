@@ -51,7 +51,7 @@
 
 @extends('frontend.layout')
 @section('js')
-    @vite('resources/js/store.js')
+    @vite('resources/js/app.js')
 @endsection
 @section('content')
 <section>
@@ -87,8 +87,8 @@
       <button class="mt-5 w-full border p-2 bg-gradient-to-r from-pcolor bg-black text-white rounded-[4px] hover:bg-stone-600 scale-105 duration-300" type="submit">Connexion</button>
       </form>
       <div class="mt-5 flex justify-between text-sm text-gray-600">
-        <a href="#">Mot de passe oublié ?</a>
-        <a href="#">Créer un compte</a>
+        <a href="{{ route('password.request') }}">Mot de passe oublié ?</a>
+        <a href="{{route('register')}}">Créer un compte</a>
       </div>
 
       
