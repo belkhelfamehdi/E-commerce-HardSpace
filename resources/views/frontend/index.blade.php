@@ -59,7 +59,7 @@
                     <span class="search" @click="search = !search"><i class="fa-solid fa-magnifying-glass mr-4 fa-lg md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-300 hover:text-pcolor"></i></span>
                     <span class="relative user"><a href="{{route('login')}}"><i class="fa-solid fa-user fa-lg mx-4 md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-300 hover:text-pcolor justify-between"></i></a>
                         @if(Auth::guest())
-                        <div class="login absolute top-[18px] -left-40 p-3 h-auto w-auto min-w-fit text-black bg-white z-50 opacity-0 transition-opacity ease-in-out duration-150 shadow-[0px_3px_6px_0px_#f7fafc] pointer-events-none">
+                        <div class="login absolute dark:bg-dcolor top-[18px] -left-40 p-3 h-auto w-auto min-w-fit text-black bg-white z-50 opacity-0 transition-opacity ease-in-out duration-150 shadow-[0px_3px_6px_0px_#f7fafc] pointer-events-none">
                             <form action="{{route('login')}}" method="POST" class="font-normal">
                                 @csrf
                                 <ul class="m-2 text-red-700 text-xs text-left list-disc list-inside">
@@ -70,8 +70,8 @@
                                     <li>{{ $message }}</li>
                                     @enderror 
                                 </ul>
-                                <input class="m-2 w-52 h-auto p-1 border-gray-300 text-xs focus:outline-none focus:ring-0 focus:border-gray-300 placeholder:text-gray-600" name="email" type="email" placeholder="E-mail">
-                                <input class="m-2 w-52 h-auto p-1 border-gray-300 text-xs focus:outline-none focus:ring-0 focus:border-gray-300 placeholder:text-gray-600" name="password" type="password" placeholder="Password">
+                                <input class="m-2 w-52 h-auto p-1 dark:bg-gray-900 dark:text-gray-100 border-gray-300 text-xs focus:outline-none focus:ring-0 focus:border-gray-300 placeholder:text-gray-600" name="email" type="email" placeholder="E-mail">
+                                <input class="m-2 w-52 h-auto p-1 dark:bg-gray-900 dark:text-gray-100 border-gray-300 text-xs focus:outline-none focus:ring-0 focus:border-gray-300 placeholder:text-gray-600" name="password" type="password" placeholder="Password">
                                 <button class="m-2 px-6 py-2 rounded-sm text-white bg-pcolor" type="submit">Connexion</button>
                             </form>
                             <div class="flex m-2 text-gray-600 text-xs hover:text-pcolor">
@@ -88,19 +88,35 @@
                             </div>
                         </div>
                         @else
-                        <div class="login absolute top-[18px] -left-0 p-3 h-auto w-auto min-w-fit text-black bg-white z-50 opacity-0 transition-opacity ease-in-out duration-150 shadow-[0px_3px_6px_0px_#f7fafc] pointer-events-none">
-                            <div class="flex m-2 text-gray-600 text-xs hover:text-pcolor">
+                        <div class="login absolute text-gray-600 dark:text-gray-100 dark:bg-dcolor top-[18px] -left-28 p-3 h-auto w-auto min-w-fit text-black bg-white z-50 opacity-0 transition-opacity ease-in-out duration-150 shadow-[0px_3px_6px_0px_#f7fafc] pointer-events-none">
+                            <div class="flex m-1 w-40 font-semibold  text-xs hover:text-pcolor">
+                                <a href="{{route('profile.show')}}"><span class="text-sm">Salut, </span>{{Auth::user()->name}}</a>
+                            </div>
+                            <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                            <div class="flex m-1  text-xs hover:text-pcolor">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 my-auto">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                                <a href="{{route('profile.show')}}">Mon compte</a>
+                            </div>
+                            <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                            <div class="flex m-1  text-xs hover:text-pcolor">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 my-auto">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                                <a href="">Mes commandes</a>
+                            </div>
+                            <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
                                 <form action="{{route('logout')}}" method="POST">
                                     @csrf
-                                    <div>Hello {{ Auth::user()->name }}</div>
-                                <div class="flex m-2 text-gray-600 text-xs hover:text-pcolor">
+                                <div class="flex m-1 text-xs hover:text-pcolor">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 my-auto">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                                     </svg>
                                     <button type="submit">Déconnexion</button>
                                 </div>
                                 </form>
-                            </div>
+
                         </div>
                         @endif
                     </span>
