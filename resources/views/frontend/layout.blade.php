@@ -95,25 +95,16 @@
                                 </div>
                                 <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
                                 <div class="flex m-1  text-xs hover:text-pcolor">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 my-auto">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                                    </svg>
                                     <a href="{{route('profile.show')}}">Mon compte</a>
                                 </div>
                                 <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
                                 <div class="flex m-1  text-xs hover:text-pcolor">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 my-auto">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                                    </svg>
                                     <a href="">Mes commandes</a>
                                 </div>
                                 <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
                                     <form action="{{route('logout')}}" method="POST">
                                         @csrf
                                     <div class="flex m-1 text-xs hover:text-pcolor">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 my-auto">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                                        </svg>
                                         <button type="submit">Déconnexion</button>
                                     </div>
                                     </form>
