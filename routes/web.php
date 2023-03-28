@@ -21,6 +21,8 @@ Route::get('store', function () {
     return view('frontend.frontend_layout.store');
 })->name('store');
 
+Route::get('send-sms', 'App\Http\Controllers\SMSController@sendSMS')->name('send-sms');
+
 Route::get('product', function () {
     return view('frontend.frontend_layout.product');
 })->name('product');
