@@ -64,7 +64,7 @@
         <input name="email" class="mb-2 rounded-[4px] border-gray-300 p-3 hover:outline-none focus:ring-pcolor focus:border-pcolor hover:border-pcolor " type="text" placeholder="Entrez votre Email" />
 
       </div>
-      <button class="mt-5 w-4/5 border ml-8 p-2 bg-pcolor text-white rounded-[4px] duration-300" type="submit">Réinitialisation du mot de passe</button>
+      <button class="mt-5 w-4/5 border ml-8 p-2 bg-pcolor text-white rounded-[4px] duration-300" type="submit">Réinitialiser mot de passe</button>
       </form>
 
       
