@@ -22,8 +22,8 @@
     <x-slot name="form">
         
         <x-action-message class="mr-3 w-full col-span-2" on="saved">
-            <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-100 dark:bg-green-50 dark:text-green-400">
-                <span>{{ __('Enregistré.') }}</span>
+            <div class="p-4 mb-2 text-sm text-green-800 dark:text-green-400 rounded-lg bg-green-100 dark:bg-green-800 dark:text-green-400">
+                <span>{{ __('Les modifications ont été enregistrées avec succès.') }}</span>
               </div>
         </x-action-message>
 
