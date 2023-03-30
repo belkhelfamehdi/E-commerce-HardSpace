@@ -18,7 +18,7 @@
         </div>
     </div>
     @endsection
-    
+
     <x-slot name="form">
         <div class="col-span-6 sm:col-span-4">
             <x-label for="current_password" value="{{ __('Mot de passe actuel') }}" />
@@ -41,11 +41,13 @@
 
     <x-slot name="actions">
         <x-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
+            <x-alert-message>
+                {{ __('Enregistré.') }}
+            </x-alert-message>
         </x-action-message>
 
         <x-button>
-            {{ __('Save') }}
+            {{ __('Enregistrer') }}
         </x-button>
     </x-slot>
 </x-form-section>

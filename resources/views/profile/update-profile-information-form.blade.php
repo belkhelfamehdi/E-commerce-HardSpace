@@ -19,11 +19,14 @@
     </div>
     @endsection
 
-    <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
-    </x-slot>
-
     <x-slot name="form">
+        
+        <x-action-message class="mr-3 w-full col-span-2" on="saved">
+            <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-100 dark:bg-green-50 dark:text-green-400">
+                <span>{{ __('Enregistré.') }}</span>
+              </div>
+        </x-action-message>
+
         <!-- Profile Photo -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
             <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
@@ -88,17 +91,17 @@
             <x-input-error for="email" class="mt-2" />
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
-                <p class="text-sm mt-2">
+                <p class="text-sm mt-2 dark:text-gray-200">
                     {{ __("Votre adresse e-mail n'est pas vérifiée.") }}
 
-                    <button type="button" class="underline text-sm text-gray-600 hover:text-pcolor rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" wire:click.prevent="sendEmailVerification">
+                    <button type="button" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-pcolor rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" wire:click.prevent="sendEmailVerification">
                         {{ __("Cliquez ici pour renvoyer l'e-mail de vérification.") }}
                     </button>
                 </p>
 
                 @if ($this->verificationLinkSent)
                     <p v-show="verificationLinkSent" class="mt-2 font-medium text-sm text-green-600">
-                        {{ __('A new verification link has been sent to your email address.') }}
+                        {{ __('Un nouveau lien de vérification a été envoyé à votre adresse e-mail.') }}
                     </p>
                 @endif
             @endif
@@ -112,12 +115,10 @@
     </x-slot>
 
     <x-slot name="actions">
-        <x-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
-        </x-action-message>
+
 
         <x-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
+            {{ __('Enregistrer') }}
         </x-button>
     </x-slot>
 </x-form-section>

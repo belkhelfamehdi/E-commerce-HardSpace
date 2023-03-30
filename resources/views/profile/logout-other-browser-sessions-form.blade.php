@@ -20,7 +20,7 @@
     @endsection>
 
     <x-slot name="content">
-        <div class="max-w-xl text-sm text-gray-600">
+        <div class="max-w-xl text-sm text-gray-600 dark:text-gray-400">
             {{ __("Si nécessaire, vous pouvez vous déconnecter de toutes les autres sessions de votre navigateur sur tous vos appareils. Certaines de vos sessions récentes sont répertoriées ci-dessous ; cependant, cette liste peut ne pas être exhaustive. Si vous pensez que votre compte a été compromis, vous devriez également mettre à jour votre mot de passe.") }}
         </div>
 
@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="ml-3">
-                            <div class="text-sm text-gray-600">
+                            <div class="text-sm text-gray-600 dark:text-gray-400">
                                 {{ $session->agent->platform() ? $session->agent->platform() : __('Inconnu') }} - {{ $session->agent->browser() ? $session->agent->browser() : __('Inconnu') }}
                             </div>
 
@@ -74,7 +74,7 @@
         </div>
 
         <!-- Log Out Other Devices Confirmation Modal -->
-        <x-dialog-modal wire:model="confirmingLogout">
+        <x-dialog-modal cla wire:model="confirmingLogout">
             <x-slot name="title">
                 {{ __('Déconnecter les autres sessions') }}
             </x-slot>

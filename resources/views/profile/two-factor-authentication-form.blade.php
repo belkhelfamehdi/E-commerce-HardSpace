@@ -20,7 +20,7 @@
     @endsection>
 
     <x-slot name="content">
-        <h3 class="text-lg font-medium text-gray-900">
+        <h3 class="text-lg font-medium text-gray-900 dark:text-gray-200">
             @if ($this->enabled)
                 @if ($showingConfirmation)
                     {{ __("Terminer l'activation de l'authentification à deux facteurs.") }}
@@ -32,7 +32,7 @@
             @endif
         </h3>
 
-        <div class="mt-3 max-w-xl text-sm text-gray-600">
+        <div class="mt-3 max-w-xl text-sm text-gray-600 dark:text-gray-400">
             <p>
                 {{ __("Lorsque l'authentification à deux facteurs est activée, vous devrez saisir un jeton sécurisé et aléatoire lors de l'authentification. Vous pouvez obtenir ce jeton à partir de l'application Google Authenticator sur votre téléphone.") }}
             </p>
@@ -40,7 +40,7 @@
 
         @if ($this->enabled)
             @if ($showingQrCode)
-                <div class="mt-4 max-w-xl text-sm text-gray-600">
+                <div class="mt-4 max-w-xl text-sm text-gray-600 dark:text-gray-400">
                     <p class="font-semibold">
                         @if ($showingConfirmation)
                             {{ __("Pour terminer l'activation de l'authentification à deux facteurs, scannez le code QR suivant à l'aide de l'application d'authentification de votre téléphone ou entrez la clé de configuration et fournissez le code OTP généré.") }}
@@ -54,7 +54,7 @@
                     {!! $this->user->twoFactorQrCodeSvg() !!}
                 </div>
 
-                <div class="mt-4 max-w-xl text-sm text-gray-600">
+                <div class="mt-4 max-w-xl text-sm text-gray-600 dark:text-gray-400">
                     <p class="font-semibold">
                         {{ __('Clé de configuration') }}: {{ decrypt($this->user->two_factor_secret) }}
                     </p>
@@ -74,15 +74,15 @@
             @endif
 
             @if ($showingRecoveryCodes)
-                <div class="mt-4 max-w-xl text-sm text-gray-600">
+                <div class="mt-4 max-w-xl text-sm text-gray-600 dark:text-gray-400">
                     <p class="font-semibold">
                         {{ __("Stockez ces codes de récupération dans un gestionnaire de mots de passe sécurisé. Ils peuvent être utilisés pour récupérer l'accès à votre compte si votre appareil d'authentification à deux facteurs est perdu.") }}
                     </p>
                 </div>
 
-                <div class="grid gap-1 max-w-xl mt-4 px-4 py-4 font-mono text-sm bg-gray-100 rounded-lg">
+                <div class="grid gap-1 max-w-xl mt-4 px-4 py-4 font-mono text-sm bg-gray-100 dark:bg-gray-700 rounded-lg">
                     @foreach (json_decode(decrypt($this->user->two_factor_recovery_codes), true) as $code)
-                        <div>{{ $code }}</div>
+                        <div class="dark:text-gray-200">{{ $code }}</div>
                     @endforeach
                 </div>
             @endif
