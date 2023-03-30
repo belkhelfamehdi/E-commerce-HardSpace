@@ -63,7 +63,12 @@
       </div>
       <form action="{{route('login')}}" method="POST">
       @csrf
-      <ul class="mb-5 text-red-700 list-disc list-inside">
+      @if (session('status'))
+      <div class="mb-4 font-medium text-sm text-green-600">
+          {{ session('status') }}
+      </div>
+  @endif
+      <ul class="mb-5 font-medium text-sm text-red-700 list-disc list-inside">
         @error('email')
             <li>{{ $message }}</li>
         @enderror
