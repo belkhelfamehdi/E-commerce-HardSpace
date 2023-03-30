@@ -36,3 +36,17 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+$authMiddleware = config('jetstream.guard')
+? 'auth:'.config('jetstream.guard')
+: 'auth';
+
+$authSessionMiddleware = config('jetstream.auth_session', false)
+? config('jetstream.auth_session')
+: null;
+
+Route::group(['middleware' => array_values(array_filter([$authMiddleware, $authSessionMiddleware]))], function () {
+    Route::view('/user/change-password', 'profile.update-password')->name('profile.update-password');
+    Route::view('/user/security', 'profile.security')->name('profile.security');
+    Route::view('/user/delete-profile', 'profile.delete-profile')->name('profile.delete-profile');
+});
