@@ -59,7 +59,7 @@
                       </div>
                       <div class="def-i">
                         <span class="search" @click="search = !search"><i class="fa-solid fa-magnifying-glass mr-4 fa-lg md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-100 hover:scale-105 hover:text-pcolor"></i></span>
-                        <span class="relative user"><a href="{{route('profile.show')}}"><i class="fa-solid fa-user fa-lg mx-4 md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-300 hover:text-pcolor justify-between"></i></a>
+                        <span class="relative user"><a href="@if(Auth::guest()){{route('login')}} @else {{route('profile.show')}} @endif"><i class="fa-solid fa-user fa-lg mx-4 md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-300 hover:text-pcolor justify-between"></i></a>
                             @if(Auth::guest())
                             <div class="login absolute dark:bg-dcolor top-[18px] -left-40 p-3 h-auto w-auto min-w-fit text-black bg-white z-50 opacity-0 transition-opacity ease-in-out duration-150 shadow-[0px_3px_6px_0px_#f7fafc] pointer-events-none">
                                 <form action="{{route('login')}}" method="POST" class="font-normal">
