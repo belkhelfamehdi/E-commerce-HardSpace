@@ -94,7 +94,7 @@
                 <p class="text-sm mt-2 dark:text-gray-200">
                     {{ __("Votre adresse e-mail n'est pas vérifiée.") }}
 
-                    <button type="button" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-pcolor rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" wire:click.prevent="sendEmailVerification">
+                    <button type="button" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-pcolor rounded-md focus:outline-none" wire:click.prevent="sendEmailVerification">
                         {{ __("Cliquez ici pour renvoyer l'e-mail de vérification.") }}
                     </button>
                 </p>
