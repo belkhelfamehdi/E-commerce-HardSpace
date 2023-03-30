@@ -6,12 +6,14 @@
 
 @section('content')
 
-    <div class="mt-16 text-black bg-scolor">
+    <div class="mt-16 pb-16 text-black bg-scolor">
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-            @if (Laravel\Fortify\Features::canUpdateProfileInformation())
-                @livewire('profile.update-profile-information-form')
-
+            @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
                 <x-section-border />
+
+                <div class="mt-10 sm:mt-0">
+                    @livewire('profile.delete-user-form')
+                </div>
             @endif
         </div>
     </div>

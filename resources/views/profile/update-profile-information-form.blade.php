@@ -1,7 +1,23 @@
 <x-form-section submit="updateProfileInformation">
-    <x-slot name="title">
-        {{ __('Profile Information') }}
-    </x-slot>
+    @section('menu')
+    <div class="text-gray-600 dark:text-gray-100 dark:bg-dcolor p-3 h-auto w-auto min-w-fit bg-white shadow-[0px_3px_6px_0px_#f7fafc]">
+        <div class="flex m-1 p-1 text-base font-bold text-pcolor">
+            <a href="{{route('profile.show')}}">Informations de profile</a>
+        </div>
+        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+        <div class="flex m-1 p-1 text-base hover:text-pcolor">
+            <a href="{{route('profile.update-password')}}">Mot de passe</a>
+        </div>
+        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+        <div class="flex m-1 p-1 text-base hover:text-pcolor">
+            <a href="{{route('profile.security')}}">Sécurité</a>
+        </div>
+        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+        <div class="flex m-1 p-1 text-base hover:text-pcolor">
+            <a href="{{ route('profile.delete-profile') }}">Supprimer le compte</a>
+        </div>
+    </div>
+    @endsection
 
     <x-slot name="description">
         {{ __('Update your account\'s profile information and email address.') }}
@@ -52,31 +68,31 @@
             </div>
         @endif
 
-        <!-- Name -->
-        <div class="col-span-6 sm:col-span-4">
-            <x-label for="FirstName" value="{{ __('First Name') }}" />
-            <x-input id="FirstName" type="text" class="mt-1 block w-full" wire:model.defer="state.FirstName" autocomplete="FirstName" />
+        <!-- First Name -->
+        <div class="w-auto">
+            <x-label for="FirstName" value="{{ __('Prénom') }}" />
+            <x-input id="FirstName" type="text" class="mt-1 w-full" wire:model.defer="state.FirstName" autocomplete="FirstName" />
             <x-input-error for="FirstName" class="mt-2" />
         </div>
-
-        <div class="col-span-6 sm:col-span-4">
-            <x-label for="LastName" value="{{ __('Last Name') }}" />
-            <x-input id="LastName" type="text" class="mt-1 block w-full" wire:model.defer="state.LastName" autocomplete="LastName" />
+                <!-- Last Name -->
+        <div class="w-auto">
+            <x-label for="LastName" value="{{ __('Nom') }}" />
+            <x-input id="LastName" type="text" class="mt-1 w-full" wire:model.defer="state.LastName" autocomplete="LastName" />
             <x-input-error for="LastName" class="mt-2" />
         </div>
 
         <!-- Email -->
-        <div class="col-span-6 sm:col-span-4">
+        <div class="w-auto">
             <x-label for="email" value="{{ __('Email') }}" />
-            <x-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" autocomplete="username" />
+            <x-input id="email" type="email" class="mt-1 w-full" wire:model.defer="state.email" autocomplete="username" />
             <x-input-error for="email" class="mt-2" />
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
                 <p class="text-sm mt-2">
-                    {{ __('Your email address is unverified.') }}
+                    {{ __("Votre adresse e-mail n'est pas vérifiée.") }}
 
-                    <button type="button" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" wire:click.prevent="sendEmailVerification">
-                        {{ __('Click here to re-send the verification email.') }}
+                    <button type="button" class="underline text-sm text-gray-600 hover:text-pcolor rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" wire:click.prevent="sendEmailVerification">
+                        {{ __("Cliquez ici pour renvoyer l'e-mail de vérification.") }}
                     </button>
                 </p>
 
@@ -86,6 +102,12 @@
                     </p>
                 @endif
             @endif
+        </div>
+
+        <div class="w-auto">
+            <x-label for="phone_number" value="{{ __('Numéro de téléphone') }}" />
+            <x-input id="phone_number" type="text" class="mt-1 w-full" wire:model.defer="state.phone_number" autocomplete="phone_number" />
+            <x-input-error for="phone_number" class="mt-2" />
         </div>
     </x-slot>
 

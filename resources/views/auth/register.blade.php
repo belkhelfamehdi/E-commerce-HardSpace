@@ -14,13 +14,18 @@
                 <x-input id="FirstName" class="block mt-1 w-full" type="text" name="FirstName" :value="old('FirstName')" required autofocus autocomplete="FirstName" />
             </div>
             <div class="mt-4">
-                <x-label for="LastName" value="{{ __('LastName') }}" />
+                <x-label for="LastName" value="{{ __('Last Name') }}" />
                 <x-input id="LastName" class="block mt-1 w-full" type="text" name="LastName" :value="old('LastName')" required autofocus autocomplete="LastName" />
             </div>
 
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="phone_number" value="{{ __('Phone number') }}" />
+                <x-input id="phone_number" class="block mt-1 w-full" type="tel" name="phone_number" :value="old('phone_number')" required autocomplete="username" />
             </div>
 
             <div class="mt-4">

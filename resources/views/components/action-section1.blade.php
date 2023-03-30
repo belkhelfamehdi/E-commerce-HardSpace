@@ -1,5 +1,5 @@
 <div {{ $attributes->merge(['class' => 'md:grid md:grid-cols-3 md:gap-6']) }}>
-    <div class="flex flex-col">
+    <div class="flex flex-col opacity-0 pointer-events-none">
         @yield('menu')
     </div>
 

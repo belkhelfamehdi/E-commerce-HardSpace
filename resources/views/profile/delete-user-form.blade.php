@@ -1,7 +1,23 @@
 <x-action-section>
-    <x-slot name="title">
-        {{ __('Delete Account') }}
-    </x-slot>
+    @section('menu')
+    <div class="text-gray-600 dark:text-gray-100 dark:bg-dcolor p-3 h-auto w-auto min-w-fit bg-white shadow-[0px_3px_6px_0px_#f7fafc]">
+        <div class="flex m-1 p-1 text-base hover:text-pcolor">
+            <a href="{{route('profile.show')}}">Informations de profile</a>
+        </div>
+        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+        <div class="flex m-1 p-1 text-base hover:text-pcolor">
+            <a href="">Mot de passe</a>
+        </div>
+        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+        <div class="flex m-1 p-1 text-base hover:text-pcolor">
+            <a href="{{route('profile.security')}}">Sécurité</a>
+        </div>
+        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+        <div class="flex m-1 p-1 text-base font-bold text-pcolor">
+            <a href="{{ route('profile.delete-profile') }}">Supprimer le compte</a>
+        </div>
+    </div>
+    @endsection>
 
     <x-slot name="description">
         {{ __('Permanently delete your account.') }}

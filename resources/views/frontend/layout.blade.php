@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{url('frontend/assets/vendor/css/swiper-bundle.min.css') }}" />
+    @livewireStyles
 </head>
 
 <body class="font-roboto dark:bg-dcolor ">
@@ -58,7 +59,7 @@
                       </div>
                       <div class="def-i">
                         <span class="search" @click="search = !search"><i class="fa-solid fa-magnifying-glass mr-4 fa-lg md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-100 hover:scale-105 hover:text-pcolor"></i></span>
-                        <span class="relative user"><a href="{{route('login')}}"><i class="fa-solid fa-user fa-lg mx-4 md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-300 hover:text-pcolor justify-between"></i></a>
+                        <span class="relative user"><a href="{{route('profile.show')}}"><i class="fa-solid fa-user fa-lg mx-4 md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-300 hover:text-pcolor justify-between"></i></a>
                             @if(Auth::guest())
                             <div class="login absolute dark:bg-dcolor top-[18px] -left-40 p-3 h-auto w-auto min-w-fit text-black bg-white z-50 opacity-0 transition-opacity ease-in-out duration-150 shadow-[0px_3px_6px_0px_#f7fafc] pointer-events-none">
                                 <form action="{{route('login')}}" method="POST" class="font-normal">
@@ -90,8 +91,8 @@
                             </div>
                             @else
                             <div class="login absolute text-gray-600 dark:text-gray-100 dark:bg-dcolor top-[18px] -left-28 p-3 h-auto w-auto min-w-fit text-black bg-white z-50 opacity-0 transition-opacity ease-in-out duration-150 shadow-[0px_3px_6px_0px_#f7fafc] pointer-events-none">
-                                <div class="flex m-1 w-40 font-semibold  text-xs hover:text-pcolor">
-                                    <a href="{{route('profile.show')}}"><span class="text-sm">Salut, </span>{{Auth::user()->name}}</a>
+                                <div class="flex m-1 w-40 font-semibold  text-xs">
+                                    <span><span class="text-sm">Salut, </span>{{Auth::user()->FirstName}} {{Auth::user()->LastName}}</span>
                                 </div>
                                 <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
                                 <div class="flex m-1  text-xs hover:text-pcolor">
