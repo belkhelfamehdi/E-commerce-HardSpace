@@ -6,7 +6,7 @@
         </div>
         <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
         <div class="flex m-1 p-1 text-base hover:text-pcolor">
-            <a href="">Mot de passe</a>
+            <a href="{{route('profile.update-password')}}">Mot de passe</a>
         </div>
         <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
         <div class="flex m-1 p-1 text-base font-bold text-pcolor">
