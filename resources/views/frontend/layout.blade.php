@@ -92,7 +92,7 @@
                             @else
                             <div class="login absolute text-gray-600 dark:text-gray-100 dark:bg-dcolor top-[18px] -left-28 p-3 h-auto w-auto min-w-fit text-black bg-white z-50 opacity-0 transition-opacity ease-in-out duration-150 shadow-[0px_3px_6px_0px_#f7fafc] pointer-events-none">
                                 <div class="flex m-1 w-40 font-semibold  text-xs">
-                                    <span><span class="text-sm">Salut, </span>{{Auth::user()->FirstName}} {{Auth::user()->LastName}}</span>
+                                    <span><span class="text-sm capitalize">Salut, </span>{{Auth::user()->FirstName}} {{Auth::user()->LastName}}</span>
                                 </div>
                                 <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
                                 <div class="flex m-1  text-xs hover:text-pcolor">
