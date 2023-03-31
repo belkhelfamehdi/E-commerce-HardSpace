@@ -85,6 +85,7 @@ $(document).ready(function() {
         //-------- searchbar ----------//
         $('.search').click(function() {
             $('.def-i').toggleClass('hidden');
+
             if ($(window).width() >= 768) {
                 $('.nav-i').toggleClass('hidden');
             }

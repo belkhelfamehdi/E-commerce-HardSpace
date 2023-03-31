@@ -43,7 +43,7 @@
                     <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="" class="capitalize">Contactez-nous</a></li>
                 </ul>
                 <div class="btn-i max-md:relative max-md:top-20 pt-5 justify-center md:pt-0 mt-2 lg:pr-4 flex w-auto " x-data = "{search : false}">
-                <div class="searchbar absolute right-8 md:right-0 md:-top-4 flex ml-96 mb-5 transition-all ease-in-out duration-300" :class = "{'invisible opacity-0 translate-x-2':!search, 'visible opacity-100 translate-x-0': search}">
+                <div class="searchbar absolute md:-left-full right-8 md:right-0 md:-top-4 flex ml-96 mb-5 transition-all ease-in-out duration-300" :class = "{'invisible md:-left-full opacity-0 translate-x-2':!search, 'visible opacity-100 translate-x-0': search}">
                     <form action="" class="flex">
                     @csrf
                     <input type="text" class="bg-gray-200 text-black focus:outline-none focus:ring-2 focus:ring-pcolor focus:border-transparent rounded-sm py-2 px-4 block w-52 md:w-64 appearance-none leading-normal" placeholder="Rechercher un produit">
