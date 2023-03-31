@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PhoneVerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-})->name('index');
+
+
+Route::middleware(['auth', 'confirmation_token'])->group(function () {
+    Route::get('/', function () {
+        return view('frontend.index');
+    })->name('index');
+});
+
+Route::get('/verify-phone', [PhoneVerificationController::class, 'show'])->middleware('auth')->name('phone.show');
+Route::post('/verify-phone', [PhoneVerificationController::class, 'verify'])->middleware('auth')->name('phone.verify');
 
 Route::get('store', function () {
     return view('frontend.frontend_layout.store');

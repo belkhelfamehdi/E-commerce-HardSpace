@@ -61,4 +61,16 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function hasVerifiedPhoneNumber()
+    {
+        return !is_null($this->phone_number_verified_at);
+    }
+
+    public function markPhoneNumberAsVerified()
+    {
+        $this->forceFill([
+            'phone_number_verified_at' => $this->freshTimestamp(),
+        ])->save();
+    }
 }

@@ -30,6 +30,7 @@ $(document).ready(function() {
     });
     $('.search').click(function() {
         $('.def-i').toggleClass('hidden');
+        $('.searchbar').toggleClass('md:-left-full');
         if ($(window).width() >= 768) {
             $('.nav-i').toggleClass('hidden');
         }
