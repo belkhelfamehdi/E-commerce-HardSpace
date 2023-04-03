@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,21 +21,22 @@ Route::get('store', function () {
     return view('frontend.frontend_layout.store');
 })->name('store');
 
-Route::get('send-sms', 'App\Http\Controllers\SMSController@sendSMS')->name('send-sms');
-
 Route::get('product', function () {
     return view('frontend.frontend_layout.product');
 })->name('product');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function(){
+	Route::get('/1wire_rty/login',[AdminController::class, 'loginForm']);
+	Route::post('/login',[AdminController::class, 'store'])->name('admin.login');
 });
+
+Route::middleware(['auth:admin'])->group(function(){
+    // Admin Dashboard routes
+    Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
+        return view('admin.index');
+    })->name('admin.dashboard');
+});
+
 
 $authMiddleware = config('jetstream.guard')
 ? 'auth:'.config('jetstream.guard')
