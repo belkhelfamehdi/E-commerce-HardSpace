@@ -126,7 +126,7 @@
                 <p class="my-10 tracking-wide text-base">
                     Nous proposons une large gamme de matériel informatique de haute qualité pour répondre à tous vos besoins, que vous soyez un particulier ou une entreprise de l'ordinateur portable au PC de bureau, en passant par les accessoires, parcourez notre sélection dès maintenant et découvrez nos offres exceptionnelles.
                 </p>
-                <button class="text-black bg-pcolor py-3 px-2 rounded-xl tracking-wide text-base font-semibold my-1 w-full mx-auto md:w-auto"><span class="px-1">Allez à la boutique </span><i class="fa-solid fa-arrow-right px-1"></i></button>
+                <a href="{{route('store')}}" class="text-black bg-pcolor py-3 px-2 rounded-xl tracking-wide text-base font-semibold my-1 w-full mx-auto md:w-auto"><span class="px-1">Allez à la boutique </span><i class="fa-solid fa-arrow-right px-1"></i></a>
             </div>
         </div>
         <div class="my-auto">
