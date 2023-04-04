@@ -3,6 +3,7 @@
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +37,7 @@ Route::middleware(['auth:admin'])->group(function(){
     // Admin Logout/password change and profile routes
     Route::prefix('/admin')->group(function () {
         Route::get('/logout',[AdminController::class, 'destroy'])->name('admin.logout');
+        Route::get('/products', [ProductController::class, 'index'])->name('admin.products');
     });
 });
 

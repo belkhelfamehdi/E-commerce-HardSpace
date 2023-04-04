@@ -15,7 +15,7 @@
 </head>
 <body class="hold-transition theme-primary bg-gradient-primary">
 	
-	<div class="container w-1/2 mt-28  mx-auto p-4 bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
+	<div class="container w-1/2 mt-28  mx-auto p-4 bg-white shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
 		<div class="w-full md:w-1/2 lg:w-4/5 mx-auto my-12 ">
 		  <h1 class="text-lg font-bold">Admin</h1>
 		  <form class="flex flex-col mt-4" method="POST" action="{{ isset($guard) ? url($guard.'/login') : route('login') }}">
