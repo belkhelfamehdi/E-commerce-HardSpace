@@ -25,7 +25,7 @@ Route::get('product', function () {
     return view('frontend.frontend_layout.product');
 })->name('product');
 
-Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function(){
+Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin', 'guest']], function(){
 	Route::get('/1wire_rty/login',[AdminController::class, 'loginForm']);
 	Route::post('/login',[AdminController::class, 'store'])->name('admin.login');
 });
