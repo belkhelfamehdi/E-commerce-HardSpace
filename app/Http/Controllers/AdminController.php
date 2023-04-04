@@ -16,6 +16,8 @@ use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class AdminController extends Controller
 {
@@ -38,6 +40,9 @@ class AdminController extends Controller
     }
 
     public function loginForm(){
+        if (auth()->check() && auth()->user()->getTable() == 'users') {
+            throw new AuthorizationException('Vous n\'êtes pas autorisé.');
+        }
     	return view('auth.admin_login', ['guard' => 'admin']);
     }
 
