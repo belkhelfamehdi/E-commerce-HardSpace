@@ -10,91 +10,53 @@
 
     <title>Sunny Admin - Log in </title>
   
-	<!-- Vendors Style-->
-	<link rel="stylesheet" href="{{ asset('backend') }}/css/vendors_css.css">
-	  
-	<!-- Style-->  
-	<link rel="stylesheet" href="{{ asset('backend') }}/css/style.css">
-	<link rel="stylesheet" href="{{ asset('backend') }}/css/skin_color.css">	
+	@vite('resources/css/app.css')
 
 </head>
 <body class="hold-transition theme-primary bg-gradient-primary">
 	
-	<div class="container h-p100">
-		<div class="row align-items-center justify-content-md-center h-p100">	
-			
-			<div class="col-12">
-				<div class="row justify-content-center no-gutters">
-					<div class="col-lg-4 col-md-5 col-12">
-						<div class="content-top-agile p-10">
-							<h2 class="text-white">Get started with Us</h2>
-							<p class="text-white-50">Sign in to start your session</p>							
-						</div>
-						<div class="p-30 rounded30 box-shadowed b-2 b-dashed">
-                            <form method="POST" action="{{ isset($guard) ? url($guard.'/login') : route('login') }}">
-                                @csrf
-								<div class="form-group">
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text bg-transparent text-white"><i class="ti-user"></i></span>
-										</div>
-										<input type="email" class="form-control pl-15 bg-transparent text-white plc-white" placeholder="Email" name="email" required autofocus>
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text  bg-transparent text-white"><i class="ti-lock"></i></span>
-										</div>
-										<input type="password" name="password" class="form-control pl-15 bg-transparent text-white plc-white" placeholder="Password" required autofocus>
-									</div>
-								</div>
-								  <div class="row">
-									<div class="col-6">
-									  <div class="checkbox text-white">
-										<input type="checkbox" id="basic_checkbox_1" name='remember'>
-										<label for="basic_checkbox_1">{{ __('Remember me') }}</label>
-									  </div>
-									</div>
-									<!-- /.col -->
-									<div class="col-6">
-									 <div class="fog-pwd text-right">
-                                        @if (Route::has('password.request'))
-										<a href="{{ route('password.request') }}" class="text-white hover-info"><i class="ion ion-locked"></i> {{ __('Forgot your password?') }}</a><br>
-                                        @endif
-									  </div>
-									</div>
-									<!-- /.col -->
-									<div class="col-12 text-center">
-									  <button type="submit" class="btn btn-info btn-rounded mt-10">{{ __("SIGN IN") }}</button>
-									</div>
-									<!-- /.col -->
-								  </div>
-							</form>														
-
-							{{-- <div class="text-center text-white">
-							  <p class="mt-20">- Sign With -</p>
-							  <p class="gap-items-2 mb-20">
-								  <a class="btn btn-social-icon btn-round btn-outline btn-white" href="#"><i class="fa fa-facebook"></i></a>
-								  <a class="btn btn-social-icon btn-round btn-outline btn-white" href="#"><i class="fa fa-twitter"></i></a>
-								  <a class="btn btn-social-icon btn-round btn-outline btn-white" href="#"><i class="fa fa-google-plus"></i></a>
-								  <a class="btn btn-social-icon btn-round btn-outline btn-white" href="#"><i class="fa fa-instagram"></i></a>
-								</p>	
-							</div>					 --}}
-							{{-- <div class="text-center">
-								<p class="mt-15 mb-0 text-white">Don't have an account? <a href="auth_register.html" class="text-info ml-5">Sign Up</a></p>
-							</div> --}}
-						</div>
-					</div>
-				</div>
+	<div class="container w-1/2 mt-28  mx-auto p-4 bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
+		<div class="w-full md:w-1/2 lg:w-4/5 mx-auto my-12 ">
+		  <h1 class="text-lg font-bold">Admin</h1>
+		  <form class="flex flex-col mt-4" method="POST" action="{{ isset($guard) ? url($guard.'/login') : route('login') }}">
+			@csrf
+			<ul class="mb-5 font-medium text-sm text-red-700 list-disc list-inside">
+				@error('email')
+					<li>{{ $message }}</li>
+				@enderror
+				@error('password')
+				<li>{{ $message }}</li>
+				@enderror 
+			</ul>
+			<input
+				type="email"
+				name="email"
+				class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
+				placeholder="Email"
+			/>
+			<input
+				type="password"
+				name="password"
+				class="px-4 py-3 mt-4 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
+				placeholder="Mot de passe"
+			/>
+			<div class="block mt-4">
+				<label for="remember_me" class="flex items-center">
+					<x-checkbox id="remember_me" name="remember" />
+					<span class="ml-2 text-sm text-gray-600">{{ __('Se souvenir de moi') }}</span>
+				</label>
 			</div>
+			<button
+				type="submit"
+				class="mt-4 px-4 py-3  leading-6 text-base rounded-md border border-transparent text-white focus:outline-none bg-pcolor text-white focus:ring-2 focus:ring-pcolor focus:ring-offset-2 cursor-pointer inline-flex items-center w-full justify-center items-center font-medium focus:outline-none"
+			>
+			  Login
+			</button>
+	
+		  </form>
 		</div>
-	</div>
-
-
-	<!-- Vendor JS -->
-	<script src="{{ asset('backend') }}/js/vendors.min.js"></script>
-    <script src="{{ asset('') }}/assets/icons/feather-icons/feather.min.js"></script>	
+	  </div>
 
 </body>
 </html>
+

@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{url('frontend/assets/vendor/css/swiper-bundle.min.css')}}"/>
 </head>
-<body class="font-roboto ">
+<body class="font-roboto">
     <!-- Start Header Section -->
     <header class="text-white relative h-auto xl:h-screen bg-no-repeat bg-cover max-w-full ease-in duration-200" id="background-image">
       <nav class="md:fixed z-30 md:top-0 w-full ease-in duration-200">
