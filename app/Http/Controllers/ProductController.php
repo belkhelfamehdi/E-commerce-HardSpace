@@ -36,9 +36,15 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function SearchProduct(Request $request)
     {
-        //
+        $products = Product::all();
+    if($request->keyword != ''){
+    $products = Product::where('product_name','LIKE','%'.$request->keyword.'%')->get();
+    }
+    return response()->json([
+        'products' => $products
+    ]);
     }
 
     /**

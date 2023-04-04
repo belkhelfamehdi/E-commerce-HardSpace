@@ -37,7 +37,11 @@ Route::middleware(['auth:admin'])->group(function(){
     // Admin Logout/password change and profile routes
     Route::prefix('/admin')->group(function () {
         Route::get('/logout',[AdminController::class, 'destroy'])->name('admin.logout');
+    });
+
+    Route::prefix('/admin')->group(function () {
         Route::get('/products', [ProductController::class, 'index'])->name('admin.products');
+        Route::post('/products/search', [ProductController::class, 'SearchProduct'])->name('search.products');
     });
 });
 
