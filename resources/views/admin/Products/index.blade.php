@@ -20,6 +20,12 @@
                                 <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                 Description</th>
+                                <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Quantité</th>
+                                <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Prix</th>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                 Status</th>
@@ -33,6 +39,7 @@
                     </thead>
     
                     <tbody class="bg-white">
+                        @foreach ($products as $product)
                         <tr>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="flex items-center">
@@ -44,13 +51,21 @@
                             </td>
     
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-500">Asus R510J</div>
+                                <div class="text-sm leading-5 text-gray-500">{{$product->product_name}}</div>
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-500">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque doloribus vel minima commodi tempora aliquid cumque nam quae voluptates, velit facere quia perferendis, culpa similique architecto eaque temporibus veniam? Ipsa?</div>
+                                <div class="text-sm leading-5 text-gray-500">{{$product->description}}</div>
                             </td>
     
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                <div class="text-sm leading-5 text-gray-500">{{$product->product_qty}}</div>
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                <div class="text-sm leading-5 text-gray-500">{{$product->price}} DZD</div>
+                            </td>
+
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <span
                                     class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
@@ -82,8 +97,10 @@
                                 </div>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
+                <div class="my-5">{{ $products->links() }}</div>
             </div>
         </div>
     </div>
