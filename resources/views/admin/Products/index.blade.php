@@ -13,7 +13,7 @@
                 <button @click="modelOpen =!modelOpen" class="bg-transparent text-sm hover:bg-pcolor text-pcolor font-semibold hover:text-white px-6 border border-pcolor hover:border-transparent rounded" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                     Ajouter
                   </button>
-                <input type="search" id="search" class="block w-1/4 py-3 pl-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-pcolor focus:border-pcolor dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pcolor dark:focus:border-pcolor" placeholder="Produits" required>
+                <input type="search" id="search" class="block w-1/4 py-3 pl-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-pcolor focus:border-pcolor dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pcolor dark:focus:border-pcolor" placeholder="Produits">
             </div>
             <div class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
                 <table class="min-w-full">
