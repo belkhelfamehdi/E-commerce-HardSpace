@@ -65,17 +65,6 @@
 
           </div>
           <div class="hidden lg:flex justify-center space-x-1 dark:text-gray-100">
-            <button title="previous" type="button" class="prev-btn inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md dark:bg-gray-900 dark:border-gray-800">
-              <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-4">
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-            </button>
-            <div class="pagination space-x-1"></div>
-            <button title="next" type="button" class="next-btn inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md dark:bg-gray-900 dark:border-gray-800">
-              <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-4">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </button>
           </div>
         </div>
 
@@ -199,344 +188,42 @@
           <div class="w-3/4">
             <div class="product grid grid-cols-1 min-[394px]:justify-items-end mx-auto  lg:grid-cols-2 xl:grid-cols-3 gap-4">
               <!--here-->
+              @foreach ($products as $product)
               <!-- Card 1 -->
-      <div class="w-72 clamp bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-        <a href="#">
-            <div class="scard relative w-62 h-70 bg-[#191919] rounded-3xl overflow-hidden">
-                <div class="relative w-full flex justify-center items-center pt-5 z-10">
-                    <img class="max-w-full transition-all duration-[0.5s]" src="{{url('frontend/assets/images/products/casque.webp')}}" alt="headphone">
+              
+                  
+              
+                  <div class="w-72 clamp bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+                    <a href="#">
+                        <div class="scard relative w-62 h-70 bg-[#191919] rounded-3xl overflow-hidden">
+                            <div class="relative w-full flex justify-center items-center pt-5 z-10">
+                                <img class="max-w-full transition-all duration-[0.5s]" src="{{url('frontend/assets/images/products/casque.webp')}}" alt="headphone">
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 w-72">
+                            <span class="text-gray-400 mr-3 uppercase text-xs">{{$product->brand_id}}</span>
+                            <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">{{$product->product_name}}</p>
+                            <div class="flex items-center">
+                                <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">{{$product->price}} DZD</p>
+                                <del>
+                          <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
+                      </del>
+                                <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd"
+                                  d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                              <path
+                                  d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                          </svg></div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </div>
-            <div class="px-4 py-3 w-72">
-                <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-                <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">ASUS TUF VG27AQ 27''</p>
-                <div class="flex items-center">
-                    <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
-                    <del>
-              <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-          </del>
-                    <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd"
-                      d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                  <path
-                      d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-              </svg></div>
-                </div>
-            </div>
-        </a>
-    </div>
+                @endforeach
     <!-- End Card 1 -->
-    <!-- Card 1 -->
-    <div class="w-72 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-      <a href="#">
-          <div class="scard relative w-62 h-70 bg-[#191919] rounded-3xl overflow-hidden">
-              <div class="relative w-full flex justify-center items-center pt-5 z-10">
-                  <img class="max-w-full transition-all duration-[0.5s]" src="{{url('frontend/assets/images/products/casque.webp')}}" alt="headphone">
+ 
               </div>
-          </div>
-          <div class="px-4 py-3 w-72">
-              <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-              <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">ASUS TUF VG27AQ 27''</p>
-              <div class="flex items-center">
-                  <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
-                  <del>
-            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-        </del>
-                  <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                <path
-                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-            </svg></div>
-              </div>
-          </div>
-      </a>
-    </div>
-    <!-- End Card 1 -->
-    <!-- Card 1 -->
-    <div class="w-72 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-      <a href="#">
-          <div class="scard relative w-62 h-70 bg-[#191919] rounded-3xl overflow-hidden">
-              <div class="relative w-full flex justify-center items-center pt-5 z-10">
-                  <img class="max-w-full transition-all duration-[0.5s]" src="{{url('frontend/assets/images/products/casque.webp')}}" alt="headphone">
-              </div>
-          </div>
-          <div class="px-4 py-3 w-72">
-              <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-              <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">ASUS TUF VG27AQ 27''</p>
-              <div class="flex items-center">
-                  <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
-                  <del>
-            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-        </del>
-                  <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                <path
-                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-            </svg></div>
-              </div>
-          </div>
-      </a>
-    </div>
-    <!-- End Card 1 -->
-    <!-- Card 1 -->
-    <div class="w-72 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-      <a href="#">
-          <div class="scard relative w-62 h-70 bg-[#191919] rounded-3xl overflow-hidden">
-              <div class="relative w-full flex justify-center items-center pt-5 z-10">
-                  <img class="max-w-full transition-all duration-[0.5s]" src="{{url('frontend/assets/images/products/casque.webp')}}" alt="headphone">
-              </div>
-          </div>
-          <div class="px-4 py-3 w-72">
-              <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-              <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">ASUS TUF VG27AQ 27''</p>
-              <div class="flex items-center">
-                  <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
-                  <del>
-            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-        </del>
-                  <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                <path
-                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-            </svg></div>
-              </div>
-          </div>
-      </a>
-    </div>
-    <!-- End Card 1 -->
-    <!-- Card 1 -->
-    <div class="w-72 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-      <a href="#">
-          <div class="scard relative w-62 h-70 bg-[#191919] rounded-3xl overflow-hidden">
-              <div class="relative w-full flex justify-center items-center pt-5 z-10">
-                  <img class="max-w-full transition-all duration-[0.5s]" src="{{url('frontend/assets/images/products/casque.webp')}}" alt="headphone">
-              </div>
-          </div>
-          <div class="px-4 py-3 w-72">
-              <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-              <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">ASUS TUF VG27AQ 27''</p>
-              <div class="flex items-center">
-                  <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
-                  <del>
-            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-        </del>
-                  <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                <path
-                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-            </svg></div>
-              </div>
-          </div>
-      </a>
-    </div>
-    <!-- End Card 1 -->
-    <!-- Card 1 -->
-    <div class="w-72 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-      <a href="#">
-          <div class="scard relative w-62 h-70 bg-[#191919] rounded-3xl overflow-hidden">
-              <div class="relative w-full flex justify-center items-center pt-5 z-10">
-                  <img class="max-w-full transition-all duration-[0.5s]" src="{{url('frontend/assets/images/products/casque.webp')}}" alt="headphone">
-              </div>
-          </div>
-          <div class="px-4 py-3 w-72">
-              <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-              <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">ASUS TUF VG27AQ 27''</p>
-              <div class="flex items-center">
-                  <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
-                  <del>
-            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-        </del>
-                  <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                <path
-                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-            </svg></div>
-              </div>
-          </div>
-      </a>
-    </div>
-    <!-- End Card 1 -->
-    <!-- Card 1 -->
-    <div class="w-72 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-      <a href="#">
-          <div class="scard relative w-62 h-70 bg-[#191919] rounded-3xl overflow-hidden">
-              <div class="relative w-full flex justify-center items-center pt-5 z-10">
-                  <img class="max-w-full transition-all duration-[0.5s]" src="{{url('frontend/assets/images/products/casque.webp')}}" alt="headphone">
-              </div>
-          </div>
-          <div class="px-4 py-3 w-72">
-              <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-              <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">ASUS TUF VG27AQ 27''</p>
-              <div class="flex items-center">
-                  <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
-                  <del>
-            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-        </del>
-                  <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                <path
-                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-            </svg></div>
-              </div>
-          </div>
-      </a>
-    </div>
-    <!-- End Card 1 -->
-    <!-- Card 1 -->
-    <div class="w-72 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-      <a href="#">
-          <div class="scard relative w-62 h-70 bg-[#191919] rounded-3xl overflow-hidden">
-              <div class="relative w-full flex justify-center items-center pt-5 z-10">
-                  <img class="max-w-full transition-all duration-[0.5s]" src="{{url('frontend/assets/images/products/casque.webp')}}" alt="headphone">
-              </div>
-          </div>
-          <div class="px-4 py-3 w-72">
-              <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-              <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">ASUS TUF VG27AQ 27''</p>
-              <div class="flex items-center">
-                  <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
-                  <del>
-            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-        </del>
-                  <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                <path
-                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-            </svg></div>
-              </div>
-          </div>
-      </a>
-    </div>
-    <!-- End Card 1 -->
-    <!-- Card 1 -->
-    <div class="w-72 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-      <a href="#">
-          <div class="scard relative w-62 h-70 bg-[#191919] rounded-3xl overflow-hidden">
-              <div class="relative w-full flex justify-center items-center pt-5 z-10">
-                  <img class="max-w-full transition-all duration-[0.5s]" src="{{url('frontend/assets/images/products/casque.webp')}}" alt="headphone">
-              </div>
-          </div>
-          <div class="px-4 py-3 w-72">
-              <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-              <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">ASUS TUF VG27AQ 27''</p>
-              <div class="flex items-center">
-                  <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
-                  <del>
-            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-        </del>
-                  <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                <path
-                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-            </svg></div>
-              </div>
-          </div>
-      </a>
-    </div>
-    <!-- End Card 1 -->
-    <!-- Card 1 -->
-    <div class="w-72 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-      <a href="#">
-          <div class="scard relative w-62 h-70 bg-[#191919] rounded-3xl overflow-hidden">
-              <div class="relative w-full flex justify-center items-center pt-5 z-10">
-                  <img class="max-w-full transition-all duration-[0.5s]" src="{{url('frontend/assets/images/products/casque.webp')}}" alt="headphone">
-              </div>
-          </div>
-          <div class="px-4 py-3 w-72">
-              <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-              <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">ASUS TUF VG27AQ 27''</p>
-              <div class="flex items-center">
-                  <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
-                  <del>
-            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-        </del>
-                  <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                <path
-                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-            </svg></div>
-              </div>
-          </div>
-      </a>
-    </div>
-    <!-- End Card 1 -->
-    <!-- Card 1 -->
-    <div class="w-72 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-      <a href="#">
-          <div class="scard relative w-62 h-70 bg-[#191919] rounded-3xl overflow-hidden">
-              <div class="relative w-full flex justify-center items-center pt-5 z-10">
-                  <img class="max-w-full transition-all duration-[0.5s]" src="{{url('frontend/assets/images/products/casque.webp')}}" alt="headphone">
-              </div>
-          </div>
-          <div class="px-4 py-3 w-72">
-              <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-              <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">ASUS TUF VG27AQ 27''</p>
-              <div class="flex items-center">
-                  <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
-                  <del>
-            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-        </del>
-                  <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                <path
-                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-            </svg></div>
-              </div>
-          </div>
-      </a>
-    </div>
-    <!-- End Card 1 -->
-    <!-- Card 1 -->
-    <div class="w-72 bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-      <a href="#">
-          <div class="scard relative w-62 h-70 bg-[#191919] rounded-3xl overflow-hidden">
-              <div class="relative w-full flex justify-center items-center pt-5 z-10">
-                  <img class="max-w-full transition-all duration-[0.5s]" src="{{url('frontend/assets/images/products/casque.webp')}}" alt="headphone">
-              </div>
-          </div>
-          <div class="px-4 py-3 w-72">
-              <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-              <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">ASUS TUF VG27AQ 27''</p>
-              <div class="flex items-center">
-                  <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">2000 DZD</p>
-                  <del>
-            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-        </del>
-                  <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                <path
-                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-            </svg></div>
-              </div>
-          </div>
-      </a>
-    </div>
-    <!-- End Card 1 -->
-              </div>
-              <div class="flex  w-full justify-center my-4 py-4 border-t border-gray-200 space-x-1 dark:text-gray-100">
-                <button title="previous" type="button" class="prev-btn inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md dark:bg-gray-900 dark:border-gray-800">
-                  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-4">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                  </svg>
-                </button>
-                <div class="pagination space-x-1" id="pagination"></div>
-                <button title="next" type="button" class="next-btn inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md dark:bg-gray-900 dark:border-gray-800">
-                  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-4">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg>
-                </button>
-              </div>
+              <div class="my-4 py-4 border-t border-gray-200 space-x-1 dark:text-gray-100">
+                {{ $products->links() }}
             </div>
             
             </div>

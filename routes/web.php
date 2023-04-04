@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\frontend\ProductsController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +23,7 @@ Route::get('/', function () {
 Route::get('store', function () {
     return view('frontend.frontend_layout.store');
 })->name('store');
+Route::get('/store',[ProductsController::class, 'index'])->name('store');
 
 Route::get('product', function () {
     return view('frontend.frontend_layout.product');
