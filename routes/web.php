@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 /*
@@ -41,6 +42,9 @@ Route::middleware(['auth:admin'])->group(function(){
 
     // Admin Dashboard routes
     Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
+        if (auth()->check() && auth()->user()->getTable() == 'users') {
+            throw new AuthorizationException('Vous n\'êtes pas autorisé.');
+        }
         return view('admin.index');
     })->name('admin.dashboard');
 
