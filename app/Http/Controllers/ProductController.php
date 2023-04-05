@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Image;
 
 class ProductController extends Controller
 {
@@ -22,7 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.products.create');
     }
 
     /**
@@ -30,7 +32,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $image_path = $request->file('image')->store('image', 'public');
+
+        $product = Product::create([
+            'brand_id' => $request->input('brand_id'),
+            'category_id' => $request->input('category_id'),
+            'product_name' => $request->input('product_name'),
+            'product_code' => $request->input('product_code'),
+            'product_qty' => $request->input('quantity'),
+            'product_thumbnail' => $image_path,
+            'price' => $request->input('price'),
+            'description' => $request->input('description'),
+            ]);
     }
 
     /**

@@ -197,7 +197,7 @@
                     <a href="#">
                         <div class="scard relative w-62 h-70 bg-[#191919] rounded-3xl overflow-hidden">
                             <div class="relative w-full flex justify-center items-center pt-5 z-10">
-                                <img class="max-w-full transition-all duration-[0.5s]" src="{{url('frontend/assets/images/products/casque.webp')}}" alt="headphone">
+                                <img class="max-w-full transition-all duration-[0.5s]" src="{{ Storage::url($product->product_thumbnail) }}" alt="headphone">
                             </div>
                         </div>
                         <div class="px-4 py-3 w-72">

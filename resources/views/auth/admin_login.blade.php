@@ -5,17 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="author" content="">
     <link rel="icon" href="{{ asset('backend') }}/images/favicon.ico">
 
-    <title>Sunny Admin - Log in </title>
+    <title>Admin - Connexion </title>
   
 	@vite('resources/css/app.css')
 
 </head>
 <body class="hold-transition theme-primary bg-gradient-primary">
 	
-	<div class="container w-1/2 mt-28  mx-auto p-4 bg-white shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
+	<div class="container sm:w-1/3 mt-28  mx-auto p-4 bg-white shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
 		<div class="w-full md:w-1/2 lg:w-4/5 mx-auto my-12 ">
 		  <h1 class="text-lg font-bold">Admin</h1>
 		  <form class="flex flex-col mt-4" method="POST" action="{{ isset($guard) ? url($guard.'/login') : route('login') }}">

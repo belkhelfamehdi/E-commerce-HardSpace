@@ -18,11 +18,10 @@ return new class extends Migration
             $table->string('product_name');
             $table->string('product_code')->nullable();
             $table->string('product_qty');
-            $table->string('product_tags')->nullable();
             $table->unsignedInteger('price')->nullable();
             $table->unsignedInteger('discount_price')->nullable();
             $table->longText('description')->nullable();
-            $table->string('product_thumbnail')->nullable()->default('thumbnail.jpg');
+            $table->string('product_thumbnail')->nullable()->default('image/thumbnail.jpg');
             $table->boolean('hot_deals')->default(false);
             $table->boolean('featured')->default(false);
             $table->boolean('new_arrival')->default(false);
