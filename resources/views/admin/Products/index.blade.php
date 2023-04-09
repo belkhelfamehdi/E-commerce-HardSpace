@@ -9,7 +9,7 @@
 
         <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
             @if ($message = Session::get('success'))
-            <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-100 dark:bg-gray-800 dark:text-green-400" role="alert">
+            <div class="session p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-100 dark:bg-gray-800 dark:text-green-400" role="alert">
                 <span class="font-medium">{{ $message }}</span>
               </div>
         @endif
@@ -210,5 +210,10 @@
         }
             $('tbody').html(htmlView);
         }
+
+        $(document).ready(function() {
+            $('.session').css('opacity', 1).delay(2000).animate({opacity: 0}, 1000, function() {
+                $(this).css('display', 'none');});
+        });
     </script>
 </x-admin-layout>

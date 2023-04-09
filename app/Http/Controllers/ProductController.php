@@ -33,8 +33,10 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'image' => 'required|mimes:png,jpg,jpeg,webp|max:2048'
+        ]);
         $image_path = $request->file('image')->store('image/products', 'public');
-
         $product = Product::create([
             'brand_id' => $request->input('brand_id'),
             'category_id' => $request->input('category_id'),
@@ -77,7 +79,11 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
+
         if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'required|mimes:png,jpg,jpeg,webp|max:2048'
+            ]);
             Storage::delete('public/' . $product->product_thumbnail);
             $image_path = $request->file('image')->store('image/products', 'public');
             $product->product_thumbnail = $image_path;

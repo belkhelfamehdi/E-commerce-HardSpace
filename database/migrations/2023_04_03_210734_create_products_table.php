@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedInteger('price')->nullable();
             $table->unsignedInteger('discount_price')->nullable();
             $table->longText('description')->nullable();
-            $table->string('product_thumbnail')->nullable()->default('image/thumbnail.jpg');
+            $table->string('product_thumbnail')->nullable()->default('image/products/thumbnail.jpg');
             $table->boolean('hot_deals')->default(false);
             $table->boolean('featured')->default(false);
             $table->boolean('new_arrival')->default(false);

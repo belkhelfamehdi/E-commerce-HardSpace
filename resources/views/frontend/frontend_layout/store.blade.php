@@ -190,9 +190,6 @@
               <!--here-->
               @foreach ($products as $product)
               <!-- Card 1 -->
-              
-                  
-              
                   <div class="w-72 clamp bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
                     <a href="#">
                         <div class="scard relative w-62 h-70 bg-[#191919] rounded-3xl overflow-hidden">

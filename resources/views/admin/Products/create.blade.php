@@ -9,6 +9,27 @@
 
         <div class="py-2 -my-2 overflow-x-auto ">
             <div class="inline-block p-4 bg-white min-w-full overflow-hidden align-middle border border-gray-200 shadow sm:rounded-lg">
+
+                <ul class="mb-5 font-medium text-sm text-red-700 list-disc list-inside">
+                    @error('product_name')
+                        <li>{{ $message }}</li>
+                    @enderror
+                    @error('product_code')
+                    <li>{{ $message }}</li>
+                    @enderror 
+                    @error('price')
+                    <li>{{ $message }}</li>
+                    @enderror 
+                    @error('product_qty')
+                    <li>{{ $message }}</li>
+                    @enderror 
+                    @error('image')
+                    <li>{{ $message }}</li>
+                    @enderror 
+                    @error('description')
+                    <li>{{ $message }}</li>
+                    @enderror 
+                </ul>
                
                 <form method="post" action="{{route('admin.products.store')}}" enctype="multipart/form-data">
                     @csrf
