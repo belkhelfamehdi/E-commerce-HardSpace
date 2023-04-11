@@ -7,6 +7,32 @@
     <div class="flex flex-col mt-8">
 
 
+        <style>
+        .hasImage:hover section {
+            background-color: rgba(5, 5, 5, 0.4);
+            }
+            .hasImage:hover button:hover {
+            background: rgba(5, 5, 5, 0.45);
+            }
+        
+            #overlay p,
+            i {
+            opacity: 0;
+            }
+        
+            #overlay.draggedover {
+            background-color: rgba(255, 255, 255, 0.7);
+            }
+            #overlay.draggedover p,
+            #overlay.draggedover i {
+            opacity: 1;
+            }
+        
+            .group:hover .group-hover\:text-blue-800 {
+            color: #FF6F00;
+        }
+        </style>
+
         <div class="py-2 -my-2 overflow-x-auto ">
             <div class="inline-block p-4 bg-white min-w-full overflow-hidden align-middle border border-gray-200 shadow sm:rounded-lg">
 
