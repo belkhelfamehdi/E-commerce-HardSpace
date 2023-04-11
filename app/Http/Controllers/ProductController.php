@@ -62,7 +62,7 @@ class ProductController extends Controller
                 $imagePaths[] = $path;
                 $image = \App\Models\Image::create([
                     'product_id' => $product->id,
-                    'image_path' => $path,
+                    'photo_name' => $path,
                 ]);
             }
 

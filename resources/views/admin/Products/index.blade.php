@@ -212,7 +212,7 @@
         }
 
         $(document).ready(function() {
-            $('.session').css('opacity', 1).delay(2000).animate({opacity: 0}, 1000, function() {
+            $('.session').css('opacity', 1).delay(1000).animate({opacity: 0}, 1000, function() {
                 $(this).css('display', 'none');});
         });
     </script>
