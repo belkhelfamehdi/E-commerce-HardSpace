@@ -56,7 +56,7 @@ Route::middleware(['auth:admin'])->group(function(){
     // Admin Category routes
     Route::prefix('/admin')->group(function () {
         Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
-        Route::post('/category/search', [CategoryController::class, 'SearchProduct'])->name('search.category');
+        Route::post('/category/search', [CategoryController::class, 'SearchCategory'])->name('search.category');
         Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
         Route::post('/category/store', [CategoryController::class, 'store'])->name('admin.category.store');
         Route::delete('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');

@@ -61,7 +61,7 @@
                         <span class="absolute inset-y-0 left-0 w-1 bg-pcolor rounded-tr-lg rounded-br-lg"
                             aria-hidden="true"></span>
                             @endif
-                        <a href="{{route('admin.category')}}" class="inline-flex items-center w-full text-sm font-semibold @if (Route::is('admin.category')) text-gray-800 @endif transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                        <a href="{{route('admin.category')}}" class="inline-flex items-center w-full text-sm font-semibold @if (Route::is('admin.category')) text-gray-800 @endif @if (Route::is('admin.category.create')) text-gray-800 @endif @if (Route::is('admin.category.edit')) text-gray-800 @endif transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
                             href="">
                             <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -86,7 +86,7 @@
                         <span class="absolute inset-y-0 left-0 w-1 bg-pcolor rounded-tr-lg rounded-br-lg"
                             aria-hidden="true"></span>
                             @endif
-                        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 @if (Route::is('admin.products')) text-gray-800 @endif hover:text-gray-800 dark:hover:text-gray-200"
+                        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 @if (Route::is('admin.products')) text-gray-800 @endif @if (Route::is('admin.products.create')) text-gray-800 @endif @if (Route::is('admin.products.edit')) text-gray-800 @endif hover:text-gray-800 dark:hover:text-gray-200"
                             href="{{route('admin.products')}}">
                             <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
