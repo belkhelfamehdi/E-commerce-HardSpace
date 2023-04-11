@@ -64,17 +64,6 @@
                       <div id="2" class="w-1/5 bg-pcolor cursor-pointer rounded-xl sm:w-28 md:w-32 lg:w-[72px] xl:w-[78px]">
                           <img src="{{url('frontend/assets/images/products/clavier.webp')}}" alt="thumbnail" class="rounded-xl hover:opacity-50 transition" id="thumb-2" />
                       </div>
-
-                      <div id="3" class="w-1/5 bg-pcolor cursor-pointer rounded-xl sm:w-28 md:w-32 lg:w-[72px] xl:w-[78px]">
-                          <img src="{{url('frontend/assets/images/products/casque.webp')}}" alt="thumbnail" class="rounded-xl hover:opacity-50 transition" id="thumb-3" />
-                      </div>
-
-                      <div id="4" class="w-1/5 bg-pcolor cursor-pointer rounded-xl sm:w-28 md:w-32 lg:w-[72px] xl:w-[78px]">
-                          <img src="{{url('frontend/assets/images/products/casque.webp')}}" alt="thumbnail" class="rounded-xl hover:opacity-50 transition" id="thumb-4" />
-                      </div>
-                      <div id="4" class="w-1/5 bg-pcolor cursor-pointer rounded-xl sm:w-28 md:w-32 lg:w-[72px] xl:w-[78px]">
-                        <img src="{{url('frontend/assets/images/products/casque.webp')}}" alt="thumbnail" class="rounded-xl hover:opacity-50 transition" id="thumb-4" />
-                    </div>
                   </div>
               </section>
 

@@ -216,8 +216,6 @@
                     </a>
                 </div>
                 @endforeach
-    <!-- End Card 1 -->
- 
               </div>
               <div class="my-4 py-4 border-t border-gray-200 space-x-1 dark:text-gray-100">
                 {{ $products->links() }}

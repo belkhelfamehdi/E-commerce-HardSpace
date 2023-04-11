@@ -50,13 +50,28 @@
                               <option value="DE">Germany</option>
                             </select>
                         </div>
+                        <div class="col-span-2 w-full">
+                            <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                            </div>
                         <div>
                             
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Image</label>
                             <input name="image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="image" type="file">
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or WEBP.</p>
+                             <img src="{{ Storage::url($product->product_thumbnail) }}" id="mainThumbnail" alt="">
 
                         </div>
+
+                        <div>
+                            <div>
+                                <img class="h-auto max-w-xs" src="/docs/images/examples/image-1@2x.jpg" alt="image description">
+                            </div>
+                        </div>
+
+                        <div class="col-span-2 w-full">
+                            <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                            </div>
+
                         <div class="col-span-2 w-full">
                             <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
                             <textarea id="description" name="description" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-pcolor focus:border-pcolor dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pcolor dark:focus:border-pcolor" placeholder="Écrivez votre description ici...">{{$product->description}}</textarea>

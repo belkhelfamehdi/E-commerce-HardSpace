@@ -34,12 +34,14 @@
 				name="email"
 				class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
 				placeholder="Email"
+				autofocus
 			/>
 			<input
 				type="password"
 				name="password"
 				class="px-4 py-3 mt-4 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
 				placeholder="Mot de passe"
+				autofocus
 			/>
 			<div class="block mt-4">
 				<label for="remember_me" class="flex items-center">

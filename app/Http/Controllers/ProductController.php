@@ -34,9 +34,17 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|mimes:png,jpg,jpeg,webp|max:2048'
+            'image' => 'required|mimes:png,jpg,jpeg,webp|max:2048',
+            'images.*' => 'required|mimes:png,jpg,jpeg,webp|max:2048',
+            'images' => 'max:3'
         ]);
-        $image_path = $request->file('image')->store('image/products', 'public');
+        $image_path = $request->file('image')->store('image/products/thumbnail', 'public');
+
+        
+
+            $images = $request->file('images');
+
+
         $product = Product::create([
             'brand_id' => $request->input('brand_id'),
             'category_id' => $request->input('category_id'),
@@ -47,6 +55,18 @@ class ProductController extends Controller
             'price' => $request->input('price'),
             'description' => $request->input('description'),
             ]);
+
+            $imagePaths = [];
+            foreach ($images as $images_path) {
+                $path = $images_path->store('image/products/images', 'public');
+                $imagePaths[] = $path;
+                $image = \App\Models\Image::create([
+                    'product_id' => $product->id,
+                    'image_path' => $path,
+                ]);
+            }
+
+
             return redirect()->route('admin.products')->with('success','Le produit a été créé.');
     }
 
