@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\frontend\ProductsController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,7 @@ Route::middleware(['auth:admin'])->group(function(){
         Route::get('/logout',[AdminController::class, 'destroy'])->name('admin.logout');
     });
 
+    // Admin Products routes
     Route::prefix('/admin')->group(function () {
         Route::get('/products', [ProductController::class, 'index'])->name('admin.products');
         Route::post('/products/search', [ProductController::class, 'SearchProduct'])->name('search.products');
@@ -50,7 +52,17 @@ Route::middleware(['auth:admin'])->group(function(){
         Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('admin.products.edit');
         Route::put('/products/update/{id}', [ProductController::class, 'update'])->name('admin.products.update');
     });
-});
+
+    // Admin Category routes
+    Route::prefix('/admin')->group(function () {
+        Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
+        Route::post('/category/search', [CategoryController::class, 'SearchProduct'])->name('search.category');
+        Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
+        Route::post('/category/store', [CategoryController::class, 'store'])->name('admin.category.store');
+        Route::delete('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
+        Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('admin.category.edit');
+        Route::put('/category/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
+    });
 
 
     // Admin Dashboard routes
@@ -74,4 +86,5 @@ Route::group(['middleware' => array_values(array_filter([$authMiddleware, $authS
     Route::view('/user/change-password', 'profile.update-password')->name('profile.update-password');
     Route::view('/user/security', 'profile.security')->name('profile.security');
     Route::view('/user/delete-profile', 'profile.delete-profile')->name('profile.delete-profile');
+});
 });

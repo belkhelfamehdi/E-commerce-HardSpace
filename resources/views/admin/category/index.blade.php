@@ -14,8 +14,8 @@
               </div>
         @endif
             <div class="flex justify-between mb-3">
-                <a href="{{route('admin.products.create')}}" class="bg-transparent text-sm hover:bg-pcolor py-3 text-pcolor font-semibold hover:text-white px-6 border border-pcolor hover:border-transparent rounded">
-                    Ajouter un produit
+                <a href="{{route('admin.category.create')}}" class="bg-transparent text-sm hover:bg-pcolor py-3 text-pcolor font-semibold hover:text-white px-6 border border-pcolor hover:border-transparent rounded">
+                    Ajouter une categorie
                 </a>
                 <input type="search" id="search" class="block w-1/4 py-3 pl-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-pcolor focus:border-pcolor dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pcolor dark:focus:border-pcolor" placeholder="Produits">
             </div>
@@ -25,22 +25,7 @@
                         <tr>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Image</th>
-                            <th
-                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Nom du produit</th>
-                                <th
-                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Description</th>
-                                <th
-                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Quantité</th>
-                                <th
-                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Prix</th>
-                            <th
-                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Status</th>
+                                Nom du categorie</th>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                 Modifier</th>
@@ -51,42 +36,17 @@
                     </thead>
                     
                     <tbody class="bg-white">
-                        @foreach ($products as $product)
+                        @foreach ($categories as $category)
                         <tr>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 w-20 h-20">
-                                        <img class="w-20 h-20" src="{{ Storage::url($product->product_thumbnail) }}"
-                                            alt="">
-                                    </div>
-                                </div>
-                            </td>
-    
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-500">{{$product->product_name}}</div>
-                            </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-500">{{$product->description}}</div>
-                            </td>
-    
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-500">{{$product->product_qty}}</div>
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-500">{{$product->price}} DZD</div>
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <span
-                                    class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
+                                <div class="text-sm leading-5 text-gray-500">{{$category->category_name}}</div>
                             </td>
     
                             <td
                                 class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
                             <div class="w-fit ml-5">
-                                <a href="{{route('admin.products.edit', $product->id)}}">
+                                <a href="{{route('admin.category.edit', $category->id)}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -99,7 +59,7 @@
                                 class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
 
                                 <div class="w-fit ml-5">
-                                    <form action="{{route('admin.products.destroy', $product->id)}}" method="POST">
+                                    <form action="{{route('admin.category.destroy', $category->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button onclick="return confirm('Êtes-vous sûr(e) de vouloir supprimer ce produit ?')">
@@ -116,7 +76,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="my-5">{{ $products->links() }}</div>
+                <div class="my-5">{{ $categories->links() }}</div>
             </div>
         </div>
     </div>
@@ -128,7 +88,7 @@
         });
         function search(){
             var keyword = $('#search').val();
-            $.post('{{ route("search.products") }}',
+            $.post('{{ route("search.category") }}',
             {
                 _token: $('meta[name="csrf-token"]').attr('content'),
                 keyword:keyword
@@ -141,49 +101,24 @@
         // table row with ajax
         function table_post_row(res){
         let htmlView = '';
-        if(res.products.length <= 0){
+        if(res.categories.length <= 0){
             htmlView+= `
             <tr>
                 <td colspan="4">No data.</td>
             </tr>`;
         }
-        for(let i = 0; i < res.products.length; i++){
+        for(let i = 0; i < res.categories.length; i++){
             htmlView += `
                 <tr>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 w-20 h-20">
-                                        <img class="w-20 h-20" src="/storage/`+res.products[i].product_thumbnail+`"
-                                            alt="">
-                                    </div>
-                                </div>
-                            </td>
     
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-500">`+res.products[i].product_name+`</div>
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-500">`+res.products[i].description+`</div>
-                            </td>
-    
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-500">`+res.products[i].product_qty+`</div>
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-500">`+res.products[i].price+` DZD</div>
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <span
-                                    class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
+                                <div class="text-sm leading-5 text-gray-500">`+res.categories[i].category_name+`</div>
                             </td>
     
                             <td
                                 class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
                             <div class="w-fit ml-5">
-                                <a href="{{route('admin.products.edit', $product->id)}}">
+                                <a href="">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -196,7 +131,7 @@
                                 class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
 
                                 <div class="w-fit ml-5">
-                                    <form action="{{route('admin.products.destroy', $product->id)}}" method="POST">
+                                    <form action="" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button onclick="return confirm('Êtes-vous sûr(e) de vouloir supprimer ce produit ?')">
