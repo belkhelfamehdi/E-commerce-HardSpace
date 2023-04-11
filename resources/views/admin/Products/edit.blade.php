@@ -62,12 +62,6 @@
 
                         </div>
 
-                        <div>
-                            <div>
-                                <img class="h-auto max-w-xs" src="/docs/images/examples/image-1@2x.jpg" alt="image description">
-                            </div>
-                        </div>
-
                         <div class="col-span-2 w-full">
                             <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
                             </div>

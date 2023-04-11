@@ -181,7 +181,6 @@
 
         button.addEventListener('click', (event) => {
         event.preventDefault();
-        // do something else here
         });
 
         let FILES = {};

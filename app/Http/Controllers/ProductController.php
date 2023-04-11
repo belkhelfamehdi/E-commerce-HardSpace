@@ -118,9 +118,18 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+
+
         $product = Product::findOrFail($id);
+        
+        $images = \App\Models\Image::where('product_id', $id)->get();
+        foreach ($images as $image) {
+            $image->delete();
+            Storage::delete('public/' . $image->photo_name);
+        }
         $product->delete();
         Storage::delete('public/' . $product->product_thumbnail);
+
 
         return redirect()->route('admin.products')
                         ->with('success','Le produit a été supprimé.');
