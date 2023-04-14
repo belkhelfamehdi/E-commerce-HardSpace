@@ -72,7 +72,7 @@ Route::middleware(['auth:admin'])->group(function(){
         }
         return view('admin.index');
     })->name('admin.dashboard');
-
+});
 
 $authMiddleware = config('jetstream.guard')
 ? 'auth:'.config('jetstream.guard')
@@ -86,5 +86,4 @@ Route::group(['middleware' => array_values(array_filter([$authMiddleware, $authS
     Route::view('/user/change-password', 'profile.update-password')->name('profile.update-password');
     Route::view('/user/security', 'profile.security')->name('profile.security');
     Route::view('/user/delete-profile', 'profile.delete-profile')->name('profile.delete-profile');
-});
 });
