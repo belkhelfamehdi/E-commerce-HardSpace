@@ -12,10 +12,6 @@
         <div class="flex m-1 p-1 text-base hover:text-pcolor">
             <a href="{{route('profile.security')}}">Sécurité</a>
         </div>
-        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
-        <div class="flex m-1 p-1 text-base hover:text-pcolor">
-            <a href="{{ route('profile.delete-profile') }}">Supprimer le compte</a>
-        </div>
     </div>
     @endsection
 
