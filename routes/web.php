@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\frontend\ProductsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Route;
 /*
@@ -45,13 +46,9 @@ Route::middleware(['auth:admin'])->group(function(){
     // Admin Products routes
     Route::prefix('/admin')->group(function () {
         Route::get('/products', [ProductController::class, 'index'])->name('admin.products');
-        Route::post('/products/search', [ProductController::class, 'SearchProduct'])->name('search.products');
-        Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');
-        Route::post('/products/store', [ProductController::class, 'store'])->name('admin.products.store');
-        Route::delete('/products/delete/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
-        Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('admin.products.edit');
-        Route::put('/products/update/{id}', [ProductController::class, 'update'])->name('admin.products.update');
     });
+
+
 
     // Admin Category routes
     Route::prefix('/admin')->group(function () {
@@ -86,4 +83,14 @@ Route::group(['middleware' => array_values(array_filter([$authMiddleware, $authS
     Route::view('/user/change-password', 'profile.update-password')->name('profile.update-password');
     Route::view('/user/security', 'profile.security')->name('profile.security');
     Route::view('/user/delete-profile', 'profile.delete-profile')->name('profile.delete-profile');
+});
+
+Route::prefix('/supplier')->group(function(){
+    Route::get('/products', [SupplierController::class, 'index'])->name('supplier.products');
+    Route::post('/products/search', [SupplierController::class, 'SearchProduct'])->name('search.products');
+    Route::get('/products/create', [SupplierController::class, 'create'])->name('supplier.products.create');
+    Route::post('/products/store', [SupplierController::class, 'store'])->name('supplier.products.store');
+    Route::delete('/products/delete/{id}', [SupplierController::class, 'destroy'])->name('supplier.products.destroy');
+    Route::get('/products/edit/{id}', [SupplierController::class, 'edit'])->name('supplier.products.edit');
+    Route::put('/products/update/{id}', [SupplierController::class, 'update'])->name('supplier.products.update');
 });

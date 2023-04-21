@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Product;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Image;
 
-class ProductController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $products = Product::paginate(5);
-        return view('admin.products.index', compact('products'));
+        $products = Product::where('supplier_id', auth()->id())->paginate(5);
+        return view('supplier.products.index', compact('products'));
     }
 
     /**
@@ -27,9 +26,12 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.products.create', compact('categories'));
+        return view('supplier.products.create', compact('categories'));
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -53,6 +55,7 @@ class ProductController extends Controller
             'product_thumbnail' => $image_path,
             'price' => $request->input('price'),
             'description' => $request->input('description'),
+            'id_supplier' => auth()->id(),
             ]);
 
             $imagePaths = [];
@@ -66,7 +69,7 @@ class ProductController extends Controller
             }
 
 
-            return redirect()->route('admin.products')->with('success','Le produit a été créé.');
+            return redirect()->route('supplier.products')->with('success','Le produit a été créé.');
     }
 
     /**
@@ -74,9 +77,8 @@ class ProductController extends Controller
      */
     public function SearchProduct(Request $request)
     {
-        $products = Product::all();
-    if($request->keyword != ''){
-    $products = Product::where('product_name','LIKE','%'.$request->keyword.'%')->get();
+        if($request->keyword != ''){
+        $products = Product::where('supplier_id', auth()->id())->where('product_name','LIKE','%'.$request->keyword.'%')->get();
     }
     return response()->json([
         'products' => $products
@@ -86,16 +88,16 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(string $id)
     {
         $product = Product::findOrFail($id);
-        return view('admin.products.edit', compact('product'));
+        return view('supplier.products.edit', compact('product'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
         $product = Product::findOrFail($id);
 
@@ -108,17 +110,16 @@ class ProductController extends Controller
             $product->product_thumbnail = $image_path;
         }
         $product->update($request->all());
-        return redirect()->route('admin.products')
+        return redirect()->route('supplier.products')
                         ->with('success','Le produit a été mis à jour.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
-
-
+        
         $product = Product::findOrFail($id);
         
         $images = \App\Models\Image::where('product_id', $id)->get();
@@ -130,7 +131,7 @@ class ProductController extends Controller
         Storage::delete('public/' . $product->product_thumbnail);
 
 
-        return redirect()->route('admin.products')
+        return redirect()->route('supplier.products')
                         ->with('success','Le produit a été supprimé.');
     }
 }

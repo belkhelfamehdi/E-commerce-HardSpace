@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedInteger('price')->nullable();
             $table->unsignedInteger('discount_price')->nullable();
             $table->longText('description')->nullable();
+            $table->unsignedBigInteger('supplier_id')->nullable();
             $table->string('product_thumbnail')->nullable()->default('image/products/thumbnail/thumbnail.webp');
             $table->boolean('hot_deals')->default(false);
             $table->boolean('featured')->default(false);
@@ -33,6 +34,11 @@ return new class extends Migration
             $table->foreign('category_id')
                 ->references('id')
                 ->on('categories')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('supplier_id')
+                ->references('id')
+                ->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();
