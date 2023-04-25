@@ -96,7 +96,7 @@
                             <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
                                 @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account"
                                 aria-haspopup="true">
-                                <span class="text-black font-semibold">Salut! {{ Auth::user()->name }}</span>
+                                <span class="text-black font-semibold">Salut! {{ Auth::user()->FirstName }} {{ Auth::user()->LastName }}</span>
                             </button>
                             <template x-if="isProfileMenuOpen">
                                 <ul x-transition:leave="transition ease-in duration-150"
@@ -114,7 +114,7 @@
                                                     d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1">
                                                 </path>
                                             </svg>
-                                            <span>Log out</span>
+                                            <span>Deconnexion</span>
                                         </a>
                                     </li>
                                 </ul>

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::middleware(['email_verified'])->group(function(){
 Route::get('/', function () {
     return view('frontend.index');
 })->name('index');
@@ -36,6 +36,8 @@ Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function(){
 	Route::post('/login',[AdminController::class, 'store'])->name('admin.login');
 });
 
+});
+
 Route::middleware(['auth:admin'])->group(function(){
 
     // Admin Logout/password change and profile routes
@@ -43,15 +45,12 @@ Route::middleware(['auth:admin'])->group(function(){
         Route::get('/logout',[AdminController::class, 'destroy'])->name('admin.logout');
     });
 
-    // Admin Products routes
-    Route::prefix('/admin')->group(function () {
-        Route::get('/products', [ProductController::class, 'index'])->name('admin.products');
-    });
 
 
 
     // Admin Category routes
     Route::prefix('/admin')->group(function () {
+        Route::get('/products', [ProductController::class, 'index'])->name('admin.products');
         Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
         Route::post('/category/search', [CategoryController::class, 'SearchCategory'])->name('search.category');
         Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
@@ -85,12 +84,15 @@ Route::group(['middleware' => array_values(array_filter([$authMiddleware, $authS
     Route::view('/user/delete-profile', 'profile.delete-profile')->name('profile.delete-profile');
 });
 
-Route::prefix('/supplier')->group(function(){
-    Route::get('/products', [SupplierController::class, 'index'])->name('supplier.products');
-    Route::post('/products/search', [SupplierController::class, 'SearchProduct'])->name('search.products');
-    Route::get('/products/create', [SupplierController::class, 'create'])->name('supplier.products.create');
-    Route::post('/products/store', [SupplierController::class, 'store'])->name('supplier.products.store');
-    Route::delete('/products/delete/{id}', [SupplierController::class, 'destroy'])->name('supplier.products.destroy');
-    Route::get('/products/edit/{id}', [SupplierController::class, 'edit'])->name('supplier.products.edit');
-    Route::put('/products/update/{id}', [SupplierController::class, 'update'])->name('supplier.products.update');
-});
+Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+    Route::prefix('/supplier')->group(function(){
+        Route::view('', 'supplier.index');
+        Route::get('/products', [SupplierController::class, 'index'])->name('supplier.products');
+        Route::post('/products/search', [SupplierController::class, 'SearchProduct'])->name('search.products');
+        Route::get('/products/create', [SupplierController::class, 'create'])->name('supplier.products.create');
+        Route::post('/products/store', [SupplierController::class, 'store'])->name('supplier.products.store');
+        Route::delete('/products/delete/{id}', [SupplierController::class, 'destroy'])->name('supplier.products.destroy');
+        Route::get('/products/edit/{id}', [SupplierController::class, 'edit'])->name('supplier.products.edit');
+        Route::put('/products/update/{id}', [SupplierController::class, 'update'])->name('supplier.products.update');
+    });
+    });
