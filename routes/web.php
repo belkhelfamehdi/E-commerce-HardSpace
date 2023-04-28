@@ -66,6 +66,13 @@ Route::middleware(['auth:admin'])->group(function(){
         Route::put('/category/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
     });
 
+    Route::prefix('/admin')->group(function () {
+        Route::get('/applications', [SupplierApplicationController::class, 'index'])->name('admin.applications');
+        Route::get('/applications/{id}', [SupplierApplicationController::class, 'show'])->name('admin.applications.show');
+        Route::put('/applications/accept/{id}', [SupplierApplicationController::class, 'accept'])->name('admin.applications.accept');
+        Route::put('/applications/reject/{id}', [SupplierApplicationController::class, 'reject'])->name('admin.applications.reject');
+    });
+
 
     // Admin Dashboard routes
     Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
@@ -89,7 +96,7 @@ Route::group(['middleware' => array_values(array_filter([$authMiddleware, $authS
     Route::view('/user/security', 'profile.security')->name('profile.security');
     Route::view('/user/delete-profile', 'profile.delete-profile')->name('profile.delete-profile');
     Route::get('/application',[SupplierApplicationController::class, 'create'])->middleware('role:user')->name('supplier.application');
-    Route::post('/application',[SupplierApplicationController::class, 'store'])->middleware('role:user')->name('supplier.application.send');
+    Route::post('/application',[SupplierApplicationController::class, 'store'])->middleware('role:user', 'verified')->name('supplier.application.send');
 });
 
 Route::middleware(['auth', 'role:supplier', 'verified'])->group(function(){
@@ -103,4 +110,4 @@ Route::middleware(['auth', 'role:supplier', 'verified'])->group(function(){
         Route::get('/products/edit/{id}', [SupplierController::class, 'edit'])->name('supplier.products.edit');
         Route::put('/products/update/{id}', [SupplierController::class, 'update'])->name('supplier.products.update');
     });
-    });
+});

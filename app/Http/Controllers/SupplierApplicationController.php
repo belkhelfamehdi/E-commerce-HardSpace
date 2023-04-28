@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SupplierApplication;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,8 @@ class SupplierApplicationController extends Controller
      */
     public function index()
     {
-        //
+        $applications = SupplierApplication::where('statut', NULL)->paginate(5);
+        return view('admin.applications.index', compact('applications'));
     }
 
     /**
@@ -58,15 +60,33 @@ class SupplierApplicationController extends Controller
     
         $supplierApplication->save();
     
-        return redirect()->route('supplier.products')->with('success','Informations envoyé.');
+        return redirect()->route('supplier.application')->with('success','Informations envoyé.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(SupplierApplication $supplierApplication)
+    public function show($id)
     {
-        //
+        $application = SupplierApplication::find($id);
+        return view('admin.applications.info', compact('application'));
+    }
+
+    public function accept($id){
+        $application = SupplierApplication::find($id);
+        $user = User::find($application->user_id);
+        $user->role = 'supplier';
+        $user->save();
+        $application->statut = 'accept';
+        $application->save();
+        return redirect()->route('admin.applications')->with('success','Application accepté.');
+    }
+
+    public function reject($id){
+        $application = SupplierApplication::find($id);
+        $application->statut = 'reject';
+        $application->save();
+        return redirect()->route('admin.applications')->with('success','Application rejeté.');
     }
 
     /**

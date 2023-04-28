@@ -10,6 +10,21 @@
         <li>{{ $error }}</li>
     @endforeach
 </ul>
+    @if (count(App\Models\SupplierApplication::where('user_id', Auth::user()->id)->where('statut', NULL)->get()) > 0)
+    <div class="flex items-center justify-center h-screen">
+      <div class="bg-white p-8 rounded-lg shadow-lg">
+        <div class="text-2xl font-bold mb-4">Votre demande est en cours de traitement</div>
+        <p class="text-gray-600">Nous travaillons actuellement sur votre demande. Veuillez patienter pendant que nous la traitons.</p>
+      </div>
+    </div>
+    @elseif(count(App\Models\SupplierApplication::where('user_id', Auth::user()->id)->where('statut', "reject")->get()) > 0)
+    <div class="flex items-center justify-center h-screen">
+      <div class="bg-white p-8 rounded-lg shadow-lg">
+        <div class="text-2xl font-bold mb-4">Votre demande a été refusée</div>
+        <p class="text-gray-600">Nous sommes désolés, mais votre demande n'a pas été approuvée. Veuillez contacter notre service clientèle pour plus d'informations.</p>
+      </div>
+    </div>
+    @else  
     <form action="{{route('supplier.application.send')}}" method="POST">
       @csrf
     <div class="space-y-12">
@@ -350,5 +365,6 @@
       <button type="submit" class="rounded-md bg-pcolor px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-pcolor focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pcolor">Envoyer</button>
     </div>
   </form>
+  @endif
 </div>
   @endsection
