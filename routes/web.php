@@ -4,7 +4,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\frontend\ProductsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierApplicationController;
 use App\Http\Controllers\SupplierController;
+use App\Models\SupplierApplication;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Route;
 /*
@@ -86,6 +88,8 @@ Route::group(['middleware' => array_values(array_filter([$authMiddleware, $authS
     Route::view('/user/change-password', 'profile.update-password')->name('profile.update-password');
     Route::view('/user/security', 'profile.security')->name('profile.security');
     Route::view('/user/delete-profile', 'profile.delete-profile')->name('profile.delete-profile');
+    Route::get('/application',[SupplierApplicationController::class, 'create'])->middleware('role:user')->name('supplier.application');
+    Route::post('/application',[SupplierApplicationController::class, 'store'])->middleware('role:user')->name('supplier.application.send');
 });
 
 Route::middleware(['auth', 'role:supplier', 'verified'])->group(function(){
