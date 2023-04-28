@@ -94,6 +94,12 @@
                                 <div class="flex m-1 w-40 font-semibold  text-xs">
                                     <span><span class="text-sm capitalize">Salut, </span>{{Auth::user()->FirstName}} {{Auth::user()->LastName}}</span>
                                 </div>
+                                @if (Auth::user()->role == "supplier")
+                                <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                                <div class="flex m-1  text-xs hover:text-pcolor">
+                                    <a href="{{route('supplier.dashboard')}}">Tableau de board</a>
+                                </div>
+                                @endif
                                 <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
                                 <div class="flex m-1  text-xs hover:text-pcolor">
                                     <a href="{{route('profile.show')}}">Mon compte</a>
