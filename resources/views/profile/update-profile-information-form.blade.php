@@ -86,6 +86,15 @@
             <x-input id="email" type="email" class="mt-1 w-full" wire:model.defer="state.email" autocomplete="username" />
             <x-input-error for="email" class="mt-2" />
 
+            
+        </div>
+
+        <div class="w-auto">
+            <x-label for="phone_number" value="{{ __('Numéro de téléphone') }}" />
+            <x-input id="phone_number" type="text" class="mt-1 w-full" wire:model.defer="state.phone_number" autocomplete="phone_number" />
+            <x-input-error for="phone_number" class="mt-2" />
+        </div>
+        <div class="w-full col-span-4">
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
                 <p class="text-sm mt-2 dark:text-gray-200">
                     {{ __("Votre adresse e-mail n'est pas vérifiée.") }}
@@ -101,12 +110,6 @@
                     </p>
                 @endif
             @endif
-        </div>
-
-        <div class="w-auto">
-            <x-label for="phone_number" value="{{ __('Numéro de téléphone') }}" />
-            <x-input id="phone_number" type="text" class="mt-1 w-full" wire:model.defer="state.phone_number" autocomplete="phone_number" />
-            <x-input-error for="phone_number" class="mt-2" />
         </div>
     </x-slot>
 
