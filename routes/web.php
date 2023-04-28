@@ -88,7 +88,7 @@ Route::group(['middleware' => array_values(array_filter([$authMiddleware, $authS
     Route::view('/user/delete-profile', 'profile.delete-profile')->name('profile.delete-profile');
 });
 
-Route::middleware(['auth', 'verified'])->group(function(){
+Route::middleware(['auth', 'role:supplier', 'verified'])->group(function(){
     Route::prefix('/supplier')->group(function(){
         Route::get('/', [SupplierController::class, 'home'])->name('supplier.dashboard');
         Route::get('/products', [SupplierController::class, 'index'])->name('supplier.products');

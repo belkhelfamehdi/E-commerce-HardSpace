@@ -77,9 +77,9 @@
         @enderror 
     </ul>
       <div class="flex flex-col text-sm rounded-md">
-        <input name="email" class="mb-2 rounded-[4px] border p-3 hover:outline-none focus:ring-pcolor focus:border-pcolor hover:border-pcolor " type="text" placeholder="Entrez votre Email" />
+        <input name="email" class="mb-2 rounded-[4px] border p-3 hover:outline-none focus:ring-pcolor focus:border-pcolor hover:border-pcolor " type="text" placeholder="Entrez votre Email" autocomplete="email"/>
          
-        <input name="password" class="border mt-3 mb-2 rounded-[4px] p-3 hover:outline-none focus:ring-pcolor focus:border-pcolor hover:border-pcolor" type="password" placeholder="Mot de passe" />
+        <input name="password" class="border mt-3 mb-2 rounded-[4px] p-3 hover:outline-none focus:ring-pcolor focus:border-pcolor hover:border-pcolor" type="password" placeholder="Mot de passe" autocomplete="password"/>
 
         <div class="block mt-4">
           <label for="remember_me" class="flex items-center">
