@@ -20,6 +20,10 @@ class SupplierController extends Controller
         return view('supplier.products.index', compact('products'));
     }
 
+    public function home(){
+        return view('supplier.index');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -52,10 +56,10 @@ class SupplierController extends Controller
             'product_name' => $request->input('product_name'),
             'product_code' => $request->input('product_code'),
             'product_qty' => $request->input('product_qty'),
+            'supplier_id' => Auth::user()->id,
             'product_thumbnail' => $image_path,
             'price' => $request->input('price'),
             'description' => $request->input('description'),
-            'id_supplier' => auth()->id(),
             ]);
 
             $imagePaths = [];

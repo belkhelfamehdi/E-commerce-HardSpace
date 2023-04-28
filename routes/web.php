@@ -31,6 +31,10 @@ Route::get('product', function () {
     return view('frontend.frontend_layout.product');
 })->name('product');
 
+Route::get('contact', function () {
+    return view('frontend.frontend_layout.contact');
+})->name('contact');
+
 Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function(){
 	Route::get('/1wire_rty/login',[AdminController::class, 'loginForm']);
 	Route::post('/login',[AdminController::class, 'store'])->name('admin.login');
@@ -84,9 +88,9 @@ Route::group(['middleware' => array_values(array_filter([$authMiddleware, $authS
     Route::view('/user/delete-profile', 'profile.delete-profile')->name('profile.delete-profile');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+Route::middleware(['auth', 'verified'])->group(function(){
     Route::prefix('/supplier')->group(function(){
-        Route::view('', 'supplier.index');
+        Route::get('/', [SupplierController::class, 'home'])->name('supplier.dashboard');
         Route::get('/products', [SupplierController::class, 'index'])->name('supplier.products');
         Route::post('/products/search', [SupplierController::class, 'SearchProduct'])->name('search.products');
         Route::get('/products/create', [SupplierController::class, 'create'])->name('supplier.products.create');

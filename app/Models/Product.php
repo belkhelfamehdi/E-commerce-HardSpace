@@ -18,5 +18,6 @@ class Product extends Model
         'price',
         'description',
         'product_thumbnail',
+        'supplier_id'
     ];
 }

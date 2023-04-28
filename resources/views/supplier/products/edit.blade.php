@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-supplier-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Products') }}
@@ -79,4 +79,4 @@
             </div>
         </div>
     </div>
-</x-admin-layout>
+</x-supplier-layout>
