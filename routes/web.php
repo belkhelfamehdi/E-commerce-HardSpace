@@ -33,9 +33,13 @@ Route::get('product', function () {
     return view('frontend.frontend_layout.product');
 })->name('product');
 
-Route::get('contact', function () {
+Route::get('/contact', function () {
     return view('frontend.frontend_layout.contact');
 })->name('contact');
+
+Route::get('/cart', function () {
+    return view('frontend.frontend_layout.cart');
+})->name('cart');
 
 Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function(){
 	Route::get('/1wire_rty/login',[AdminController::class, 'loginForm']);
@@ -95,7 +99,7 @@ Route::group(['middleware' => array_values(array_filter([$authMiddleware, $authS
     Route::view('/user/change-password', 'profile.update-password')->name('profile.update-password');
     Route::view('/user/security', 'profile.security')->name('profile.security');
     Route::view('/user/delete-profile', 'profile.delete-profile')->name('profile.delete-profile');
-    Route::get('/application',[SupplierApplicationController::class, 'create'])->middleware('role:user')->name('supplier.application');
+    Route::get('/application',[SupplierApplicationController::class, 'create'])->middleware('role:user', 'verified')->name('supplier.application');
     Route::post('/application',[SupplierApplicationController::class, 'store'])->middleware('role:user', 'verified')->name('supplier.application.send');
 });
 

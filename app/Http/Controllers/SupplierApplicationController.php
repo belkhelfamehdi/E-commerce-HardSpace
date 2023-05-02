@@ -41,7 +41,7 @@ class SupplierApplicationController extends Controller
             'company_city' => 'required|string|max:255',
             'company_state' => 'required|string|max:255',
             'company_zip' => 'required|string|max:255',
-            'message' => 'required|string|max:255',
+            'message' => 'required|string|max:1000',
         ]);
     
         // Create a new SupplierApplication instance

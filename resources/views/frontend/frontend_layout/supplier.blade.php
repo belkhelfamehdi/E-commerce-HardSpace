@@ -15,13 +15,20 @@
       <div class="bg-white p-8 rounded-lg shadow-lg">
         <div class="text-2xl font-bold mb-4">Votre demande est en cours de traitement</div>
         <p class="text-gray-600">Nous travaillons actuellement sur votre demande. Veuillez patienter pendant que nous la traitons.</p>
+        <div class="flex mt-4 justify-end">
+          <a class="rounded-md bg-pcolor px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-pcolor focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pcolor" href="{{route('profile.show')}}">Retour au profile</a>
+        </div>
       </div>
+
     </div>
     @elseif(count(App\Models\SupplierApplication::where('user_id', Auth::user()->id)->where('statut', "reject")->get()) > 0)
     <div class="flex items-center justify-center h-screen">
       <div class="bg-white p-8 rounded-lg shadow-lg">
         <div class="text-2xl font-bold mb-4">Votre demande a été refusée</div>
         <p class="text-gray-600">Nous sommes désolés, mais votre demande n'a pas été approuvée. Veuillez contacter notre service clientèle pour plus d'informations.</p>
+        <div class="flex mt-4 justify-end">
+          <a class="rounded-md bg-pcolor px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-pcolor focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pcolor" href="{{route('profile.show')}}">Retour au profile</a>
+        </div>
       </div>
     </div>
     @else  

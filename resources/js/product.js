@@ -91,6 +91,16 @@ $(document).ready(function() {
         $('.login').addClass('opacity-0');
         $('.login').addClass('pointer-events-none');
     });
+    $('.cart').mouseenter(function() {
+        $('.cart_p').removeClass('opacity-0');
+        $('.cart_p').removeClass('pointer-events-none');
+    });
+    $('.cart').mouseleave(function() {
+        if (!$('.cart_p *:focus').length) {
+            $('.cart_p').addClass('opacity-0');
+            $('.cart_p').addClass('pointer-events-none');
+        }
+    });
 
 });
 
