@@ -43,7 +43,7 @@
                         <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="{{route('store')}}" class="capitalize">Produits</a></li>
                         <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="" class="capitalize">Composants</a></li>
                         <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="" class="capitalize">Catégories</a></li>
-                        <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="" class="capitalize">Contactez-nous</a></li>
+                        <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="{{route('contact')}}" class="capitalize">Contactez-nous</a></li>
                     </ul>
                     <div class="btn-i max-md:relative max-md:top-20 pt-5 justify-center md:pt-0 mt-2 lg:pr-4 flex w-auto " x-data = "{search : false}">
                       <div class="searchbar md:-left-full absolute right-8 md:right-0 md:-top-4 flex ml-96 mb-5 transition-all ease-in-out duration-300" :class = "{'invisible opacity-0 translate-x-2':!search, 'visible opacity-100 translate-x-0': search}">
@@ -119,7 +119,7 @@
                             </div>
                             @endif
                         </span>
-                        <span class="cart"><i class="fa-solid fa-cart-shopping ml-4 fa-lg md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-100 hover:scale-105 hover:text-pcolor"></i>
+                        <span class="cart"><a href="{{route('cart')}}"><i class="fa-solid fa-cart-shopping ml-4 fa-lg md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-100 hover:scale-105 hover:text-pcolor"></i></a>
                             <div class="absolute top-0 right-5 bg-red-600 rounded-full w-4 h-4">
                                 <span class="text-white text-xs">0</span>
                             </div>
