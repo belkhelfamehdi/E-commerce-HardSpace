@@ -26,9 +26,9 @@
                                 <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                 Email</th>
-                            <th
+                                <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Status</th>
+                                Role</th>
                         </tr>
                     </thead>
                     
@@ -47,10 +47,9 @@
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="text-sm leading-5 text-gray-500">{{$user->email}}</div>
                             </td>
-
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <span
-                                    class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
+                                    class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">{{$user->role}}</span>
                             </td>
                         </tr>
                         @endforeach
