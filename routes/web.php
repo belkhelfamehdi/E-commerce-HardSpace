@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierApplicationController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\UserController;
 use App\Models\SupplierApplication;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Route;
@@ -68,6 +69,8 @@ Route::middleware(['auth:admin'])->group(function(){
         Route::delete('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
         Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('admin.category.edit');
         Route::put('/category/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
+
+        Route::get('/users', [UserController::class, 'index'])->name('admin.users');
     });
 
     Route::prefix('/admin')->group(function () {
