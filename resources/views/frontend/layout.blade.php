@@ -120,55 +120,8 @@
                             @endif
                         </span>
                         <span class="cart"><a href="{{route('cart')}}"><i class="fa-solid fa-cart-shopping ml-4 fa-lg md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-100 hover:scale-105 hover:text-pcolor"></i></a>
-                            <div class="absolute top-0 right-5 bg-red-600 rounded-full w-4 h-4">
-                                <span class="text-white text-xs">0</span>
-                            </div>
-                            <div class="cart_p absolute dark:bg-dcolor px-3  -right-7 top-[27px]  h-auto w-auto min-w-fit text-black bg-white z-50 opacity-0 transition-opacity ease-in-out duration-150 shadow-[0px_3px_6px_0px_#f7fafc] pointer-events-none">
-                                <div class="w-72 font-roboto text-[#1E1E1E]">
-                                    <div class="flex px-3 py-5 cursor-pointer border-b">
-                                        <div><img class="h-[72px] w-[72px]" src="//cdn.shopify.com/s/files/1/0550/0364/4017/products/Png_1_140x.png?v=1681525571" alt="img product"></div>
-                                        <div class="flex-auto text-left pl-2 w-36">
-                                            <a href=""><h3 class="mb-2 font-medium text-sm hover:text-pcolor hover:underline">GIGABYTE M28U ARM EDITION</h3></a>
-                                            <div class="truncate mb-2 font-light">159,000 DA</div>
-                                            <div class="font-light">Quantité: 1 </div>
-                                        </div>
-                                        <div class="flex flex-col w-18 font-medium items-end">
-                                            <div class="w-4 h-4 mb-6 rounded-full cursor-pointer text-gray-500">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 hover:text-pcolor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                                </svg>                                              
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="flex px-3 py-5 cursor-pointer border-b">
-                                        <div><img class="h-[72px] w-[72px]" src="//cdn.shopify.com/s/files/1/0550/0364/4017/products/Png_1_140x.png?v=1681525571" alt="img product"></div>
-                                        <div class="flex-auto text-left pl-2 w-36">
-                                            <a href=""><h3 class="mb-2 font-medium text-sm hover:text-pcolor hover:underline">GIGABYTE M28U ARM EDITION</h3></a>
-                                            <div class="truncate mb-2 font-light">159,000 DA</div>
-                                            <div class="font-light">Quantité: 1 </div>
-                                        </div>
-                                        <div class="flex flex-col w-18 font-medium items-end">
-                                            <div class="w-4 h-4 mb-6 rounded-full cursor-pointer text-gray-500">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 hover:text-pcolor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="px-4">
-                                        <div class="flex py-2 justify-between w-full font-medium text-sm">
-                                            <span class="font-medium">Sous-total</span>
-                                            <span class="font-semibold">185,900 DZD</span>
-                                        </div>
-                                        <div class="flex py-2 mb-2 text-sm justify-between w-full">
-                                            <a href="" class="bg-pcolor hover:bg-white border hover:border-gray-300 px-6 py-2  font-medium">Votre panier</a>
-                                            <a href="" class="bg-pcolor hover:bg-white border hover:border-gray-300  px-4 py-2  font-medium">Commander</a>
-                                        </div>
-                                    </div>
-    
-                                    </div>
-                                </div>
+                            <livewire:cart-list />
+                        </span>
                             </div>
                         </span>
                       </div>
@@ -370,6 +323,7 @@
     </footer>
     <script src="{{ url('frontend/assets/vendor/js/jquery-3.6.4.min.js') }}"></script>
     <script src="{{ url('frontend/assets/vendor/js/fontawesome.js') }}"></script>
+    @livewireScripts
 </body>
 
 </html>

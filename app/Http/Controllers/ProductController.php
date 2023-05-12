@@ -21,6 +21,20 @@ class ProductController extends Controller
         return view('admin.products.index', compact('products'));
     }
 
+
+        public function addToCart(Request $request)
+    {
+        \Cart::add([
+            'id' => $request->id,
+            'name' => $request->name,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+
+        ]);
+        session()->flash('success', 'Product is Added to Cart Successfully !');
+
+        return redirect()->route('cart');
+    }
     /**
      * Show the form for creating a new resource.
      */

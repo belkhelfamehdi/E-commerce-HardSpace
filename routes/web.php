@@ -30,9 +30,7 @@ Route::get('store', function () {
 })->name('store');
 Route::get('/store',[ProductsController::class, 'index'])->name('store');
 
-Route::get('product', function () {
-    return view('frontend.frontend_layout.product');
-})->name('product');
+Route::get('/product/{id}', [ProductsController::class, 'product'])->name('product');
 
 Route::get('/contact', function () {
     return view('frontend.frontend_layout.contact');
@@ -116,5 +114,7 @@ Route::middleware(['auth', 'role:supplier', 'verified'])->group(function(){
         Route::delete('/products/delete/{id}', [SupplierController::class, 'destroy'])->name('supplier.products.destroy');
         Route::get('/products/edit/{id}', [SupplierController::class, 'edit'])->name('supplier.products.edit');
         Route::put('/products/update/{id}', [SupplierController::class, 'update'])->name('supplier.products.update');
+
     });
+   
 });

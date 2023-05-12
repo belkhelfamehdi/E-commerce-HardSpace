@@ -58,38 +58,36 @@
 
                   <div class="thumbnails  hidden justify-between gap-4 m-auto sm:flex sm:flex-col sm:justify-start sm:items-center sm:h-fit md:gap-5 lg:flex-row">
                       <div id="1" class="w-1/5 bg-pcolor cursor-pointer rounded-xl sm:w-28 md:w-32 lg:w-[72px] xl:w-[78px] ring-active">
-                          <img src="{{url('frontend/assets/images/products/casque.webp')}}" alt="thumbnail" class="rounded-xl hover:opacity-50 transition active" id="thumb-1" />
+                          <img src="{{Storage::url($product->product_thumbnail)}}" alt="thumbnail" class="rounded-xl hover:opacity-50 transition active" id="thumb-1" />
                       </div>
-
+                      @foreach($images as $image)
                       <div id="2" class="w-1/5 bg-pcolor cursor-pointer rounded-xl sm:w-28 md:w-32 lg:w-[72px] xl:w-[78px]">
-                          <img src="{{url('frontend/assets/images/products/clavier.webp')}}" alt="thumbnail" class="rounded-xl hover:opacity-50 transition" id="thumb-2" />
+                          <img src="{{ Storage::url($image->photo_name) }}" alt="thumbnail" class="rounded-xl hover:opacity-50 transition" id="thumb-2" />
                       </div>
+                      @endforeach
                   </div>
               </section>
 
               <!-- Text -->
               <section class="w-full p-6 lg:mt-28 lg:pr-20 lg:py-10 2xl:pr-40 2xl:mt-40">
                   <h4 class="font-bold text-orange mb-2 uppercase text-xs tracking-widest">
-                      Lorem ipsum
+                    @if ($product->brand)
+                      {{$product->brand->brand_name}}
+                      @endif
                   </h4>
                   <h1 class="text-very-dark mb-4 font-bold text-3xl lg:text-4xl">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      {{$product->product_name}}
                   </h1>
                   <p class="text-dark-grayish mb-6 text-base sm:text-lg">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique eum soluta ut eius sint molestiae amet unde cumque doloribus explicabo dicta labore nihil, animi, consequatur adipisci quidem numquam libero eveniet!
+                    {{$product->description}}
                   </p>
 
                   <div class="flex items-center justify-between mb-6 sm:flex-col sm:items-start">
                       <div class="flex items-center gap-4">
                           <h3 class="text-very-dark font-bold text-3xl inline-block">
-                              DZD 2000
+                            {{$product->price}} DZD 
                           </h3>
                   </div>
-                  <p
-                    class="text-dark-grayish w-fit line-through decoration-dark-grayish decoration-1 my-auto"
-                  >
-                    DZD 2500
-                  </p>
                 </div>
       
                 <div class="flex flex-col gap-5 mb-16 sm:flex-row lg:mb-0">
