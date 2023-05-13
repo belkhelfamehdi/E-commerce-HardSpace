@@ -23,7 +23,6 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->unsignedBigInteger('supplier_id')->nullable();
             $table->string('product_thumbnail')->nullable()->default('image/products/thumbnail/thumbnail.webp');
-            $table->boolean('hot_deals')->default(false);
             $table->boolean('featured')->default(false);
             $table->boolean('new_arrival')->default(false);
             $table->boolean('status')->default(true);

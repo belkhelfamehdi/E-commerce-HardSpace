@@ -18,6 +18,8 @@ class Product extends Model
         'price',
         'description',
         'product_thumbnail',
+        'featured',
+        'new_arrival',
         'supplier_id'
     ];
 }

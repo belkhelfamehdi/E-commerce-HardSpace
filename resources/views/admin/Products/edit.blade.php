@@ -31,23 +31,22 @@
                             <input type="number" name="product_qty" value="{{$product->product_qty}}" id="quantity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pcolor focus:border-pcolor block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pcolor dark:focus:border-pcolor" placeholder="" required>
                         </div>
                         <div>
-                            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Catégories</label>
-                            <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pcolor focus:border-pcolor block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pcolor dark:focus:border-pcolor">
-                              <option selected>Choisissez la catégorie:</option>
-                              <option value="US">United States</option>
-                              <option value="CA">Canada</option>
-                              <option value="FR">France</option>
-                              <option value="DE">Germany</option>
+                            <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Catégories</label>
+                            <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pcolor focus:border-pcolor block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pcolor dark:focus:border-pcolor">
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" {{ $category->id == $product->category_id ? 'selected' : '' }}>
+                                        {{ $category->category_name }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                         <div>
-                            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Marques</label>
-                            <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pcolor focus:border-pcolor block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pcolor dark:focus:border-pcolor">
-                              <option selected>Choisissez la marque:</option>
-                              <option value="US">United States</option>
-                              <option value="CA">Canada</option>
-                              <option value="FR">France</option>
-                              <option value="DE">Germany</option>
+                            <label for="brands" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Marques</label>
+                            <select id="brands" name="brands" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pcolor focus:border-pcolor block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pcolor dark:focus:border-pcolor">
+                                <option selected>Choisissez la marque:</option>
+                                @foreach ($brands as $brand)
+                                    <option value="{{$brand->id}}" @if ($brand->id == $product->brand_id) selected @endif>{{$brand->brand_name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-span-2 w-full">
@@ -64,6 +63,25 @@
 
                         <div class="col-span-2 w-full">
                             <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                            </div>
+
+                            @php
+                            $product = \App\Models\Product::find($product->id);
+                        @endphp
+                        
+                        <div class="w-full flex justify-between">
+                            <div class="flex items-center">
+                                <input id="new_arrival" name="new_arrival" type="checkbox" value="Nouvel arrivage" class="w-4 h-4 text-pcolor bg-gray-100 border-gray-300 rounded focus:ring-pcolor dark:focus:ring-pcolor dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" @if ($product->new_arrival) checked @endif>
+                                <label for="new_arrival" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nouvel arrivage</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="featured" name="featured" type="checkbox" value="Recommendé" class="w-4 h-4 text-pcolor bg-gray-100 border-gray-300 rounded focus:ring-pcolor dark:focus:ring-pcolor dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" @if ($product->featured) checked @endif>
+                                <label for="featured" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Recommendé</label>
+                            </div>
+                        </div>
+
+                            <div class="col-span-2 w-full">
+                                <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
                             </div>
 
                         <div class="col-span-2 w-full">

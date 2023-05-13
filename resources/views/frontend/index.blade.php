@@ -262,19 +262,17 @@
         
         <div id="Projects" class="container w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 my-10">
 
+            @foreach ($recommended as $product)
         <!--CARD 1-->
         <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
                     <a href="#">
-                        <img src="{{url('frontend/assets/images/products/ASUS-27.webp')}}"
+                        <img src="{{ Storage::url($product->product_thumbnail) }}"
                         alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
                 <div class="px-4 py-3 w-72">
-                    <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-                    <p class="text-lg font-bold text-black truncate block capitalize">ASUS TUF VG27AQ 27''</p>
+                    <span class="text-gray-400 mr-3 uppercase text-xs">{{$brand->firstWhere('id', $product->brand_id)->brand_name}}</span>
+                    <p class="text-lg font-bold text-black truncate block capitalize">{{$product->name}}</p>
                     <div class="flex items-center">
-                        <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
-                        <del>
-                            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-                        </del>
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">{{$product->price}} DZD</p>
                         <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                 fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
@@ -287,137 +285,7 @@
             </a>
         </div>
         <!--END CARD2-->
-
-        <!--CARD 2-->
-        <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-            <a href="#">
-                <img src="{{url('frontend/assets/images/products/clavier.webp')}}"
-                        alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
-                <div class="px-4 py-3 w-72">
-                    <span class="text-gray-400 mr-3 uppercase text-xs">Skyloong</span>
-                    <p class="text-lg font-bold text-black truncate block capitalize">Skyloong SK66</p>
-                    <div class="flex items-center">
-                        <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
-                        <del>
-                            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-                        </del>
-                        <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                                <path
-                                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                            </svg></div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <!--END CARD 2-->
-
-        <!--CARD 3-->
-        <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-            <a href="#">
-                <img src="{{url('frontend/assets/images/products/casque.webp')}}"
-                        alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
-                <div class="px-4 py-3 w-72">
-                    <span class="text-gray-400 mr-3 uppercase text-xs">Razer</span>
-                    <p class="text-lg font-bold text-black truncate block capitalize">Razer Kraken V3 HyperSense</p>
-                    <div class="flex items-center">
-                        <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
-                        <del>
-                            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-                        </del>
-                        <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                                <path
-                                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                            </svg></div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <!--END CARD 3-->
-
-        <!--CARD 4-->
-        <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-            <a href="#">
-                <img src="{{url('frontend/assets/images/products/souris.webp')}}"
-                        alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
-                <div class="px-4 py-3 w-72">
-                    <span class="text-gray-400 mr-3 uppercase text-xs">Razer</span>
-                    <p class="text-lg font-bold text-black truncate block capitalize">Razer DeathAdder Essential</p>
-                    <div class="flex items-center">
-                        <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
-                        <del>
-                            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-                        </del>
-                        <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                                <path
-                                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                            </svg></div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <!--END CARD 4-->
-
-        <!--CARD 5-->
-        <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-            <a href="#">
-                <img src="{{url('frontend/assets/images/products/micro.png')}}"
-                        alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
-                <div class="px-4 py-3 w-72">
-                    <span class="text-gray-400 mr-3 uppercase text-xs">Fifine</span>
-                    <p class="text-lg font-bold text-black truncate block capitalize">Fifine Ampligame A6V</p>
-                    <div class="flex items-center">
-                        <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
-                        <del>
-                            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-                        </del>
-                        <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                                <path
-                                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                            </svg></div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <!--END CARD 5-->
-
-        <!--CARD 6-->
-        <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-            <a href="#">
-                <img src="{{url('frontend/assets/images/products/laptop.webp')}}"
-                        alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
-                <div class="px-4 py-3 w-72">
-                    <span class="text-gray-400 mr-3 uppercase text-xs">Origin</span>
-                    <p class="text-lg font-bold text-black truncate block capitalize">EVO16-S 16-inch Gaming Laptop</p>
-                    <div class="flex items-center">
-                        <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
-                        <del>
-                            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-                        </del>
-                        <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                                <path
-                                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                            </svg></div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <!--End card 6-->
-
+        @endforeach
         </div>
 
     </section>
@@ -431,20 +299,17 @@
         </div>
 
         <div id="Projects" class="container w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 my-10">
-
+            @foreach($new_arrival as $product)
             <!--CARD 1-->
             <div class="w-64 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
                         <a href="#">
-                            <img src="{{url('frontend/assets/images/products/ASUS-27.webp')}}"
+                            <img src="{{ Storage::url($product->product_thumbnail) }}"
                             alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
                     <div class="px-4 py-3 w-72">
-                        <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-                        <p class="text-lg font-bold text-black truncate block capitalize">ASUS TUF VG27AQ 27''</p>
+                        <span class="text-gray-400 mr-3 uppercase text-xs">{{$brand->firstWhere('id', $product->brand_id)->brand_name}}</span>
+                        <p class="text-lg font-bold text-black truncate block capitalize">{{$product->product_name}}</p>
                         <div class="flex items-center">
-                            <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
-                            <del>
-                                <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-                            </del>
+                            <p class="text-lg font-semibold text-black cursor-auto my-3">{{$product->price}} DZD</p>
                             <div class="mx-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -457,82 +322,8 @@
                 </a>
             </div>
             <!--END CARD 1-->
-            <!--CARD 2-->
-            <div class="w-64 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-                <a href="#">
-                    <img src="{{url('frontend/assets/images/products/ASUS-27.webp')}}"
-                    alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
-                <div class="px-4 py-3 w-72">
-                    <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-                    <p class="text-lg font-bold text-black truncate block capitalize">ASUS TUF VG27AQ 27''</p>
-                    <div class="flex items-center">
-                        <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
-                        <del>
-                            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-                        </del>
-                        <div class="mx-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                                <path
-                                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                            </svg></div>
-                    </div>
-                </div>
-            </a>
-                </div>
-            <!--END CARD 2-->
-            <!--CARD 3-->
-            <div class="w-64 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-                    <a href="#">
-                        <img src="{{url('frontend/assets/images/products/ASUS-27.webp')}}"
-                        alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
-                    <div class="px-4 py-3 w-72">
-                        <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-                        <p class="text-lg font-bold text-black truncate block capitalize">ASUS TUF VG27AQ 27''</p>
-                        <div class="flex items-center">
-                            <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
-                            <del>
-                                <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-                            </del>
-                            <div class="mx-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                    fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                                    <path
-                                        d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                                </svg></div>
-                        </div>
-                    </div>
-                    </a>
-            </div>
-            <!--END CARD 3-->
-            <!--CARD 4-->
-            <div class="w-64 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-                <a href="#">
-                    <img src="{{url('frontend/assets/images/products/ASUS-27.webp')}}"
-                    alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
-                <div class="px-4 py-3 w-72">
-                    <span class="text-gray-400 mr-3 uppercase text-xs">Asus</span>
-                    <p class="text-lg font-bold text-black truncate block capitalize">ASUS TUF VG27AQ 27''</p>
-                    <div class="flex items-center">
-                        <p class="text-lg font-semibold text-black cursor-auto my-3">2000 DZD</p>
-                        <del>
-                            <p class="text-sm text-gray-600 cursor-auto ml-2">2500 DZD</p>
-                        </del>
-                        <div class="mx-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                                <path
-                                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                            </svg></div>
-                    </div>
-                </div>
-                </a>
-                </div>
-            <!--END CARD 4-->
-            </div>
+            @endforeach
+        </div>
     </section>
     <!-- End New Arrival Section -->
     <!-- Start Services Section -->
@@ -546,15 +337,13 @@
             </div>
             <div class="w-auto justify-items-center text-3xl text-center mx-10">
                 <i class="fa-solid fa-truck fa-2xl mx-auto"></i>
-                <h2 class="text-2xl font-medium py-8">Qualité et prix</h2>
-                <p class="text-base font-medium text-tscolor">Prix compétitifs sur une large <br> 
-                    sélection de matériel informatique.</p>
+                <h2 class="text-2xl font-medium py-8">Qualité de livraison</h2>
+                <p class="text-base font-medium text-tscolor">Des délais rapides et une livraison fiable pour répondre à toutes vos attentes !</p>
             </div>
             <div class="w-auto justify-items-center text-3xl text-center mx-10">
                 <i class="fa-regular fa-credit-card fa-2xl mx-auto"></i>
-                <h2 class="text-2xl font-medium py-8">Qualité et prix</h2>
-                <p class="text-base font-medium text-tscolor">Prix compétitifs sur une large <br> 
-                    sélection de matériel informatique.</p>
+                <h2 class="text-2xl font-medium py-8">Pouvoir d'achat</h2>
+                <p class="text-base font-medium text-tscolor">Facilitez votre vie financière en optant pour un paiement sécurisé et rapide.</p>
             </div>
         </div>
     </section>
@@ -575,11 +364,12 @@
                       </div>
 
                       <div class="col-span-2 lg:col-span-3 lg:flex lg:items-end ">
-                          <form class="w-full">
+                          <form class="w-full" action="{{route('news')}}" method="POST">
+                            @csrf
                               <label for="UserEmail" class="sr-only"> Email </label>
 
                               <div class="border border-white p-2 focus-within:ring sm:flex sm:items-center sm:gap-4">
-                                  <input type="email" id="UserEmail" placeholder="Votre adresse email" class="w-full border-none focus:border-transparent focus:ring-transparent sm:text-sm" />
+                                  <input type="email" name="email" id="UserEmail" placeholder="Votre adresse email" class="w-full border-none focus:border-transparent focus:ring-transparent sm:text-sm" />
 
                                   <button class="mt-1 w-full bg-pcolor px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-colors duration-200 hover:bg-white hover:text-black sm:mt-0 sm:w-auto sm:flex-shrink-0">
                               S'abonner
@@ -648,57 +438,18 @@
 
               <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-3">
                   <div>
-                      <p class="font-medium text-white">Services</p>
-
-                      <nav aria-label="Footer Navigation - Services" class="mt-6">
-                          <ul class="space-y-4 text-sm">
-                              <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor">
-                        Lorem ipsum
-                        </a>
-                              </li>
-
-                              <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor">
-                        Lorem ipsum
-                        </a>
-                              </li>
-
-                              <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor">
-                        Lorem ipsum
-                        </a>
-                              </li>
-
-                              <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor">
-                          Lorem ipsum
-                        </a>
-                              </li>
-
-                              <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor">
-                        Lorem ipsum
-                        </a>
-                              </li>
-                          </ul>
-                      </nav>
-                  </div>
-
-
-                  <div>
                       <p class="font-medium text-white">Liens</p>
 
-                      <nav aria-label="Footer Navigation - Company" class="mt-6">
-                          <ul class="space-y-4 text-sm">
-                              <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor">
+                    <nav aria-label="Footer Navigation - Company" class="mt-6">
+                        <ul class="space-y-4 text-sm">
+                            <li>
+                                <a href="#" class="text-white transition hover:text-pcolor">
                         Accueil
                         </a>
-                              </li>
+                            </li>
 
-                              <li>
-                                  <a href="#" class="text-white transition hover:text-pcolor">
+                            <li>
+                                <a href="#" class="text-white transition hover:text-pcolor">
                         Produits
                         </a>
                               </li>

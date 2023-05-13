@@ -59,6 +59,8 @@ class ProductController extends Controller
 
             $images = $request->file('images');
 
+            $recommended = $request->input('recommended') ? 1 : 0;
+            $new_arrival = $request->input('new_arrival') ? 1 : 0;
 
         $product = Product::create([
             'brand_id' => $request->input('brand_id'),
@@ -68,6 +70,8 @@ class ProductController extends Controller
             'product_qty' => $request->input('product_qty'),
             'product_thumbnail' => $image_path,
             'price' => $request->input('price'),
+            'featured' => $recommended,
+            'new_arrival' => $new_arrival,
             'description' => $request->input('description'),
             ]);
 
@@ -80,7 +84,6 @@ class ProductController extends Controller
                     'photo_name' => $path,
                 ]);
             }
-
 
             return redirect()->route('admin.products')->with('success','Le produit a été créé.');
     }
@@ -105,7 +108,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        return view('admin.products.edit', compact('product'));
+        $categories = Category::all();
+        $brands = Brand::all();
+        return view('admin.products.edit', compact('product', 'categories', 'brands'));
     }
 
     /**
@@ -114,7 +119,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-
+    
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => 'required|mimes:png,jpg,jpeg,webp|max:2048'
@@ -123,9 +128,24 @@ class ProductController extends Controller
             $image_path = $request->file('image')->store('image/products', 'public');
             $product->product_thumbnail = $image_path;
         }
-        $product->update($request->all());
+    
+                // Update featured field based on checkbox value
+                $product->featured = $request->has('featured') ? 1 : 0;
+    
+                // Update new_arrival field based on checkbox value
+                $product->new_arrival = $request->has('new_arrival') ? 1 : 0;
+    
+                $product->product_name = $request->input('product_name');
+                $product->product_code = $request->input('product_code');
+                $product->product_qty = $request->input('product_qty');
+                $product->price = $request->input('price');
+                $product->description = $request->input('description');
+                $product->category_id = $request->input('category');
+                $product->brand_id = $request->input('brands');
+                $product->save();
+
         return redirect()->route('admin.products')
-                        ->with('success','Le produit a été mis à jour.');
+                        ->with('success', 'Le produit a été mis à jour.');
     }
 
     /**

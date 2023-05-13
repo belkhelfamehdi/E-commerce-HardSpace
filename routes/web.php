@@ -5,6 +5,8 @@ use App\Http\Controllers\frontend\ProductsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\SupplierApplicationController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
@@ -22,9 +24,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::middleware(['email_verified'])->group(function(){
-Route::get('/', function () {
-    return view('frontend.index');
-})->name('index');
+
+Route::get('/',[HomeController::class, 'index'])->name('index');
 
 Route::get('store', function () {
     return view('frontend.frontend_layout.store');
@@ -32,6 +33,8 @@ Route::get('store', function () {
 Route::get('/store',[ProductsController::class, 'index'])->name('store');
 
 Route::get('/product/{id}', [ProductsController::class, 'product'])->name('product');
+
+Route::post('/newsletter', [NewsletterController::class, 'store'])->name('news');
 
 Route::get('/contact', function () {
     return view('frontend.frontend_layout.contact');
@@ -60,7 +63,6 @@ Route::middleware(['auth:admin'])->group(function(){
 
     // Admin Category routes
     Route::prefix('/admin')->group(function () {
-        Route::get('/products', [ProductController::class, 'index'])->name('admin.products');
         Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
         Route::post('/category/search', [CategoryController::class, 'SearchCategory'])->name('search.category');
         Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
@@ -68,7 +70,16 @@ Route::middleware(['auth:admin'])->group(function(){
         Route::delete('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
         Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('admin.category.edit');
         Route::put('/category/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
-
+    });
+    // Admin Product routes
+    Route::prefix('/admin')->group(function () {
+        Route::get('/products', [ProductController::class, 'index'])->name('admin.products');
+        Route::post('/products/search', [ProductController::class, 'SearchProduct'])->name('search.product');
+        Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');
+        Route::post('/products/store', [ProductController::class, 'store'])->name('admin.products.store');
+        Route::delete('/products/delete/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+        Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('admin.products.edit');
+        Route::put('/products/update/{id}', [ProductController::class, 'update'])->name('admin.products.update');
         Route::get('/users', [UserController::class, 'index'])->name('admin.users');
     });
 

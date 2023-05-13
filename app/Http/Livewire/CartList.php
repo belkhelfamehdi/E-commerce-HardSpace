@@ -17,14 +17,6 @@
             session()->flash('success', 'Item Cart Remove Successfully !');
             $this->emit('cartUpdated');
       }
-  
-      public function clearAllCart()
-      {
-          \Cart::clear();
-  
-          session()->flash('success', 'All Item Cart Clear Successfully !');
-      }
-  
       public function render()
       {
           $this->cartItems = \Cart::getContent()->toArray();

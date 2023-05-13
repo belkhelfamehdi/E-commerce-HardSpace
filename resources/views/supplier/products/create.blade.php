@@ -165,6 +165,21 @@
                             <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
                         </div>
 
+                        <div class="w-full flex justify-between">
+                            <div class="flex items-center">
+                                <input id="new_arrival" name="new_arrival" type="checkbox" value="Nouvel arrivage" class="w-4 h-4 text-pcolor bg-gray-100 border-gray-300 rounded focus:ring-pcolor dark:focus:ring-pcolor dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="new_arrival" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nouvel arrivage</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="recommended" name="recommended" type="checkbox" value="Recommendé" class="w-4 h-4 text-pcolor bg-gray-100 border-gray-300 rounded focus:ring-pcolor dark:focus:ring-pcolor dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="recommended" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Recommendé</label>
+                            </div>
+                        </div>
+
+                        <div class="col-span-2 w-full">
+                            <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                        </div>
+
                         <div class="col-span-2 w-full">
                             <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
                             <textarea id="description" name="description" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-pcolor focus:border-pcolor dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pcolor dark:focus:border-pcolor" placeholder="Écrivez votre description ici..."></textarea>
