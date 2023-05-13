@@ -71,14 +71,12 @@
               <!-- Text -->
               <section class="w-full p-6 lg:mt-28 lg:pr-20 lg:py-10 2xl:pr-40 2xl:mt-40">
                   <h4 class="font-bold text-orange mb-2 uppercase text-xs tracking-widest">
-                    @if ($product->brand)
-                      {{$product->brand->brand_name}}
-                      @endif
+                    {{$brand->firstWhere('id', $product->brand_id)->brand_name}}
                   </h4>
                   <h1 class="text-very-dark mb-4 font-bold text-3xl lg:text-4xl">
                       {{$product->product_name}}
                   </h1>
-                  <p class="text-dark-grayish mb-6 text-base sm:text-lg">
+                  <p class="text-dark-grayish mb-6 text-base sm:text-lg whitespace-normal overflow-hidden break-words w-11/12 md:w-8/12 lg:w-8/12">
                     {{$product->description}}
                   </p>
 
@@ -90,52 +88,11 @@
                   </div>
                 </div>
       
-                <div class="flex flex-col gap-5 mb-16 sm:flex-row lg:mb-0">
+                <div class="flex flex-col gap-5 justify-end mb-16 sm:flex-row lg:mb-0">
                   <div
                     class="w-full h-10 text-sm bg-light py-2 flex items-center justify-between rounded-lg font-bold relatives sm:w-80"
                   >
-                    <div id="minus" class="plus-minus hover:opacity-50 cursor-pointer">
-                      <div
-                        class="w-3 h-1 bg-orange absolute"
-                        id="minus"
-                      ></div>
-                      <svg
-                        width="12"
-                        height="4"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                      >
-                        <defs>
-                          <path
-                            d="M11.357 3.332A.641.641 0 0 0 12 2.69V.643A.641.641 0 0 0 11.357 0H.643A.641.641 0 0 0 0 .643v2.046c0 .357.287.643.643.643h10.714Z"
-                            id="a"
-                          />
-                        </defs>
-                        <use
-                          fill="#FF6F00"
-                          fill-rule="nonzero"
-                          xlink:href="#a"
-                        />
-                      </svg>
-                    </div>
-                    <span id="amount" class="select-none">0</span>
-                          <div id="plus" class="plus-minus hover:opacity-50 cursor-pointer">
-                              <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="plus">
-                        <defs>
-                          <path
-                            d="M12 7.023V4.977a.641.641 0 0 0-.643-.643h-3.69V.643A.641.641 0 0 0 7.022 0H4.977a.641.641 0 0 0-.643.643v3.69H.643A.641.641 0 0 0 0 4.978v2.046c0 .356.287.643.643.643h3.69v3.691c0 .356.288.643.644.643h2.046a.641.641 0 0 0 .643-.643v-3.69h3.691A.641.641 0 0 0 12 7.022Z"
-                            id="b"
-                          />
-                        </defs>
-                        <use
-                          fill="#FF6F00"
-                          fill-rule="nonzero"
-                          xlink:href="#b"
-                          id="plus"
-                        />
-                      </svg>
-                          </div>
-                      </div>
+
                       <button class="w-full h-10 bg-pcolor py-2 flex items-center justify-center gap-4 text-xs rounded-lg font-bold text-white shadow-md shadow-orange hover:brightness-125 transition select-none" id="add-cart">
                     <svg
                       width="16"

@@ -37,27 +37,9 @@
             <div class="inline-block p-4 bg-white min-w-full overflow-hidden align-middle border border-gray-200 shadow sm:rounded-lg">
 
                 <ul class="mb-5 font-medium text-sm text-red-700 list-disc list-inside">
-                    @error('product_name')
-                        <li>{{ $message }}</li>
-                    @enderror
-                    @error('product_code')
-                    <li>{{ $message }}</li>
-                    @enderror 
-                    @error('price')
-                    <li>{{ $message }}</li>
-                    @enderror 
-                    @error('product_qty')
-                    <li>{{ $message }}</li>
-                    @enderror 
-                    @error('image')
-                    <li>{{ $message }}</li>
-                    @enderror 
-                    @error('images')
-                    <li>{{ $message }}</li>
-                    @enderror
-                    @error('description')
-                    <li>{{ $message }}</li>
-                    @enderror 
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
                 </ul>
                
                 <form method="post" action="{{route('supplier.products.store')}}" enctype="multipart/form-data">
@@ -89,13 +71,12 @@
                             </select>
                         </div>
                         <div>
-                            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Marques</label>
-                            <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pcolor focus:border-pcolor block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pcolor dark:focus:border-pcolor">
+                            <label for="brands" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Marques</label>
+                            <select id="brands" name="brands" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pcolor focus:border-pcolor block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pcolor dark:focus:border-pcolor">
                               <option selected>Choisissez la marque:</option>
-                              <option value="US">United States</option>
-                              <option value="CA">Canada</option>
-                              <option value="FR">France</option>
-                              <option value="DE">Germany</option>
+                              @foreach ($brands as $brand)
+                              <option value="{{$brand->id}}">{{$brand->brand_name}}</option>
+                              @endforeach
                             </select>
                         </div>
                         <div class="col-span-2 w-full">

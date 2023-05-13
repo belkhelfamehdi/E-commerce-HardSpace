@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -30,7 +31,8 @@ class SupplierController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('supplier.products.create', compact('categories'));
+        $brands = Brand::all();
+        return view('supplier.products.create', compact('categories', 'brands'));
     }
 
     /**
@@ -41,7 +43,8 @@ class SupplierController extends Controller
         $request->validate([
             'image' => 'required|mimes:png,jpg,jpeg,webp|max:2048',
             'images.*' => 'required|mimes:png,jpg,jpeg,webp|max:2048',
-            'images' => 'max:3'
+            'images' => 'max:3',
+            '*' => 'required'
         ]);
         $image_path = $request->file('image')->store('image/products/thumbnail', 'public');
 
@@ -51,7 +54,7 @@ class SupplierController extends Controller
 
 
         $product = Product::create([
-            'brand_id' => $request->input('brand_id'),
+            'brand_id' => $request->input('brands'),
             'category_id' => $request->input('category'),
             'product_name' => $request->input('product_name'),
             'product_code' => $request->input('product_code'),

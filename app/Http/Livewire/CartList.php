@@ -15,6 +15,7 @@
             \Cart::remove($id);
     
             session()->flash('success', 'Item Cart Remove Successfully !');
+            $this->emit('cartUpdated');
       }
   
       public function clearAllCart()

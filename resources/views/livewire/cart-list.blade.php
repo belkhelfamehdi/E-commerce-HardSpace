@@ -42,8 +42,8 @@
                 <span class="font-semibold">{{ Cart::getTotal() }} DZD</span>
             </div>
             <div class="flex py-2 mb-2 text-sm justify-between w-full">
-                <a href="" class="bg-pcolor hover:bg-white border hover:border-gray-300 px-6 py-2  font-medium">Votre panier</a>
-                <a href="" class="bg-pcolor hover:bg-white border hover:border-gray-300  px-4 py-2  font-medium">Commander</a>
+                <a href="" class="bg-pcolor text-white hover:text-black hover:bg-white border hover:border-gray-300 px-6 py-2  font-medium">Votre panier</a>
+                <a href="" class="bg-pcolor text-white hover:text-black hover:bg-white border hover:border-gray-300  px-4 py-2  font-medium">Commander</a>
             </div>
         </div>
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\frontend\ProductsController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierApplicationController;
 use App\Http\Controllers\SupplierController;
@@ -70,6 +71,19 @@ Route::middleware(['auth:admin'])->group(function(){
 
         Route::get('/users', [UserController::class, 'index'])->name('admin.users');
     });
+
+    Route::prefix('/admin')->group(function () {
+        Route::get('/brands', [BrandController::class, 'index'])->name('admin.brand');
+        Route::post('/brands/search', [BrandController::class, 'SearchCategory'])->name('search.brand');
+        Route::get('/brands/create', [BrandController::class, 'create'])->name('admin.brand.create');
+        Route::post('/brands/store', [BrandController::class, 'store'])->name('admin.brand.store');
+        Route::delete('/brands/delete/{id}', [BrandController::class, 'destroy'])->name('admin.brand.destroy');
+        Route::get('/brands/edit/{id}', [BrandController::class, 'edit'])->name('admin.brand.edit');
+        Route::put('/brands/update/{id}', [BrandController::class, 'update'])->name('admin.brand.update');
+
+        Route::get('/users', [UserController::class, 'index'])->name('admin.users');
+    });
+
 
     Route::prefix('/admin')->group(function () {
         Route::get('/applications', [SupplierApplicationController::class, 'index'])->name('admin.applications');

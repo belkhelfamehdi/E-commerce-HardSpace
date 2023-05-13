@@ -15,17 +15,12 @@
             </div>
             <div class="sort absolute left-0 z-20 pointer-events-none mt-2 w-40 origin-top-left rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none" :class="{'flex transition ease-in duration-100 transform opacity-100 scale-100 pointer-events-auto':isOpen}" x-show = "isOpen" @click.away="isOpen = false" x-transition:enter="transition ease-out duration-100 transform" x-transition:leave="transition ease-in duration-75 transform" x-transition:enter-start="opacity-0 scale-95">
               <div class="py-1">
-                <a href="#" class="font-medium text-gray-900 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Plus Populaire</a>
-
-                <a href="#" class="hover:bg-pcolor text-gray-500 hover:text-gray-900 block px-4 py-2 text-sm" id="menu-item-2">Date, de la plus récente</a>
-
-                <a href="#" class="hover:bg-pcolor text-gray-500 hover:text-gray-900 block px-4 py-2 text-sm" id="menu-item-2">Date, de la plus ancienne</a>
-
-                <a href="#" class="hover:bg-pcolor text-gray-500 hover:text-gray-900 block px-4 py-2 text-sm" id="menu-item-3">Prix: faible à élevé</a>
-
-                <a href="#" class="hover:bg-pcolor text-gray-500 hover:text-gray-900 block px-4 py-2 text-sm" id="menu-item-4">Prix: élevé à faible</a>
-
-                <a href="#" class="hover:bg-pcolor text-gray-500 hover:text-gray-900 block px-4 py-2 text-sm" id="menu-item-4">Ordre alphabétique A à Z</a>
+                <button class="font-medium text-gray-900 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0" wire:click="sortBy('popularity')">Plus Populaire</button>
+                <button class="hover:bg-pcolor text-gray-500 hover:text-gray-900 block px-4 py-2 text-sm" id="menu-item-2" wire:click="sortBy('newest')">Date, de la plus récente</button>
+                <button class="hover:bg-pcolor text-gray-500 hover:text-gray-900 block px-4 py-2 text-sm" id="menu-item-2" wire:click="sortBy('oldest')">Date, de la plus ancienne</button>
+                <button class="hover:bg-pcolor text-gray-500 hover:text-gray-900 block px-4 py-2 text-sm" id="menu-item-3" wire:click="sortBy('price_asc')">Prix: faible à élevé</button>
+                <button class="hover:bg-pcolor text-gray-500 hover:text-gray-900 block px-4 py-2 text-sm" id="menu-item-4" wire:click="sortBy('price_desc')">Prix: élevé à faible</button>
+                <button class="hover:bg-pcolor text-gray-500 hover:text-gray-900 block px-4 py-2 text-sm" id="menu-item-5" wire:click="sortBy('alpha_asc')">Ordre alphabétique A à Z</button>
               </div>
             </div>
           </div>
@@ -78,34 +73,8 @@
               <div class="mt-2">
                 <div class="relative flex max-sm:flex-col items-center">
                 
-                  <input type="text" class="focus:ring-pcolor focus:border-pcolor block w-full pl-7 my-1 sm:mr-1 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="Min">
-                  <input type="text" class="focus:ring-pcolor focus:border-pcolor block w-full pl-7 sm:ml-1 my-1 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="Max">
-                </div>
-              </div>
-            </div>
-            <div class="border-b border-gray-200 py-6">
-              <h3 class="-my-3 flow-root">
-                <button type="button" class="stock flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500" data-target="filter-section-0">
-                  <span class="font-medium text-gray-900">Disponibilité</span>
-                  <span class="ml-6 flex items-center">
-                    <!-- Expand icon, show/hide based on section open state. -->
-                    <svg class="-mr-1 h-5 -rotate-90 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                    </svg>
-                  </span>
-                </button>
-              </h3>
-              <div class="hidden pt-6" id="filter-section-0">
-                <div class="space-y-4">
-                  <div class="flex items-center">
-                    <input id="filter-color-0" name="color[]" value="white" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pcolor focus:ring-pcolor">
-                    <label for="filter-color-0" class="ml-3 text-sm text-gray-600">En stock</label>
-                  </div>
-
-                  <div class="flex items-center">
-                    <input id="filter-color-1" name="color[]" value="beige" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pcolor focus:ring-pcolor">
-                    <label for="filter-color-1" class="ml-3 text-sm text-gray-600">Stock limité</label>
-                  </div>
+                  <input wire:model.debounce.500ms="minPrice" type="text" class="focus:ring-pcolor focus:border-pcolor block w-full pl-7 my-1 sm:mr-1 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="Min">
+                  <input wire:model.debounce.500ms="maxPrice"  type="text" class="focus:ring-pcolor focus:border-pcolor block w-full pl-7 sm:ml-1 my-1 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="Max">
                 </div>
               </div>
             </div>
@@ -191,7 +160,7 @@
                           </div>
                       </div>
                       <div class="px-4 py-3 w-72">
-                          <span class="text-gray-400 mr-3 uppercase text-xs">{{$product->brand_id}}</span>
+                        <span class="text-gray-400 mr-3 uppercase text-xs">{{$brand->firstWhere('id', $product->brand_id)->brand_name}}</span>
                           <p class="text-lg font-bold text-black dark:text-gray-200 truncate block capitalize">{{$product->product_name}}</p>
                           <div class="flex items-center">
                               <p class="text-lg font-semibold text-black dark:text-gray-200 cursor-auto my-3">{{$product->price}} DZD</p>

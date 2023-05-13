@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Categories') }}
+            {{ __('Marques') }}
         </h2>
     </x-slot>
     <div class="flex flex-col mt-8">
@@ -14,8 +14,8 @@
               </div>
         @endif
             <div class="flex justify-between mb-3">
-                <a href="{{route('admin.category.create')}}" class="bg-transparent text-sm hover:bg-pcolor py-3 text-pcolor font-semibold hover:text-white px-6 border border-pcolor hover:border-transparent rounded">
-                    Ajouter une categorie
+                <a href="{{route('admin.brand.create')}}" class="bg-transparent text-sm hover:bg-pcolor py-3 text-pcolor font-semibold hover:text-white px-6 border border-pcolor hover:border-transparent rounded">
+                    Ajouter une marque
                 </a>
                 <input type="search" id="search" class="block w-1/4 py-3 pl-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-pcolor focus:border-pcolor dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pcolor dark:focus:border-pcolor" placeholder="Categories">
             </div>
@@ -25,7 +25,7 @@
                         <tr>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Nom du categorie</th>
+                                Nom du marque</th>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                 Modifier</th>
@@ -36,17 +36,17 @@
                     </thead>
                     
                     <tbody class="bg-white">
-                        @foreach ($categories as $category)
+                        @foreach ($brands as $brand)
                         <tr>
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-500">{{$category->category_name}}</div>
+                                <div class="text-sm leading-5 text-gray-500">{{$brand->brand_name}}</div>
                             </td>
     
                             <td
                                 class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
                             <div class="w-fit ml-5">
-                                <a href="{{route('admin.category.edit', $category->id)}}">
+                                <a href="{{route('admin.brand.edit', $brand->id)}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -59,7 +59,7 @@
                                 class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
 
                                 <div class="w-fit ml-5">
-                                    <form action="{{route('admin.category.destroy', $category->id)}}" method="POST">
+                                    <form action="{{route('admin.brand.destroy', $brand->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button onclick="return confirm('Êtes-vous sûr(e) de vouloir supprimer ce produit ?')">
@@ -76,7 +76,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="my-5">{{ $categories->links() }}</div>
+                <div class="my-5">{{ $brands->links() }}</div>
             </div>
         </div>
     </div>
@@ -101,18 +101,18 @@
         // table row with ajax
         function table_post_row(res){
         let htmlView = '';
-        if(res.categories.length <= 0){
+        if(res.brands.length <= 0){
             htmlView+= `
             <tr>
                 <td colspan="4">No data.</td>
             </tr>`;
         }
-        for(let i = 0; i < res.categories.length; i++){
+        for(let i = 0; i < res.brands.length; i++){
             htmlView += `
                 <tr>
     
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-500">`+res.categories[i].category_name+`</div>
+                                <div class="text-sm leading-5 text-gray-500">`+res.brands[i].brand_name+`</div>
                             </td>
     
                             <td

@@ -13,7 +13,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        $brands = Brand::paginate(5); 
+        return view('admin.brands.index', compact('brands'));
     }
 
     /**
@@ -21,7 +22,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.brands.create');
     }
 
     /**
@@ -29,38 +30,54 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $brands = Brand::create([
+            'brand_name' => $request->input('brand_name'),
+            ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Brand $brand)
-    {
-        //
+            return redirect()->route('admin.brand')->with('success','La marque a été créé.');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Brand $brand)
+    public function SearchCategory(Request $request)
     {
-        //
+        $brands = Brand::all();
+    if($request->keyword != ''){
+    $brands = Brand::where('brand_name','LIKE','%'.$request->keyword.'%')->get();
+    }
+    return response()->json([
+        'brands' => $brands
+    ]);
+    }
+
+
+    public function edit($id)
+    {
+        $brand = Brand::findOrFail($id);
+        return view('admin.brands.edit', compact('brand'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, $id)
     {
-        //
+        $brands = Brand::findOrFail($id);
+        $brands->update($request->all());
+        return redirect()->route('admin.brand')
+                        ->with('success','La marque a été mis à jour.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Brand $brand)
+    public function destroy($id)
     {
-        //
+        $brands = Brand::findOrFail($id);
+        $brands->delete();
+
+        return redirect()->route('admin.brand')
+                        ->with('success','La marque a été supprimé.');
     }
 }
