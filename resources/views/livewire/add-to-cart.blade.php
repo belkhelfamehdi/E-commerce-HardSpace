@@ -40,16 +40,13 @@
         </div>
         <div class="w-1/2">
                   
-          <form>   
             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
             <div class="relative">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
-                <input type="search" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-pcolor focus:border-pcolor dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pcolor dark:focus:border-pcolor" placeholder="Search Laptops, Moniteurs, Accessoir..." required>
-                <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-pcolor hover:bg-pcolor focus:ring-4 focus:outline-none focus:ring-pcolor font-medium rounded-lg text-sm px-4 py-2 dark:bg-pcolor dark:hover:bg-pcolor dark:focus:ring-pcolor">Search</button>
+                <input wire:model.debounce.500ms="searchTerm" type="text" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-pcolor focus:border-pcolor dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pcolor dark:focus:border-pcolor" placeholder="Search Laptops, Moniteurs, Accessoir..." required>
             </div>
-          </form>
 
         </div>
         <div class="hidden lg:flex justify-center space-x-1 dark:text-gray-100">
@@ -96,13 +93,13 @@
               <div class="hidden pt-6" id="filter-section-1">
                 <div class="space-y-4">
                   <div class="flex items-center">
-                    <input id="filter-category-0" name="category[]" value="new-arrivals" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pcolor focus:ring-pcolor">
+                    <input id="filter-category-0" name="category[]" value="new-arrival" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pcolor focus:ring-pcolor" wire:model="isNewArrival">
                     <label for="filter-category-0" class="ml-3 text-sm text-gray-600">Nouvel arrivage</label>
                   </div>
 
                   <div class="flex items-center">
-                    <input id="filter-category-1" name="category[]" value="sale" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pcolor focus:ring-pcolor">
-                    <label for="filter-category-1" class="ml-3 text-sm text-gray-600">Promotion</label>
+                    <input id="filter-category-1" name="category[]" value="Recommended" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pcolor focus:ring-pcolor" wire:model="isRecommended">
+                    <label for="filter-category-1" class="ml-3 text-sm text-gray-600">Recommendé</label>
                   </div>
                 </div>
               </div>

@@ -16,7 +16,9 @@ class AddToCart extends Component
     public $name;
     public $price;
     public $quantity = 1;
-    
+    public $searchTerm = '';
+    public $isNewArrival = false;
+    public $isRecommended = false;
 
     public function addToCart($product)
     {
@@ -44,42 +46,73 @@ public $maxPrice;
     {
         $this->sortBy = $order;
     }
+    public function updatedIsNewArrival()
+{
+    $this->render();
+}
+public function updatedIsRecommended()
+{
+    $this->render();
+}
     public function render()
     {
-        $products = Product::query();
+        $query = Product::query();
 
+        if ($this->isNewArrival && $this->isRecommended) {
+            $query->where('new_arrival', 1)->where('featured', 1);
+        } elseif ($this->isNewArrival) {
+            $query->where('new_arrival', 1);
+        } elseif ($this->isRecommended) {
+            $query->where('featured', 1);
+        }
+
+        // Apply search query
+        if ($this->searchTerm) {
+            $query->where(function ($q) {
+                $q->where('product_name', 'like', '%' . $this->searchTerm . '%')
+                ->orWhere('description', 'like', '%' . $this->searchTerm . '%');
+            });
+        }
+    
+        // Apply sorting
         switch ($this->sortBy) {
             case 'popular':
                 // Do nothing, as this is the default sorting option
                 break;
             case 'newest':
-                $products = $products->orderByDesc('created_at');
+                $query->orderByDesc('created_at');
                 break;
             case 'oldest':
-                $products = $products->orderBy('created_at');
+                $query->orderBy('created_at');
                 break;
             case 'price_asc':
-                $products = $products->orderBy('price');
+                $query->orderBy('price');
                 break;
             case 'price_desc':
-                $products = $products->orderByDesc('price');
+                $query->orderByDesc('price');
                 break;
             case 'alpha_asc':
-                $products = $products->orderBy('product_name');
+                $query->orderBy('product_name');
                 break;
             default:
                 break;
         }
+    
+        // Apply price filters
         if ($this->minPrice) {
-            $products->where('price', '>=', $this->minPrice);
+            $query->where('price', '>=', $this->minPrice);
         }
-
+    
         if ($this->maxPrice) {
-            $products->where('price', '<=', $this->maxPrice);
+            $query->where('price', '<=', $this->maxPrice);
         }
-
-        $products = $products->paginate(9);
+    
+        $products = $query->paginate(9);
         $brand = Brand::all();
-        return view('livewire.add-to-cart', ['products' => $products, 'brand' => $brand]);
+    
+        return view('livewire.add-to-cart', [
+            'products' => $products,
+            'brand' => $brand,
+        ]);
     }
 }
