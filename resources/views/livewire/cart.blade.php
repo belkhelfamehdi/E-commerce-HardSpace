@@ -44,7 +44,10 @@
                 <p class="mb-1 text-lg font-bold">{{ Cart::getTotal() }} DZD</p>
             </div>
             </div>
-            <button class="mt-6 w-full rounded-md bg-pcolor py-1.5 font-medium text-blue-50 hover:bg-orange-600">Commander</button>
+            <form action="{{ route('order') }}" method="POST">
+                @csrf
+                <button type="submit" class="mt-6 w-full rounded-md bg-pcolor py-1.5 font-medium text-blue-50 hover:bg-orange-600">Commander</button>
+            </form>
         </div>
         </div>
     </section>

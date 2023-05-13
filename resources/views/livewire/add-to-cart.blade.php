@@ -24,13 +24,6 @@
               </div>
             </div>
           </div>
-
-          <button type="button" class="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7">
-            <span class="sr-only">grid</span>
-            <svg class="plus h-5 w-5" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M4.25 2A2.25 2.25 0 002 4.25v2.5A2.25 2.25 0 004.25 9h2.5A2.25 2.25 0 009 6.75v-2.5A2.25 2.25 0 006.75 2h-2.5zm0 9A2.25 2.25 0 002 13.25v2.5A2.25 2.25 0 004.25 18h2.5A2.25 2.25 0 009 15.75v-2.5A2.25 2.25 0 006.75 11h-2.5zm9-9A2.25 2.25 0 0011 4.25v2.5A2.25 2.25 0 0013.25 9h2.5A2.25 2.25 0 0018 6.75v-2.5A2.25 2.25 0 0015.75 2h-2.5zm0 9A2.25 2.25 0 0011 13.25v2.5A2.25 2.25 0 0013.25 18h2.5A2.25 2.25 0 0018 15.75v-2.5A2.25 2.25 0 0015.75 11h-2.5z" clip-rule="evenodd" />
-            </svg>
-          </button>
           <button type="button" class="togmenu lg:hidden -m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 ">
             <span class="sr-only">Filters</span>
             <svg class="moin h-5 w-5" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
@@ -108,37 +101,11 @@
               <h3 class="font-bold py-7">Categories</h3>
               <ul id="list" class="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
 
+                @foreach ($categories as $category)
                 <li>
-                  <a href="#" class="hover:text-pcolor transition-all ease-in-out duration-300 capitalize">accessoires</a>
+                  <a href="" class="hover:text-pcolor transition-all ease-in-out duration-300 capitalize" value="{{$category->id}}" wire:click.prevent="filterByCategory({{ $category->id }})">{{ $category->category_name }}</a>
                 </li>
-
-                <li>
-                  <a href="#" class="hover:text-pcolor transition-all ease-in-out duration-300 capitalize">Laptops</a>
-                </li>
-  
-                <li>
-                  <a href="#" class="hover:text-pcolor transition-all ease-in-out duration-300 capitalize">Claviers</a>
-                </li>
-  
-                <li>
-                  <a href="#" class="hover:text-pcolor transition-all ease-in-out duration-300 capitalize">Souris</a>
-                </li>
-  
-                <li>
-                  <a href="#" class="hover:text-pcolor transition-all ease-in-out duration-300 capitalize">Casques</a>
-                </li>
-  
-                <li>
-                  <a href="#" class="hover:text-pcolor transition-all ease-in-out duration-300 capitalize">Microphones</a>
-                </li>
-
-                <li>
-                  <a href="#" class="hover:text-pcolor transition-all ease-in-out duration-300 capitalize">Monitors</a>
-                </li>
-
-                <li>
-                  <a href="#" class="hover:text-pcolor transition-all ease-in-out duration-300 capitalize">Webcams</a>
-                </li>
+              @endforeach
               </ul>
             </div>
           </form>

@@ -265,7 +265,7 @@
             @foreach ($recommended as $product)
         <!--CARD 1-->
         <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-                    <a href="#">
+                    <a href="{{ route('product', $product->id) }}">
                         <img src="{{ Storage::url($product->product_thumbnail) }}"
                         alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
                 <div class="px-4 py-3 w-72">
@@ -302,7 +302,7 @@
             @foreach($new_arrival as $product)
             <!--CARD 1-->
             <div class="w-64 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-                        <a href="#">
+                        <a href="{{ route('product', $product->id) }}">
                             <img src="{{ Storage::url($product->product_thumbnail) }}"
                             alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
                     <div class="px-4 py-3 w-72">

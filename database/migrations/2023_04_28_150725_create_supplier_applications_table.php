@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('company_city');
             $table->string('company_state');
             $table->string('company_zip');
-            $table->string('message');
+            $table->longText('message');
             $table->string('statut')->nullable();
             $table->timestamps();
         });

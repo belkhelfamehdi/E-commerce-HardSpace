@@ -6,6 +6,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\SupplierApplicationController;
 use App\Http\Controllers\SupplierController;
@@ -32,9 +34,13 @@ Route::get('store', function () {
 })->name('store');
 Route::get('/store',[ProductsController::class, 'index'])->name('store');
 
+Route::get('/bill',[BillController::class, 'generateBill'])->name('bill');
+
 Route::get('/product/{id}', [ProductsController::class, 'product'])->name('product');
 
 Route::post('/newsletter', [NewsletterController::class, 'store'])->name('news');
+
+Route::post('/order', [OrderController::class, 'store'])->middleware(['auth', 'verified'])->name('order');
 
 Route::get('/contact', function () {
     return view('frontend.frontend_layout.contact');
@@ -139,7 +145,5 @@ Route::middleware(['auth', 'role:supplier', 'verified'])->group(function(){
         Route::delete('/products/delete/{id}', [SupplierController::class, 'destroy'])->name('supplier.products.destroy');
         Route::get('/products/edit/{id}', [SupplierController::class, 'edit'])->name('supplier.products.edit');
         Route::put('/products/update/{id}', [SupplierController::class, 'update'])->name('supplier.products.update');
-
     });
-   
 });

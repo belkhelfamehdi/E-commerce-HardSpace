@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -19,6 +20,7 @@ class AddToCart extends Component
     public $searchTerm = '';
     public $isNewArrival = false;
     public $isRecommended = false;
+    public $selectedCategory = null;
 
     public function addToCart($product)
     {
@@ -54,6 +56,11 @@ public function updatedIsRecommended()
 {
     $this->render();
 }
+
+public function filterByCategory($categoryId)
+{
+    $this->selectedCategory = $categoryId;
+}
     public function render()
     {
         $query = Product::query();
@@ -64,6 +71,10 @@ public function updatedIsRecommended()
             $query->where('new_arrival', 1);
         } elseif ($this->isRecommended) {
             $query->where('featured', 1);
+        }
+
+        if ($this->selectedCategory) {
+            $query->where('category_id', $this->selectedCategory);
         }
 
         // Apply search query
@@ -109,10 +120,12 @@ public function updatedIsRecommended()
     
         $products = $query->paginate(9);
         $brand = Brand::all();
+        $categories = Category::all();
     
         return view('livewire.add-to-cart', [
             'products' => $products,
             'brand' => $brand,
+            'categories' => $categories,
         ]);
     }
 }

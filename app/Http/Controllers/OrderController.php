@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Http\Controllers\Controller;
+use Dompdf\Dompdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -24,12 +26,37 @@ class OrderController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $user_id = Auth::user()->id;
+        $cartItems = \Cart::getContent();
+
+        foreach ($cartItems as $item) {
+            Order::create([
+                'user_id' => $user_id,
+                'product_id' => $item->id,
+                'price' => $item->price,
+                'quantity' => $item->quantity,
+            ]);
+        }
+
+        \Cart::clear();
+
+        $orders = Order::where('user_id', Auth::user()->id)->get();
+
+        $pdf = new Dompdf();
+
+        $html = view('frontend.frontend_layout.bill', compact('orders'))->render();
+
+        $pdf->loadHtml($html);
+
+        $pdf->setPaper('A4', 'portrait');
+
+        $pdf->render();
+
+
+        return $pdf->stream('bill.pdf');
+        return redirect()->route('index');
     }
 
     /**

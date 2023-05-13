@@ -14,17 +14,9 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('name');
-            $table->string('email');
-            $table->string('phone');
-            $table->unsignedInteger('post_code')->nullable();
-            $table->text('address');
-            $table->string('payment_type');
-            $table->string('payment_method')->nullable();
-            $table->string('transaction_id');
-            $table->string('currency');
-            $table->float('amount', 8, 2);
-            $table->string('confirmed_date')->nullable();
+            $table->string('quantity');
+            $table->unsignedInteger('price');
+            $table->foreignId('product_id');
             $table->timestamps();
         });
     }
