@@ -270,7 +270,7 @@
                         alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
                 <div class="px-4 py-3 w-72">
                     <span class="text-gray-400 mr-3 uppercase text-xs">{{$brand->firstWhere('id', $product->brand_id)->brand_name}}</span>
-                    <p class="text-lg font-bold text-black truncate block capitalize">{{$product->name}}</p>
+                    <p class="text-lg font-bold text-black truncate block capitalize">{{$product->product_name}}</p>
                     <div class="flex items-center">
                         <p class="text-lg font-semibold text-black cursor-auto my-3">{{$product->price}} DZD</p>
                         <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -298,7 +298,7 @@
                 collection de matériel informatique, fraîchement arrivée</p>
         </div>
 
-        <div id="Projects" class="container w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 my-10">
+        <div id="Projects" class="container w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 my-10">
             @foreach($new_arrival as $product)
             <!--CARD 1-->
             <div class="w-64 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">

@@ -251,7 +251,7 @@
                                     Total Produits
                                 </p>
                                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                    0
+                                    {{ \App\Models\Product::count() }}
                                 </p>
                             </div>
                         </div>
@@ -270,7 +270,7 @@
                                     Total commandes
                                 </p>
                                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                    376
+                                    {{ \App\Models\Order::count() }}
                                 </p>
                             </div>
                         </div>
@@ -289,7 +289,7 @@
                                     Total messages
                                 </p>
                                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                    35
+                                    {{ \App\Models\SupplierApplication::count() }}
                                 </p>
                             </div>
                         </div>
