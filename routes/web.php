@@ -36,6 +36,8 @@ Route::get('/store',[ProductsController::class, 'index'])->name('store');
 
 Route::get('/bill',[BillController::class, 'generateBill'])->name('bill');
 
+Route::get('/orders',[OrderController::class, 'show'])->name('orders');
+
 Route::get('/product/{id}', [ProductsController::class, 'product'])->name('product');
 
 Route::post('/newsletter', [NewsletterController::class, 'store'])->name('news');

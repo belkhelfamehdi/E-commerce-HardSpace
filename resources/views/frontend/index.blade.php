@@ -38,9 +38,9 @@
 
             <div  class="max-md:hidden max-md:text-black max-md:dark:text-white text-sm bg-white md:bg-transparent max-md:fixed max-md:h-screen z-40 top-0 left-0  md:relative mx-auto w-full text-center md:flex md:order-2 md:flex-grow md:w-auto" id="navigation">
                 <ul class="nav-i max-md:relative max-md:top-20 pt-5 md:pt-0 md:flex-grow md:justify-center flex max-md:flex-col">
+                    <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="{{route('index')}}" class="capitalize">Accueil</a></li>
                     <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="{{route('store')}}" class="capitalize">Produits</a></li>
-                    <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="" class="capitalize">Composants</a></li>
-                    <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="" class="capitalize">Catégories</a></li>
+                    <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="{{route('cart')}}" class="capitalize">Panier</a></li>
                     <li class="lg:mx-8 md:mx-4 py-2 transition-all ease-in-out duration-100 hover:scale-110 hover:text-pcolor"><a href="{{route('contact')}}" class="capitalize">Contactez-nous</a></li>
                 </ul>
                 <div class="btn-i max-md:relative max-md:top-20 pt-5 justify-center md:pt-0 mt-2 lg:pr-4 flex w-auto " x-data = "{search : false}">

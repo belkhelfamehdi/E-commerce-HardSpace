@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,7 +65,10 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $user_id = auth()->id();
+        $orders = Order::where('user_id', $user_id)->get();
+        $products = Product::all();
+        return view('profile.orders', compact('orders', 'products'));
     }
 
     /**
