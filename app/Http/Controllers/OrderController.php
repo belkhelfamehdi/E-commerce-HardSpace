@@ -39,6 +39,8 @@ class OrderController extends Controller
                 'price' => $item->price,
                 'quantity' => $item->quantity,
             ]);
+            $product = Product::find($item->id);
+            $product->decrement('product_qty', $item->quantity);
         }
 
         \Cart::clear();

@@ -106,7 +106,7 @@
                                 </div>
                                 <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
                                 <div class="flex m-1  text-xs hover:text-pcolor">
-                                    <a href="">Mes commandes</a>
+                                    <a href="{{route('orders')}}">Mes commandes</a>
                                 </div>
                                 <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
                                     <form action="{{route('logout')}}" method="POST">

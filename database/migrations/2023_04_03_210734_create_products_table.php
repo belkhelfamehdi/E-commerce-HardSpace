@@ -26,20 +26,6 @@ return new class extends Migration
             $table->boolean('featured')->default(false);
             $table->boolean('new_arrival')->default(false);
             $table->boolean('status')->default(true);
-
-            $table->foreign('brand_id')
-                ->references('id')
-                ->on('brands');
-            $table->foreign('category_id')
-                ->references('id')
-                ->on('categories')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-            $table->foreign('supplier_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

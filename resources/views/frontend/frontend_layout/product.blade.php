@@ -76,7 +76,7 @@
                   <h1 class="text-very-dark mb-4 font-bold text-3xl lg:text-4xl">
                       {{$product->product_name}}
                   </h1>
-                  <p class="text-dark-grayish mb-6 text-base sm:text-lg whitespace-normal overflow-hidden break-words w-11/12 md:w-8/12 lg:w-8/12">
+                  <p class="text-dark-grayish mb-6 text-base sm:text-lg whitespace-normal overflow-hidden break-words w-11/12 md:w-8/12 lg:w-11/12">
                     {{$product->description}}
                   </p>
 

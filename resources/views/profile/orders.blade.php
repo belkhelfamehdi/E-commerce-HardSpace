@@ -1,7 +1,7 @@
 @extends('frontend.layout')
 
   @section('js')
-    @vite('resources/js/product.js')
+    @vite('resources/js/store.js')
   @endsection
   @section('content')
 
@@ -13,6 +13,15 @@
           <p class="mt-2 text-sm text-gray-500">Consultez l'historique de vos commandes passées.</p>
         </div>
       </div>
+
+      @if (App\Models\Order::count() == 0)
+          
+      <div class="mt-10 flex justify-center">
+        <h1 class="text-lg font-bold">Pas de commandes effectué</h1>
+      </div>
+      @else
+          
+
   @foreach ($orders as $order)
       
 
@@ -37,7 +46,7 @@
                   </div>
                   <div>
                     <dt class="font-medium text-gray-900">Prix total</dt>
-                    <dd class="mt-1 font-medium text-gray-900">{{$order->price}}.00 DZD</dd>
+                    <dd class="mt-1 font-medium text-gray-900">{{$order->price * $order->quantity}}.00 DZD</dd>
                   </div>
                 </dl>
   
@@ -79,7 +88,7 @@
         </div>
       </div>
       @endforeach
-
+      @endif
 
     </div>
   </div>
