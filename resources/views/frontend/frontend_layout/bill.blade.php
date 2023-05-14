@@ -40,7 +40,7 @@
     </style>
 </head>
 <body>
-    <h1>Bill</h1>
+    <h1>Facture</h1>
     <table>
         <thead>
             <tr>
