@@ -22,6 +22,8 @@ class AddToCart extends Component
     public $isRecommended = false;
     public $selectedCategory = null;
 
+
+    //ajouter au panier
     public function addToCart($product)
     {
         // Ensure $product is an object with an "id" property
@@ -44,14 +46,20 @@ public $maxPrice;
 
     public $sortBy = 'default';
 
+
+    //la façon de trier par
     public function sortBy($order)
     {
         $this->sortBy = $order;
     }
+
+    //afficher nouve arrivage
     public function updatedIsNewArrival()
 {
     $this->render();
 }
+
+//afficher les produits recommendes
 public function updatedIsRecommended()
 {
     $this->render();

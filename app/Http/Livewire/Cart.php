@@ -9,6 +9,8 @@ class Cart extends Component
 
     protected $listeners = ['cartUpdated' => '$refresh'];
     public $cartItems = [];
+
+    //methode pour incrementer la quantity.
     public function incrementQuantity($itemId)
     {
         
@@ -19,6 +21,8 @@ class Cart extends Component
         ));
         $this->emit('cartUpdated');
     }
+
+    //methode pour decrementer la quantity
     public function decrementQuantity($itemId)
     {
         $item = \Cart::get($itemId);
@@ -29,6 +33,8 @@ class Cart extends Component
         $this->emit('cartUpdated');
     }
 
+
+    //methode pour supprimer un produit de la base de donnee
     public function removeCart($id)
     {
           \Cart::remove($id);

@@ -51,6 +51,7 @@ class BrandController extends Controller
     ]);
     }
 
+    //show edit brands page
 
     public function edit($id)
     {

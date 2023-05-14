@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 class SupplierController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Afficher la liste des demandes fournisseur.
      */
     public function index()
     {
@@ -21,12 +21,14 @@ class SupplierController extends Controller
         return view('supplier.products.index', compact('products'));
     }
 
+
+    //afficher index fournisseur
     public function home(){
         return view('supplier.index');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new products.
      */
     public function create()
     {
@@ -36,7 +38,7 @@ class SupplierController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created products in database.
      */
     public function store(Request $request)
     {
@@ -78,7 +80,7 @@ class SupplierController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Methode pour recherche des produits.
      */
     public function SearchProduct(Request $request)
     {
@@ -91,7 +93,7 @@ class SupplierController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the products.
      */
     public function edit(string $id)
     {
@@ -100,7 +102,7 @@ class SupplierController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified products.
      */
     public function update(Request $request, string $id)
     {
@@ -120,7 +122,7 @@ class SupplierController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified products.
      */
     public function destroy(string $id)
     {

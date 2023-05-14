@@ -25,7 +25,7 @@ class NewsletterController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Ajouter une adresse email à la table newsletters.
      */
     public function store(Request $request)
     {

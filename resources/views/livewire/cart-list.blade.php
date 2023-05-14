@@ -1,5 +1,5 @@
 <div>
-<div class="absolute max-md:top-[9px] max-md:left-[428px] md:top-0 md:right-5 bg-red-600 rounded-full w-4 h-4">
+<div class="absolute max-md:hidden max-md:top-[9px] max-md:left-[428px] md:top-0 md:right-5 bg-red-600 rounded-full w-4 h-4">
     <span class="text-white text-xs">{{ $cart}}</span>
 </div>
 <div class="cart_p absolute dark:bg-dcolor px-3  -right-7 top-[27px]  h-auto w-auto min-w-fit text-black bg-white z-50 opacity-0 transition-opacity ease-in-out duration-150 shadow-[0px_3px_6px_0px_#f7fafc] pointer-events-none">

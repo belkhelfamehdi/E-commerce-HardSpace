@@ -14,7 +14,7 @@ use Image;
 class ProductController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the list products page.
      */
     public function index()
     {
@@ -37,7 +37,7 @@ class ProductController extends Controller
         return redirect()->route('cart');
     }
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new product.
      */
     public function create()
     {
@@ -45,6 +45,8 @@ class ProductController extends Controller
         $brands = Brand::all();
         return view('admin.products.create', compact('categories'));
     }
+
+    //ajouter de nouveau produit.
 
     public function store(Request $request)
     {
@@ -89,7 +91,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Une methode pour la rechrche dynamique.
      */
     public function SearchProduct(Request $request)
     {
@@ -103,7 +105,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Afficher la page modifier produit.
      */
     public function edit($id)
     {
@@ -114,7 +116,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * modifier les informations du produit.
      */
     public function update(Request $request, $id)
     {

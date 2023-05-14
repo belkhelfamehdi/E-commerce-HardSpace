@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class SupplierApplicationController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Afficher la liste des demandes fourniseurs.
      */
     public function index()
     {
@@ -20,7 +20,7 @@ class SupplierApplicationController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new supplier apply.
      */
     public function create()
     {
@@ -28,7 +28,7 @@ class SupplierApplicationController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created applications.
      */
     public function store(Request $request)
     {
@@ -64,7 +64,7 @@ class SupplierApplicationController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Afficher la page demande fournisseur.
      */
     public function show($id)
     {
@@ -72,6 +72,8 @@ class SupplierApplicationController extends Controller
         return view('admin.applications.info', compact('application'));
     }
 
+
+    //methode pour accepter la demande
     public function accept($id){
         $application = SupplierApplication::find($id);
         $user = User::find($application->user_id);
@@ -81,6 +83,8 @@ class SupplierApplicationController extends Controller
         $application->save();
         return redirect()->route('admin.applications')->with('success','Application accepté.');
     }
+
+    //methode pour refuser la demandes
 
     public function reject($id){
         $application = SupplierApplication::find($id);

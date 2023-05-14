@@ -61,7 +61,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * ;odifier les donnee de category.
      */
     public function update(Request $request, $id)
     {
@@ -72,7 +72,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Supprimer une category.
      */
     public function destroy($id)
     {

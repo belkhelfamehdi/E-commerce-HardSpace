@@ -27,6 +27,8 @@ class OrderController extends Controller
         //
     }
 
+
+    //effectuer une commande et generer une facture
     public function store(Request $request)
     {
         $user_id = Auth::user()->id;
@@ -63,7 +65,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Afficher la page mes commandes.
      */
     public function show(Order $order)
     {

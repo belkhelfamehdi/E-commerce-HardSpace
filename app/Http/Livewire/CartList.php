@@ -10,6 +10,8 @@
       protected $listeners = ['cartUpdated' => '$refresh'];
       public $cartItems = [];
   
+
+      //methode pour supprimer un produit du panier
       public function removeCart($id)
       {
             \Cart::remove($id);
@@ -19,7 +21,9 @@
       }
       public function render()
       {
+        //recuperer les informations du panier
           $this->cartItems = \Cart::getContent()->toArray();
+          //recuperer le total prix
           $cart = \Cart::getTotalQuantity();
   
           return view('livewire.cart-list', ['cart' => $cart]);

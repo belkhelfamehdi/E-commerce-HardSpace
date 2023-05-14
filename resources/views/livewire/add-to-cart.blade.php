@@ -113,7 +113,8 @@
           <!-- Product Grid -->
         <div class="w-3/4">
           <div class="product grid grid-cols-1 min-[394px]:justify-items-end mx-auto  lg:grid-cols-2 xl:grid-cols-3 gap-4">
-            <!--here-->
+            
+            <!--Afficher les produits-->
             @foreach ($products as $product)
             <!-- Card 1 -->
                 <div class="w-72 clamp bg-white dark:bg-dcolor shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
