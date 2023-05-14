@@ -218,43 +218,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-3">
-                    <div>
-                        <p class="font-medium text-white">Services</p>
-
-                        <nav aria-label="Footer Navigation - Services" class="mt-6">
-                            <ul class="space-y-4 text-sm">
-                                <li>
-                                    <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
-                          Lorem ipsum
-                          </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
-                          Lorem ipsum
-                          </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
-                          Lorem ipsum
-                          </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
-                            Lorem ipsum
-                          </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="text-white transition hover:text-pcolor dark:text-gray-200">
-                          Lorem ipsum
-                          </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
 
 
                     <div>
