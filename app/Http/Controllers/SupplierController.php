@@ -48,18 +48,6 @@ class SupplierController extends Controller
         ]);
         $image_path = $request->file('image')->store('image/products/thumbnail', 'public');
 
-        $recommended = $request->has('recommended') ? 1 : 0;
-
-        if ($request->has('recommended')) {
-            $recommended = 1;
-        } else {
-            $recommended = 0;
-        }
-        if ($request->has('new_arrival')) {
-            $new_arrival = 1;
-        } else {
-            $new_arrival = 0;
-        }
 
             $images = $request->file('images');
 
@@ -72,8 +60,7 @@ class SupplierController extends Controller
             'supplier_id' => Auth::user()->id,
             'product_thumbnail' => $image_path,
             'price' => $request->input('price'),
-            'featured' => $recommended,
-            'new_arrival' => $new_arrival,
+
             'description' => $request->input('description'),
             ]);
 
