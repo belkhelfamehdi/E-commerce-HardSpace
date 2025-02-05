@@ -41,11 +41,8 @@ COPY . .
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Install Node.js dependencies
-RUN npm install
-
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 
 # Run npm run dev (You may want to do this in a separate step or as part of the entry point)
-CMD ["sh", "-c", "npm run dev & php-fpm"]
+CMD ["php-fpm"]
