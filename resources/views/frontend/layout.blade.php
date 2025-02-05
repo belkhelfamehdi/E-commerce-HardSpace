@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="{{url('frontend/assets/images/logo/logo_black.png') }}" type="image/x-icon">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
-    @vite('resources/css/app.css') 
+    @vite('resources/css/app.css')
     @yield('js')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,7 @@
 <body class="font-roboto dark:bg-dcolor ">
 
     <header class="text-white relative h-auto max-w-full ease-in duration-200">
-        <nav class="md:fixed z-30 md:top-0 w-full ease-in duration-200 bg-[#0c0a0a] border-b border-solid border-[#323232]">
+        <nav class="md:fixed z-30 md:top-0 w-full ease-in duration-200 bg-[#0c0a0a] border-b border-solid border-[#323232]" aria-label="Main Navigation">
             <div class="container mx-auto px-4 py-2 pt-4 flex items-center justify-between flex-wrap md:px-5">
                 <a href="{{route('index')}}" class="flex items-center">
                     <img id="logo" class="max-md:relative z-50 object-contain h-12 w-12" src="{{url('frontend/assets/images/logo/Logo_white.png')}}" data-src="{{url('frontend/assets/images/logo/Logo_black.png')}}"
@@ -70,7 +70,7 @@
                                         @enderror
                                         @error('password')
                                         <li>{{ $message }}</li>
-                                        @enderror 
+                                        @enderror
                                     </ul>
                                     <input class="m-2 w-52 h-auto p-1 dark:bg-gray-900 dark:text-gray-100 border-gray-300 text-xs focus:outline-none focus:ring-0 focus:border-gray-300 placeholder:text-gray-600" name="email" type="email" placeholder="E-mail">
                                     <input class="m-2 w-52 h-auto p-1 dark:bg-gray-900 dark:text-gray-100 border-gray-300 text-xs focus:outline-none focus:ring-0 focus:border-gray-300 placeholder:text-gray-600" name="password" type="password" placeholder="Password">
@@ -115,7 +115,7 @@
                                         <button type="submit">Déconnexion</button>
                                     </div>
                                     </form>
-    
+
                             </div>
                             @endif
                         </span>
