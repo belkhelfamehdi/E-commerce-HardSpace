@@ -18,7 +18,7 @@
 <body class="font-roboto">
     <!-- Start Header Section -->
     <header class="text-white relative h-auto xl:h-screen bg-no-repeat bg-cover max-w-full ease-in duration-200" id="background-image">
-      <nav class="md:fixed z-30 md:top-0 w-full ease-in duration-200">
+      <nav class="md:fixed z-30 md:top-0 w-full ease-in duration-200" aria-label="Main Navigation">
         <div class="container mx-auto px-4 py-2 pt-4 flex items-center justify-between flex-wrap md:px-5">
             <a href="{{route('index')}}" class="flex items-center">
                 <img id="logo" class="max-md:relative z-50 object-contain h-12 w-12" src="{{url('frontend/assets/images/logo/Logo_white.png')}}" data-src="{{url('frontend/assets/images/logo/Logo_black.png')}}"
@@ -69,7 +69,7 @@
                                     @enderror
                                     @error('password')
                                     <li>{{ $message }}</li>
-                                    @enderror 
+                                    @enderror
                                 </ul>
                                 <input class="m-2 w-52 h-auto p-1 dark:bg-gray-900 dark:text-gray-100 border-gray-300 text-xs focus:outline-none focus:ring-0 focus:border-gray-300 placeholder:text-gray-600" name="email" type="email" placeholder="email">
                                 <input class="m-2 w-52 h-auto p-1 dark:bg-gray-900 dark:text-gray-100 border-gray-300 text-xs focus:outline-none focus:ring-0 focus:border-gray-300 placeholder:text-gray-600" name="password" type="password" placeholder="password">
@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         @else
-                        <div class="login absolute text-gray-600 dark:text-gray-100 dark:bg-dcolor top-[18px] -left-28 p-3 h-auto w-auto min-w-fit text-black bg-white z-50 opacity-0 transition-opacity ease-in-out duration-150 shadow-[0px_3px_6px_0px_#f7fafc] pointer-events-none">
+                        <div class="login absolute text-gray-600 dark:text-white dark:bg-dcolor top-[18px] -left-28 p-3 h-auto w-auto min-w-fit bg-white z-50 opacity-0 transition-opacity ease-in-out duration-150 shadow-[0px_3px_6px_0px_#f7fafc] pointer-events-none">
                             <div class="flex m-1 w-40 font-semibold  text-xs">
                                 <span><span class="text-sm">Salut, </span>{{Auth::user()->FirstName}} {{Auth::user()->LastName}}</span>
                             </div>
@@ -166,7 +166,7 @@
         <div class="container relative mx-auto pb-20 px-4 py-4 flex flex-wrap text-black">
             <div class="my-7 text-center mx-auto ">
                 <h1 class="text-2xl font-semibold my-3">Nos catégories</h1>
-                <p class="my-5 text-md font-medium">Parcourez nos catégories et trouvez facilement ce <br> 
+                <p class="my-5 text-md font-medium">Parcourez nos catégories et trouvez facilement ce <br>
                     que vous cherchez parmi notre sélection de produits de qualité supérieure.</p>
             </div>
             <div class="slider mySwiper my-7">
@@ -252,14 +252,14 @@
     </section>
     <!-- End Caterogies Section -->
     <!-- Start Caterogies Section -->
-    <section class="text-black  my-16">
+    <section class="text-black dark:text-white my-16">
 
         <div class="my-7 text-center mx-auto ">
             <h1 class="text-2xl font-semibold my-3">Produits recommandés</h1>
-            <p class="my-5 text-md font-medium">Nos produits recommandés pour vos besoins informatiques sont là<br> 
+            <p class="my-5 text-md font-medium">Nos produits recommandés pour vos besoins informatiques sont là<br>
                 pour vous offrir des performances exceptionnelles et une expérience utilisateur optimale.</p>
         </div>
-        
+
         <div id="Projects" class="container w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 my-10">
 
             @foreach ($recommended as $product)
@@ -291,7 +291,7 @@
     </section>
     <!-- End Caterogies Section -->
     <!-- Start New Arrival Section -->
-    <section class="text-black my-20">
+    <section class="text-black dark:text-white my-20">
         <div class="my-7 text-center mx-auto ">
             <h1 class="text-2xl font-semibold my-3">Nouvel arrivage</h1>
             <p class="my-5 text-md font-medium">Découvrez notre dernière <br>
@@ -327,23 +327,23 @@
     </section>
     <!-- End New Arrival Section -->
     <!-- Start Services Section -->
-    <section class="dark:bg-dcolor text-black border-t border-b border-scolor border-solid">
-        <div class="container grid w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 py-14 my-14">
+    <section class="dark:bg-dcolor text-black dark:text-white border-t border-b border-scolor border-solid">
+        <div class="container w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 py-14 my-14">
             <div class="w-auto justify-items-center text-3xl text-center mx-10">
                 <i class="fa-solid fa-dollar-sign fa-2xl  mx-auto"></i>
                 <h2 class="text-2xl font-medium py-8">Qualité et prix</h2>
-                <p class="text-base font-medium text-tscolor">Prix compétitifs sur une large <br> 
+                <p class="text-base font-medium text-tscolor dark:text-white">Prix compétitifs sur une large <br>
                     sélection de matériel informatique.</p>
             </div>
             <div class="w-auto justify-items-center text-3xl text-center mx-10">
                 <i class="fa-solid fa-truck fa-2xl mx-auto"></i>
                 <h2 class="text-2xl font-medium py-8">Qualité de livraison</h2>
-                <p class="text-base font-medium text-tscolor">Des délais rapides et une livraison fiable pour répondre à toutes vos attentes !</p>
+                <p class="text-base font-medium text-tscolor dark:text-white">Des délais rapides et une livraison fiable pour répondre à toutes vos attentes !</p>
             </div>
             <div class="w-auto justify-items-center text-3xl text-center mx-10">
                 <i class="fa-regular fa-credit-card fa-2xl mx-auto"></i>
                 <h2 class="text-2xl font-medium py-8">Pouvoir d'achat</h2>
-                <p class="text-base font-medium text-tscolor">Facilitez votre vie financière en optant pour un paiement sécurisé et rapide.</p>
+                <p class="text-base font-medium text-tscolor dark:text-white">Facilitez votre vie financière en optant pour un paiement sécurisé et rapide.</p>
             </div>
         </div>
     </section>
@@ -501,7 +501,7 @@
           </p>
       </div>
     </footer>
-    
+
     <!-- End Footer-->
     <script src="{{url('frontend/assets/vendor/js/jquery-3.6.4.min.js')}}"></script>
     <script src="{{url('frontend/assets/vendor/js/fontawesome.js')}}"></script>
