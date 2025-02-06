@@ -500,9 +500,9 @@
     </footer>
 
     <!-- End Footer-->
-    <script src="{{url('frontend/assets/vendor/js/jquery-3.6.4.min.js')}}"></script>
-    <script src="{{url('frontend/assets/vendor/js/fontawesome.js')}}"></script>
-    <script src="{{url('frontend/assets/vendor/js/swiper-bundle.min.js')}}"></script>
+    <script src="{{secure_url('frontend/assets/vendor/js/jquery-3.6.4.min.js')}}"></script>
+    <script src="{{secure_url('frontend/assets/vendor/js/fontawesome.js')}}"></script>
+    <script src="{{secure_url('frontend/assets/vendor/js/swiper-bundle.min.js')}}"></script>
     @livewireScripts
 </body>
 </html>
