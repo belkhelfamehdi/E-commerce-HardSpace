@@ -24,7 +24,7 @@
         <nav class="md:fixed z-30 md:top-0 w-full ease-in duration-200 bg-[#0c0a0a] border-b border-solid border-[#323232]" aria-label="Main Navigation">
             <div class="container mx-auto px-4 py-2 pt-4 flex items-center justify-between flex-wrap md:px-5">
                 <a href="{{route('index')}}" class="flex items-center">
-                    <img id="logo" class="max-md:relative z-50 object-contain h-12 w-12" src="{{url('frontend/assets/images/logo/Logo_white.png')}}" data-src="{{url('frontend/assets/images/logo/Logo_black.png')}}"
+                    <img id="logo" class="max-md:relative z-50 object-contain h-12 w-12" src="{{secure_url('frontend/assets/images/logo/Logo_white.png')}}" data-src="{{url('frontend/assets/images/logo/Logo_black.png')}}"
                         alt="">
                         <span class="mx-3 font-semibold text-xl">Hard<span class="text-pcolor">Space</span></span>
                 </a>

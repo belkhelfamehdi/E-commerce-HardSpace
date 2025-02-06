@@ -24,7 +24,7 @@ window.addEventListener('scroll', function() {
 
 //-------- Slider carousel ----------//
 
-const images = ["https://cdn.discordapp.com/attachments/1081252763545108592/1081266075280347146/Sans_titre-1.jpg", "https://cdn.originpc.com/img/home/slides/2023/amd-ryzen-7000-series-3d.jpg", "https://cdn.originpc.com/img/home/slides/2023/intel-13900KS-2.jpg", "https://cdn.originpc.com/img/home/slides/2023/nvidia-4070Ti.jpg", "https://cdn.originpc.com/img/home/slides/2022/corsair-xeneon-flex-v2.jpg"];
+const images = ["https://cdn.originpc.com/img/home/slides/2023/amd-ryzen-7000-series-3d.jpg", "https://cdn.originpc.com/img/home/slides/2023/intel-13900KS-2.jpg", "https://cdn.originpc.com/img/home/slides/2023/nvidia-4070Ti.jpg", "https://cdn.originpc.com/img/home/slides/2022/corsair-xeneon-flex-v2.jpg"];
 
 let currentImage = 0;
 
@@ -35,8 +35,7 @@ const s0 = document.getElementById("Slide 0");
 const s1 = document.getElementById("Slide 1");
 const s2 = document.getElementById("Slide 2");
 const s3 = document.getElementById("Slide 3");
-const s4 = document.getElementById("Slide 4");
-const indicator = [s0, s1, s2, s3, s4];
+const indicator = [s0, s1, s2, s3];
 
 function changeBackgroundImage() {
     background.style.backgroundImage = `url(${images[currentImage]})`;
