@@ -367,7 +367,7 @@
                               <label for="UserEmail" class="sr-only"> Email </label>
 
                               <div class="border border-white p-2 focus-within:ring sm:flex sm:items-center sm:gap-4">
-                                  <input type="email" name="email" id="UserEmail" placeholder="Votre adresse email" class="w-full border-none focus:border-transparent focus:ring-transparent sm:text-sm" />
+                                  <input type="email" name="email" id="UserEmail" placeholder="Votre adresse email" class="w-full border-none focus:border-transparent focus:ring-transparent sm:text-sm" autocomplete="email" />
 
                                   <button class="mt-1 w-full bg-pcolor px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-colors duration-200 hover:bg-white hover:text-black sm:mt-0 sm:w-auto sm:flex-shrink-0">
                               S'abonner
@@ -384,7 +384,7 @@
           <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
               <div class=" max-lg:mx-auto justify-center">
                   <div class="justify-center">
-                      <img class="h-16 w-16 mx-auto" src="{{url('frontend/assets/images/logo/Logo_white.png')}}" alt="">
+                      <img class="h-16 w-16 mx-auto" src="{{secure_url('frontend/assets/images/logo/Logo_white.png')}}" alt="">
                   </div>
 
                   <p class=" mt-4 text-center  text-white">
