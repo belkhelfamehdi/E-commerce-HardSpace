@@ -1,0 +1,34 @@
+{
+  "_module.esm-015c79bc.js": {
+    "file": "assets/module.esm-015c79bc.js"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-d1bfb7c7.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-e9607714.js",
+    "imports": [
+      "_module.esm-015c79bc.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/product.js": {
+    "file": "assets/product-332ed383.js",
+    "imports": [
+      "_module.esm-015c79bc.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/product.js"
+  },
+  "resources/js/store.js": {
+    "file": "assets/store-c7e45cee.js",
+    "imports": [
+      "_module.esm-015c79bc.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/store.js"
+  }
+}
