@@ -3,7 +3,10 @@ import laravel, { refreshPaths } from 'laravel-vite-plugin';
 
 export default defineConfig({
     server: {
-        https: true
+        https: true, // Enable HTTPS
+        proxy: {
+          '/app': 'https://e-commerce-hardspace-production.up.railway.app/' // Adjust the proxy if needed
+        }
     },
     plugins: [
         laravel({
