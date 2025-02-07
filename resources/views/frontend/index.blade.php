@@ -157,6 +157,7 @@
             <button type="button" class="ind bg-scolor opacity-40" id="Slide 1"></button>
             <button type="button" class="ind bg-scolor opacity-40" id="Slide 2"></button>
             <button type="button" class="ind bg-scolor opacity-40" id="Slide 3"></button>
+            <button type="button" class="ind bg-scolor opacity-40" id="Slide 4"></button>
         </div>
     </header>
     <!-- End Header Section -->
