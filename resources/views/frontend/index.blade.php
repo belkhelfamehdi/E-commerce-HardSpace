@@ -22,7 +22,7 @@
       <nav class="md:fixed z-30 md:top-0 w-full ease-in duration-200" aria-label="Main Navigation">
         <div class="container mx-auto px-4 py-2 pt-4 flex items-center justify-between flex-wrap md:px-5">
             <a href="{{route('index')}}" class="flex items-center">
-                <img id="logo" class="max-md:relative z-50 object-contain h-12 w-12" src="{{secure_url('frontend/assets/images/logo/Logo_white.png')}}" data-src="{{url('frontend/assets/images/logo/Logo_black.png')}}"
+                <img id="logo" class="max-md:relative z-50 object-contain h-12 w-12" src="{{secure_url('frontend/assets/images/logo/Logo_white.png')}}" data-src="{{secure_url('frontend/assets/images/logo/Logo_black.png')}}"
                     alt="">
                     <span class="mx-3 font-semibold text-xl">Hard<span class="text-pcolor">Space</span></span>
             </a>
@@ -175,7 +175,7 @@
                     <div class="image swiper-slide">
                         <div class="trans-img">
                             <a href="">
-                                <img class="transition duration-300 ease-in" src="{{url('frontend/assets/images/categories/moniteur.avif')}}" alt="">
+                                <img class="transition duration-300 ease-in" src="{{secure_url('frontend/assets/images/categories/moniteur.avif')}}" alt="">
                             </a>
                             <div class="text-center font-semibold mt-2">Moniteurs</div>
                         </div>
@@ -183,7 +183,7 @@
                     <div class="image swiper-slide">
                         <div class="trans-img">
                             <a href="">
-                                <img class="transition duration-300 ease-in" src="{{url('frontend/assets/images/categories/Razer-BlackShark.avif')}}" alt="">
+                                <img class="transition duration-300 ease-in" src="{{secure_url('frontend/assets/images/categories/Razer-BlackShark.avif')}}" alt="">
                             </a>
                             <div class="text-center font-semibold mt-2">Casques</div>
                         </div>
@@ -191,7 +191,7 @@
                     <div class="image swiper-slide">
                         <div class="trans-img">
                             <a href="">
-                                <img class="transition duration-300 ease-in" src="{{url('frontend/assets/images/categories/minikeyboard.avif')}}" alt="">
+                                <img class="transition duration-300 ease-in" src="{{secure_url('frontend/assets/images/categories/minikeyboard.avif')}}" alt="">
                             </a>
                             <div class="text-center font-semibold mt-2">Claviers</div>
                         </div>
@@ -199,7 +199,7 @@
                     <div class="image swiper-slide">
                         <div class="trans-img">
                             <a href="">
-                                <img class="transition duration-300 ease-in" src="{{url('frontend/assets/images/categories/pro-x-superlight.avif')}}" alt="">
+                                <img class="transition duration-300 ease-in" src="{{secure_url('frontend/assets/images/categories/pro-x-superlight.avif')}}" alt="">
                             </a>
                             <div class="text-center font-semibold mt-2">Souris</div>
                         </div>
@@ -207,7 +207,7 @@
                     <div class="image swiper-slide">
                         <div class="trans-img">
                             <a href="">
-                            <img class="transition duration-300 ease-in" src="{{url('frontend/assets/images/categories/blue-yeti-mic.avif')}}" alt="">
+                            <img class="transition duration-300 ease-in" src="{{secure_url('frontend/assets/images/categories/blue-yeti-mic.avif')}}" alt="">
                         </a>
                         <div class="text-center font-semibold mt-2">Microphones</div>
                     </div>
@@ -215,7 +215,7 @@
                     <div class="image swiper-slide">
                         <div class="trans-img">
                             <a href="">
-                                <img class="transition duration-300 ease-in" src="{{url('frontend/assets/images/categories/gaming-desktops.png')}}" alt="">
+                                <img class="transition duration-300 ease-in" src="{{secure_url('frontend/assets/images/categories/gaming-desktops.png')}}" alt="">
                             </a>
                             <div class="text-center font-semibold pt-3 mt-2">PC Gamers</div>
                         </div>
@@ -223,7 +223,7 @@
                     <div class="image swiper-slide">
                         <div class="trans-img">
                             <a href="">
-                                <img class="transition duration-300 ease-in" src="{{url('frontend/assets/images/categories/laptops.png')}}" alt="">
+                                <img class="transition duration-300 ease-in" src="{{secure_url('frontend/assets/images/categories/laptops.png')}}" alt="">
                             </a>
                             <div class="text-center font-semibold pt-3 mt-2">Laptops</div>
                         </div>
@@ -231,14 +231,14 @@
                     <div class="image swiper-slide">
                         <div class="trans-img">
                             <a href="">
-                                <img class="transition duration-300 ease-in" src="{{url('frontend/assets/images/categories/webcam.avif')}}" alt="">
+                                <img class="transition duration-300 ease-in" src="{{secure_url('frontend/assets/images/categories/webcam.avif')}}" alt="">
                             </a>
                             <div class="text-center font-semibold mt-2">Webcams</div>
                         </div>
                     </div>
                     <div class="image swiper-slide">
                         <div class="trans-img"><a href="">
-                            <img class="transition duration-300 ease-in" src="{{url('frontend/assets/images/categories/tapis.avif')}}" alt="">
+                            <img class="transition duration-300 ease-in" src="{{secure_url('frontend/assets/images/categories/tapis.avif')}}" alt="">
                         </a>
                         <div class="text-center font-semibold mt-2">Tapis</div>
                     </div>
@@ -267,7 +267,7 @@
         <!--CARD 1-->
         <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
                     <a href="{{ route('product', $product->id) }}">
-                        <img src="{{ Storage::url($product->product_thumbnail) }}"
+                        <img src="{{ Storage::secure_url($product->product_thumbnail) }}"
                         alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
                 <div class="px-4 py-3 w-72">
                     <span class="text-gray-400 mr-3 uppercase text-xs">{{$brand->firstWhere('id', $product->brand_id)->brand_name}}</span>
@@ -304,7 +304,7 @@
             <!--CARD 1-->
             <div class="w-64 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
                         <a href="{{ route('product', $product->id) }}">
-                            <img src="{{ Storage::url($product->product_thumbnail) }}"
+                            <img src="{{ Storage::secure_url($product->product_thumbnail) }}"
                             alt="Product" class="h-70 w-62 object-cover rounded-t-xl" />
                     <div class="px-4 py-3 w-72">
                         <span class="text-gray-400 mr-3 uppercase text-xs">{{$brand->firstWhere('id', $product->brand_id)->brand_name}}</span>
