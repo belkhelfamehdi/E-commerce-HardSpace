@@ -119,10 +119,7 @@
                         </div>
                         @endif
                     </span>
-                    <span class="cart"><a href="{{route('cart')}}"><i class="fa-solid fa-cart-shopping ml-4 fa-lg md:py-2 md:px-3 cursor-pointer transition-all ease-in-out duration-300 hover:text-pcolor"></i></a>
-                        <livewire:cart-list />
-                        </div>
-                    </span>
+
                 </div>
                 </div>
             </div>
