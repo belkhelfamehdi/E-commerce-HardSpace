@@ -6,7 +6,7 @@
   @section('content')
     <section class="mb-20">
       <div class="bg-black opacity-75 absolute w-screen h-screen hidden z-50" id="light-1"></div>
-      
+
 
       <!-- Contents -->
       <div class="container mx-auto text-base">
@@ -34,8 +34,8 @@
                     </svg>
                   </button>
                   <div class="Picture mx-auto">
-                      <img src="{{url('frontend/assets/images/products/casque.webp')}}"
-                          id="hero" />
+                      <img src="{{secure_url('frontend/assets/images/products/casque.webp')}}"
+                          id="hero" alt="Casque" />
                   </div>
                       <button class="bg-white w-10 h-10 flex items-center justify-center pl-1 rounded-full absolute right-1 z-10 sm:hidden" id="next-mobile">
                     <svg
@@ -83,11 +83,11 @@
                   <div class="flex items-center justify-between mb-6 sm:flex-col sm:items-start">
                       <div class="flex items-center gap-4">
                           <h3 class="text-very-dark font-bold text-3xl inline-block">
-                            {{$product->price}} DZD 
+                            {{$product->price}} DZD
                           </h3>
                   </div>
                 </div>
-      
+
                 <div class="flex flex-col gap-5 justify-end mb-16 sm:flex-row lg:mb-0">
                   <div
                     class="w-full h-10 text-sm bg-light py-2 flex items-center justify-between rounded-lg font-bold relatives sm:w-80"

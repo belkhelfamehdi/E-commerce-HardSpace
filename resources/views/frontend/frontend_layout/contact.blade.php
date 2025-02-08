@@ -32,7 +32,7 @@
                 <div class="min-w-fit w-96 max-md:w-full flex-col border bg-white px-6 py-10 shadow-md rounded-[4px] ">
                     <div class="mb-4 flex justify-center">
                         <img id="logo" class="max-md:relative object-contain h-24 w-24"
-                            src="{{ url('frontend/assets/images/logo/Logo_black.png') }}">
+                            src="{{ secure_url('frontend/assets/images/logo/Logo_black.png') }}" alt="Logo">
                     </div>
                     <div class="my-4 text-center mx-auto ">
                         <h1 class="text-3xl font-semibold my-3">Contacter-nous</h1>
@@ -43,10 +43,10 @@
                                 <input name="name" :value="old('name')" required autofocus autocomplete="name"
                                     class="mb-2 rounded-[4px] border p-3 hover:outline-none focus:ring-pcolor focus:border-pcolor hover:border-pcolor "
                                     type="text" placeholder="Entrez votre Nom" />
-                                <input name="prenom" :value="old('prenom')" required autofocus autocomplete="prenom"
+                                <input name="prenom" :value="old('prenom')" required autofocus autocomplete="given-name"
                                     class="border mt-3 mb-2 rounded-[4px] p-3 hover:outline-none focus:ring-pcolor focus:border-pcolor hover:border-pcolor "
                                     type="text" placeholder="Entrez votre Prénom" />
-                                <input name="email"
+                                <input name="email" autocomplete="email"
                                     class="border mt-3 mb-2 rounded-[4px] p-3 hover:outline-none focus:ring-pcolor focus:border-pcolor hover:border-pcolor "
                                     type="text" placeholder="Entrez votre Email" />
                                 <textarea name="message" cols="30" rows="10"
@@ -56,10 +56,10 @@
                         @else
                             <div class="flex flex-col text-sm rounded-md">
                                 <input id="LastName" name="LastName" :value="old('LastName')" required autofocus
-                                    autocomplete="LastName"
+                                    autocomplete="family-name"
                                     class="mb-2 rounded-[4px] border p-3 hover:outline-none focus:ring-pcolor focus:border-pcolor hover:border-pcolor "
                                     type="text" value={{ Auth::user()->LastName }} />
-                                <input name="FirstName" :value="old('FirstName')" required autofocus autocomplete="FirstName"
+                                <input name="FirstName" :value="old('FirstName')" required autofocus autocomplete="given-name"
                                     class="border mt-3 mb-2 rounded-[4px] p-3 hover:outline-none focus:ring-pcolor focus:border-pcolor hover:border-pcolor "
                                     type="text" value={{ Auth::user()->FirstName }} />
                                 <input name="email"
