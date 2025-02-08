@@ -24,7 +24,7 @@
         <aside class="z-10 w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0">
             <div class="mx-6 mt-4">
                 <a href="{{route('index')}}" class="flex items-center">
-                    <img id="logo" class="max-md:relative z-50 object-contain h-10 w-10" src="{{url('frontend/assets/images/logo/Logo_black.png')}}" data-src="{{url('frontend/assets/images/logo/Logo_black.png')}}"
+                    <img id="logo" class="max-md:relative z-50 object-contain h-10 w-10" src="{{secure_url('frontend/assets/images/logo/Logo_black.png')}}" data-src="{{url('frontend/assets/images/logo/Logo_black.png')}}"
                         alt="">
                         <span class="mx-3 font-semibold text-xl text-black">Hard<span class="text-pcolor">Space</span></span>
                 </a>
