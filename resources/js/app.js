@@ -11,8 +11,8 @@ Alpine.start();
 //-------- Active Sticky Js ----------//
 
 window.addEventListener('scroll', function() {
-    const section = document.querySelector('nav');
-    let scrollPosition = window.pageYOffset;
+    var section = document.querySelector('nav');
+    var scrollPosition = window.pageYOffset;
 
     if (scrollPosition > 5) {
         section.classList.add('is-Sticky');
@@ -76,7 +76,7 @@ changeBackgroundImage();
 $(document).ready(function() {
 
     $(".nav-toggler").each(function(_, navToggler) {
-        const target = $(navToggler).data("target");
+        var target = $(navToggler).data("target");
         $(navToggler).on("click", function() {
             $(target).animate({
                 height: 'toggle',
@@ -125,7 +125,7 @@ $(document).ready(function() {
 });
 
 //-------- Card Swiper ----------//
-const swiper = new Swiper(".mySwiper", {
+var swiper = new Swiper(".mySwiper", {
     slidesPerGroup: 1,
     loop: true,
     fade: true,
