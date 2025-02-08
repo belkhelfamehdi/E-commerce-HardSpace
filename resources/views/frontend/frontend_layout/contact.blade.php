@@ -3,10 +3,10 @@
     @vite('resources/js/product.js')
 @endsection
 @section('content')
-    <section class="dark:bg-dcolor text-black border-t border-b border-scolor border-solid">
+    <section class="dark:bg-dcolor text-black dark:text-white border-t border-b border-scolor border-solid">
         <section>
             <div
-                class="container grid w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 py-14 my-14">
+                class="container w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 py-14 my-14">
                 <div class="w-auto justify-items-center text-3xl text-center mx-10">
                     <i class="fa-solid fa-phone fa-2xl  mx-auto"></i>
                     <h2 class="text-2xl font-medium py-8">Numéro de téléphone</h2>
