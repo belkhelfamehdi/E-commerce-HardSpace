@@ -24,7 +24,7 @@ window.addEventListener('scroll', function() {
 
 //-------- Slider carousel ----------//
 
-const images = ["https://cdn.originpc.com/img/home/slides/2023/amd-ryzen-7000-series-3d.jpg", "https://cdn.discordapp.com/attachments/883711728716746755/1337352585186639943/mystic-light-02.jpg", "https://cdn.originpc.com/img/home/slides/2023/intel-13900KS-2.jpg", "https://cdn.originpc.com/img/home/slides/2023/nvidia-4070Ti.jpg", "https://cdn.originpc.com/img/home/slides/2022/corsair-xeneon-flex-v2.jpg"];
+const images = ["https://cdn.originpc.com/img/home/slides/2023/amd-ryzen-7000-series-3d.jpg", "https://media.discordapp.net/attachments/883711728716746755/1337352585186639943/mystic-light-02.jpg?ex=67a873a7&is=67a72227&hm=b6993afb2621c3dd28cc6eaf3e254ccb865222a79061722bba9e2f9df6b60964&=&format=webp&width=1440&height=558", "https://cdn.originpc.com/img/home/slides/2023/intel-13900KS-2.jpg", "https://cdn.originpc.com/img/home/slides/2023/nvidia-4070Ti.jpg", "https://cdn.originpc.com/img/home/slides/2022/corsair-xeneon-flex-v2.jpg"];
 
 let currentImage = 0;
 
