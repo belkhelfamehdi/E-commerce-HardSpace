@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,5 +17,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Brand::factory(5)->create();
         \App\Models\Product::factory(40)->create();
         \App\Models\Category::factory(5)->create();
+
     }
 }
