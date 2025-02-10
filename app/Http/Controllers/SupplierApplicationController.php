@@ -32,18 +32,20 @@ class SupplierApplicationController extends Controller
      */
     public function store(Request $request)
     {
+        $stringRule = 'required|string|max:255';
+
         $validatedData = $request->validate([
-            'company_name' => 'required|string|max:255',
+            'company_name' => $stringRule,
             'company_email' => 'required|email|max:255',
-            'company_number' => 'required|string|max:255',
-            'company_country' => 'required|string|max:255',
-            'company_street' => 'required|string|max:255',
-            'company_city' => 'required|string|max:255',
-            'company_state' => 'required|string|max:255',
-            'company_zip' => 'required|string|max:255',
+            'company_number' => $stringRule,
+            'company_country' => $stringRule,
+            'company_street' => $stringRule,
+            'company_city' => $stringRule,
+            'company_state' => $stringRule,
+            'company_zip' => $stringRule,
             'message' => 'required|string|max:1000',
         ]);
-    
+
         // Create a new SupplierApplication instance
         $supplierApplication = new SupplierApplication([
             'user_id' => Auth::user()->id,
@@ -57,9 +59,9 @@ class SupplierApplicationController extends Controller
             'company_zip' => $validatedData['company_zip'],
             'message' => $validatedData['message'],
         ]);
-    
+
         $supplierApplication->save();
-    
+
         return redirect()->route('supplier.application')->with('success','Informations envoyé.');
     }
 

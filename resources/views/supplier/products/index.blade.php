@@ -49,7 +49,7 @@
                                 Supprimer</th>
                         </tr>
                     </thead>
-                    
+
                     <tbody class="bg-white">
                         @foreach ($products as $product)
                         <tr>
@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                             </td>
-    
+
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="text-sm leading-5 text-gray-500">{{$product->product_name}}</div>
                             </td>
@@ -69,7 +69,7 @@
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="text-sm leading-5 text-gray-500">{{$product->description}}</div>
                             </td>
-    
+
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="text-sm leading-5 text-gray-500">{{$product->product_qty}}</div>
                             </td>
@@ -82,7 +82,7 @@
                                 <span
                                     class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
                             </td>
-    
+
                             <td
                                 class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
                             <div class="w-fit ml-5">
@@ -121,7 +121,7 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    <script src="{{url('frontend/assets/vendor/js/jquery-3.6.4.min.js')}}"></script>
+    <script src="{{secure_url('frontend/assets/vendor/js/jquery-3.6.4.min.js')}}"></script>
     <script>
         $('#search').on('keyup', function(){
             search();
@@ -158,7 +158,7 @@
                                     </div>
                                 </div>
                             </td>
-    
+
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="text-sm leading-5 text-gray-500">`+res.products[i].product_name+`</div>
                             </td>
@@ -166,7 +166,7 @@
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="text-sm leading-5 text-gray-500">`+res.products[i].description+`</div>
                             </td>
-    
+
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="text-sm leading-5 text-gray-500">`+res.products[i].product_qty+`</div>
                             </td>

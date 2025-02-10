@@ -9,7 +9,7 @@
 
         <div class="py-2 -my-2 overflow-x-auto ">
             <div class="inline-block p-4 bg-white min-w-full overflow-hidden align-middle border border-gray-200 shadow sm:rounded-lg">
-               
+
                 <form method="post" action="{{route('supplier.products.update', $product->id)}}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -54,7 +54,7 @@
                             <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
                             </div>
                         <div>
-                            
+
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Image</label>
                             <input name="image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="image" type="file">
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or WEBP.</p>
