@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="{{url('frontend/assets/images/logo/logo_black.png')}}" type="image/x-icon">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="shortcut icon" href="{{secure_url('frontend/assets/images/logo/logo_black.png')}}" type="image/x-icon">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Administrateur</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     @vite('resources/css/app.css')
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    <script src="{{ url('js/init-alpine.js') }}"></script>
+    <script src="{{ secure_url('js/init-alpine.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script>
 </head>
@@ -24,7 +25,7 @@
         <aside class="z-10 w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0">
             <div class="mx-6 mt-4">
                 <a href="{{route('index')}}" class="flex items-center">
-                    <img id="logo" class="max-md:relative z-50 object-contain h-10 w-10" src="{{url('frontend/assets/images/logo/Logo_black.png')}}" data-src="{{url('frontend/assets/images/logo/Logo_black.png')}}"
+                    <img id="logo" class="max-md:relative z-50 object-contain h-10 w-10" src="{{secure_url('frontend/assets/images/logo/Logo_black.png')}}" data-src="{{secure_url('frontend/assets/images/logo/Logo_black.png')}}"
                         alt="">
                         <span class="mx-3 font-semibold text-xl text-black">Hard<span class="text-pcolor">Space</span></span>
                 </a>
