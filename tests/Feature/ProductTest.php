@@ -22,8 +22,8 @@ class ProductTest extends TestCase
     public function test_supplier_can_create_product()
     {
         // Create a user and authenticate
-        $user = User::factory()->create(['role' => 'supplier', 'email_verified_at' => now()]);
-        $this->actingAs($user);
+        $admin = Admin::factory()->create();
+        $this->actingAs($admin, 'admin');
 
         // Create category and brand for the product
         $category = Category::factory()->create();
@@ -40,7 +40,7 @@ class ProductTest extends TestCase
         // Prepare the request data
         $data = [
             'brand_id' => $brand->id,
-            'category' => $category->id,
+            'category_id' => $category->id,
             'product_name' => 'Test Product',
             'product_code' => 'T123',
             'product_qty' => 10,
