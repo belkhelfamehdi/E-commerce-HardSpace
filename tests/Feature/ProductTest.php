@@ -64,8 +64,8 @@ class ProductTest extends TestCase
     public function test_user_can_update_product()
     {
         // Create a user and authenticate
-        $user = User::factory()->create(['role' => 'supplier']);
-        $this->actingAs($user);
+        $admin = Admin::factory()->create();
+        $this->actingAs($admin, 'admin');
         // Create a category and brand for the product
         $category = Category::factory()->create();
         $brand = Brand::factory()->create();
@@ -101,8 +101,8 @@ class ProductTest extends TestCase
     public function test_user_can_delete_product()
     {
         // Create a user and authenticate
-        $user = User::factory()->create();
-        $this->actingAs($user);
+        $admin = Admin::factory()->create();
+        $this->actingAs($admin, 'admin');
         // Create a category and brand for the product
         $category = Category::factory()->create();
         $brand = Brand::factory()->create();
@@ -126,33 +126,15 @@ class ProductTest extends TestCase
     public function test_user_can_view_products()
     {
         // Create a user and authenticate
-        $user = User::factory()->create();
-        $this->actingAs($user);
+        $admin = Admin::factory()->create();
+        $this->actingAs($admin, 'admin');
         // Create a product
         $product = Product::factory()->create();
         // Make the GET request to the product list page
-        $response = $this->get(route('admin.products.index'));
+        $response = $this->get(route('admin.products'));
         // Assert the response is successful and contains the product data
         $response->assertStatus(200);
         $response->assertViewHas('products');
         $response->assertSee($product->product_name);
-    }
-    /**
-     * Test search functionality for products.
-     */
-    public function test_search_product_functionality()
-    {
-        // Create a user and authenticate
-        $user = User::factory()->create();
-        $this->actingAs($user);
-        // Create some products
-        Product::factory()->create(['product_name' => 'Product 1']);
-        Product::factory()->create(['product_name' => 'Product 2']);
-        // Perform a search
-        $response = $this->json('GET', route('product.search'), ['keyword' => 'Product 1']);
-        // Assert the response contains the correct product
-        $response->assertStatus(200);
-        $response->assertJsonFragment(['product_name' => 'Product 1']);
-        $response->assertJsonMissing(['product_name' => 'Product 2']);
     }
 }

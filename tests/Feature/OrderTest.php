@@ -15,14 +15,24 @@ class OrderTest extends TestCase
     {
         $user = User::factory()->create();
         $this->actingAs($user);
+
         // Create a product in the database
         $product = Product::factory()->create([
             'product_qty' => 10,
             'price' => 100,
         ]);
-        // Add product to the cart (assuming a cart package is being used)
-        \Cart::add($product->id, $product->name, 100, 1); // price 100, quantity 1
+
+        // Add product to the cart with all required fields
+        \Cart::add([
+            'id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'quantity' => 1,
+            'attributes' => [], // Optional
+        ]);
+
         $response = $this->post(route('order.store'));
+
         // Assert that the order has been created
         $this->assertDatabaseHas('orders', [
             'user_id' => $user->id,
@@ -30,11 +40,14 @@ class OrderTest extends TestCase
             'price' => $product->price,
             'quantity' => 1,
         ]);
+
         // Assert that the product quantity has been decremented
         $product->refresh();
         $this->assertEquals(9, $product->product_qty);
+
         // Check if PDF was generated (you can mock the PDF generation here or test it manually)
         $response->assertHeader('Content-Type', 'application/pdf');
+
         // Check that the cart is cleared
         $this->assertEquals(0, \Cart::getContent()->count());
     }

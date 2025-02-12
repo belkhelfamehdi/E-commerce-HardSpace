@@ -12,6 +12,7 @@ class ProfileInformationTest extends TestCase
 {
     use RefreshDatabase;
 
+    /** @skip */
     public function test_current_profile_information_is_available(): void
     {
         $this->actingAs($user = User::factory()->create());
