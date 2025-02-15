@@ -1,0 +1,10 @@
+includes:
+  - vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+  level: 5  # 0 (lowest) to 9 (strictest), adjust as needed
+  paths:
+    - app/   # Analyze only the `app` folder
+  excludePaths:
+    - database/*
+    - storage/*
