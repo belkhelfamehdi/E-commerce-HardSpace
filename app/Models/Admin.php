@@ -29,6 +29,7 @@ class Admin extends Authenticatable
         'email',
         'phone_number',
         'password',
+        'phone_number_verified_at', // Ensure this is included
     ];
 
     /**
@@ -61,6 +62,13 @@ class Admin extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * The verified timestamp for the phone number.
+     *
+     * @var \Illuminate\Support\Carbon|null
+     */
+    public $phone_number_verified_at; // Explicitly define the property
 
     public function hasVerifiedPhoneNumber()
     {

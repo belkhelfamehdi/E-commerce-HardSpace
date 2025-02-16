@@ -84,6 +84,7 @@ class SupplierController extends Controller
      */
     public function SearchProduct(Request $request)
     {
+        $products = collect();
         if($request->keyword != ''){
         $products = Product::where('supplier_id', auth()->id())->where('product_name','LIKE','%'.$request->keyword.'%')->get();
     }
@@ -126,9 +127,9 @@ class SupplierController extends Controller
      */
     public function destroy(string $id)
     {
-        
+
         $product = Product::findOrFail($id);
-        
+
         $images = \App\Models\Image::where('product_id', $id)->get();
         foreach ($images as $image) {
             $image->delete();

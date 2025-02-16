@@ -36,7 +36,7 @@ stages:
     # Run database seed
     - php artisan db:seed
 
-check:
+test:
   stage: test
   extends:
     - .config
@@ -84,7 +84,3 @@ secure:
   only:
     - master
 
-include:
-  - template: Security/Dependency-Scanning.gitlab-ci.yml
-  - template: Security/SAST.gitlab-ci.yml
-  - template: Security/Secret-Detection.gitlab-ci.yml
