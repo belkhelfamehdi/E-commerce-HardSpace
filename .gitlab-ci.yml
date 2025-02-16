@@ -56,8 +56,7 @@ measure:
   extends:
     - .config
   script:
-    - composer require --dev phpstan/phpstan
-    - vendor/bin/phpstan analyse --memory-limit=1G
+    - php vendor/bin/phpstan analyse --memory-limit=1G
   only:
     - master
 

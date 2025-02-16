@@ -2,11 +2,22 @@ includes:
   - vendor/nunomaduro/larastan/extension.neon
 
 parameters:
-  level: 5  # 0 (lowest) to 9 (strictest), adjust as needed
+  level: 5  # Adjust based on project needs (5-7 recommended)
   paths:
-    - ./   # Analyze only the `app` folder
+    - app/   # Analyze only the `app` folder
+
   excludePaths:
     - database/*
     - storage/*
     - vendor/*
     - node_modules/*
+    - bootstrap/cache/*
+    - public/storage/*
+    - tests/*
+    - resources/views/*  # Blade templates
+    - config/*  # Laravel config files
+    - routes/*  # Routes files
+    - public/index.php  # Entry point
+
+  scanFiles:
+    - bootstrap/app.php

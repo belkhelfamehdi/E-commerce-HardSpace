@@ -86,7 +86,13 @@ class RedirectIfTwoFactorAuthenticatable
             });
         }
 
-        $model = $this->guard->getProvider()->getModel();
+        $provider = $this->guard->getProvider();
+
+        if (method_exists($provider, 'getModel')) {
+            $model = $provider->getModel();
+        } else {
+            throw new \RuntimeException('UserProvider does not support getModel()');
+        }
 
         return tap($model::where(Fortify::username(), $request->{Fortify::username()})->first(), function ($user) use ($request) {
             if (! $user || ! $this->guard->getProvider()->validateCredentials($user, ['password' => $request->password])) {
