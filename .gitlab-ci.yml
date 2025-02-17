@@ -31,7 +31,6 @@ stages:
     # Generate an application key. Re-cache.
     - php artisan key:generate
     - php artisan config:cache
-    - sleep 20
     # Run database migrations.
     - php artisan migrate:refresh --seed
     # Run database seed
