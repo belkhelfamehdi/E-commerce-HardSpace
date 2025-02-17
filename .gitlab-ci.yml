@@ -3,7 +3,7 @@ variables:
   MYSQL_USER: root
   MYSQL_PASSWORD: secret
   MYSQL_DATABASE: laravel
-  DB_HOST: mysql
+  DB_HOST: 127.0.0.1
 
 cache:
   paths:
@@ -11,12 +11,14 @@ cache:
     - node_modules/
 
 stages:
+  - build
   - test
   - measure
   - deploy
   - secure
 
-.config:
+build:
+  stage: build
   image: lorisleiva/laravel-docker:8.1
   services:
     - mysql:latest
