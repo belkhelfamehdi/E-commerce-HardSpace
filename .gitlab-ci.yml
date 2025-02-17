@@ -17,7 +17,7 @@ stages:
   - secure
 
 .config:
-  image: edbizarro/gitlab-ci-pipeline-php:latest
+  image: lorisleiva/laravel-docker:8.1
   services:
     - mysql:latest
   before_script:
