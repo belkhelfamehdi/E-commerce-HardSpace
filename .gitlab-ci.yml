@@ -22,11 +22,6 @@ stages:
   services:
     - mysql:latest
   before_script:
-    - >
-      until mysql -h"$MYSQL_HOST" -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" -e "SHOW DATABASES;"; do
-        echo "Waiting for MySQL to be ready...";
-        sleep 3;
-      done
     # Install Node dependencies.
     - npm install
     # install composer dependencies
