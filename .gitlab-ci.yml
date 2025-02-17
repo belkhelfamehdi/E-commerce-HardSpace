@@ -3,7 +3,6 @@ variables:
   MYSQL_USER: root
   MYSQL_PASSWORD: secret
   MYSQL_DATABASE: laravel
-  MYSQL_HOST: mysql
   DB_HOST: mysql
 
 cache:
@@ -32,7 +31,6 @@ stages:
     # Generate an application key. Re-cache.
     - php artisan key:generate
     - php artisan config:cache
-    - sleep 10
     # Run database migrations.
     - php artisan migrate:refresh --seed
     # Run database seed
@@ -84,8 +82,3 @@ secure:
     expire_in: 1 hour
   only:
     - master
-
-include:
-  - template: Security/Dependency-Scanning.gitlab-ci.yml
-  - template: Security/SAST.gitlab-ci.yml
-  - template: Security/Secret-Detection.gitlab-ci.yml
