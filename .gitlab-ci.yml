@@ -12,10 +12,12 @@ cache:
 
 stages:
   - test
+  - measure
   - deploy
+  - secure
 
 .config:
-  image: edbizarro/gitlab-ci-pipeline-php:latest
+  image: lorisleiva/laravel-docker:8.1
   services:
     - mysql:latest
   before_script:
@@ -34,7 +36,7 @@ stages:
     # Run database seed
     - php artisan db:seed
 
-check:
+test:
   stage: test
   extends:
     - .config
@@ -46,13 +48,40 @@ check:
     # set it in your package.json script
     # comment this out if you don't have a frontend test
     #- npm test
+  only:
+    - master
+
+measure:
+  stage: measure
+  extends:
+    - .config
+  script:
+    - php vendor/bin/phpstan analyse --memory-limit=1G
+  only:
+    - master
 
 deploy:
   stage: deploy
-  extends:
-    - .config
-  script: echo "Define your deployment script!"
-  environment: production
+  script:
+    - curl -fsSL cli.railway.app | sh
+    - railway up
+  environment:
+    name: production
+  only:
+    - master
+
+secure:
+  stage: secure
+  image: aquasec/trivy:latest
+  script:
+    # Scan the Laravel project directory for vulnerabilities
+    - trivy fs --exit-code 1 --no-progress --format json -o trivy-report.json .
+  artifacts:
+    paths:
+      - trivy-report.json
+    expire_in: 1 hour
+  only:
+    - master
 
 include:
   - template: Security/Dependency-Scanning.gitlab-ci.yml
