@@ -1,9 +1,9 @@
 variables:
-  MYSQL_ROOT_PASSWORD: root
-  MYSQL_USER: homestead
+  MYSQL_ROOT_PASSWORD: secret
+  MYSQL_USER: root
   MYSQL_PASSWORD: secret
-  MYSQL_DATABASE: homestead
-  DB_HOST: mysql
+  MYSQL_DATABASE: laravel
+  DB_HOST: 127.0.0.1
 
 cache:
   paths:
