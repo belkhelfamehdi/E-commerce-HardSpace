@@ -42,7 +42,7 @@ build:
 test:
   stage: test
   extends:
-    - .config
+    - build
   script:
     # run laravel tests
     - php vendor/bin/phpunit --coverage-text --colors=never
@@ -57,7 +57,7 @@ test:
 measure:
   stage: measure
   extends:
-    - .config
+    - build
   script:
     - php vendor/bin/phpstan analyse --memory-limit=1G
   only:
