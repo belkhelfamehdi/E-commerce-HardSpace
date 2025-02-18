@@ -74,7 +74,7 @@ class AttemptToAuthenticate
         if (! $user) {
             $this->fireFailedEvent($request);
 
-            return $this->throwFailedAuthenticationException($request);
+            $this->throwFailedAuthenticationException($request);
         }
 
         $this->guard->login($user, $request->boolean('remember'));

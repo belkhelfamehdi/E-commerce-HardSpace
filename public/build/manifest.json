@@ -3,12 +3,12 @@
     "file": "assets/module.esm-015c79bc.js"
   },
   "resources/css/app.css": {
-    "file": "assets/app-d1bfb7c7.css",
+    "file": "assets/app-ae042a96.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
   "resources/js/app.js": {
-    "file": "assets/app-f9202df3.js",
+    "file": "assets/app-ddbd0c20.js",
     "imports": [
       "_module.esm-015c79bc.js"
     ],
