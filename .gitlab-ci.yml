@@ -23,7 +23,7 @@ stages:
   - secure
 
 .config:
-  image: lorisleiva/laravel-docker:8.1
+  image: lorisleiva/laravel-docker:8.2
   services:
     - mysql:latest
   before_script:
