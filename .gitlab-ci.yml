@@ -2,7 +2,7 @@ variables:
   MYSQL_ROOT_PASSWORD: root
   MYSQL_DATABASE: laravel
   DB_CONNECTION: mysql
-  DB_HOST: mysql
+  DB_HOST: 127.0.0.1
   DB_PORT: 3306
   DB_DATABASE: laravel
   DB_USERNAME: root
@@ -27,8 +27,6 @@ stages:
   services:
     - mysql:latest
   before_script:
-    - apt-get update && apt-get install -y unzip curl git libpng-dev
-    - docker-php-ext-install pdo pdo_mysql
     # Install Node dependencies.
     - npm install
     # install composer dependencies
@@ -39,7 +37,6 @@ stages:
     # Generate an application key. Re-cache.
     - php artisan key:generate
     - php artisan config:cache
-    - sleep 10
     # Run database migrations.
     - php artisan migrate:refresh --seed
     # Run database seed
