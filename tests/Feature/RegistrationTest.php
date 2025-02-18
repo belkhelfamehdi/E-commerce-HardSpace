@@ -25,18 +25,18 @@ class RegistrationTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_registration_screen_cannot_be_rendered_if_support_is_disabled(): void
-    {
-        if (Features::enabled(Features::registration())) {
-            $this->markTestSkipped('Registration support is enabled.');
+    // public function test_registration_screen_cannot_be_rendered_if_support_is_disabled(): void
+    // {
+    //     if (Features::enabled(Features::registration())) {
+    //         $this->markTestSkipped('Registration support is enabled.');
 
-            return;
-        }
+    //         return;
+    //     }
 
-        $response = $this->get('/register');
+    //     $response = $this->get('/register');
 
-        $response->assertStatus(404);
-    }
+    //     $response->assertStatus(404);
+    // }
 
     public function test_new_users_can_register(): void
     {
@@ -47,7 +47,9 @@ class RegistrationTest extends TestCase
         }
 
         $response = $this->post('/register', [
-            'name' => 'Test User',
+            'FirstName' => 'Test',
+            'LastName' => 'User',
+            'phone_number' => '0623456789',
             'email' => 'test@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',

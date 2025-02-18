@@ -7,7 +7,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\BillController;
+use App\Http\Controllers\BillController; // Ensure this line is present and correct
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\SupplierApplicationController;
 use App\Http\Controllers\SupplierController;
@@ -33,8 +33,6 @@ Route::get('store', function () {
     return view('frontend.frontend_layout.store');
 })->name('store');
 Route::get('/store',[ProductsController::class, 'index'])->name('store');
-
-Route::get('/bill',[BillController::class, 'generateBill'])->name('bill');
 
 Route::get('/orders',[OrderController::class, 'show'])->name('orders');
 

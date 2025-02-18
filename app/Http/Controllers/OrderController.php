@@ -60,8 +60,9 @@ class OrderController extends Controller
         $pdf->render();
 
 
-        return $pdf->stream('bill.pdf');
-        return redirect()->route('index');
+        $response = $pdf->stream('bill.pdf');
+        \Cart::clear();
+        return $response; 
     }
 
     /**

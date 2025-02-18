@@ -59,7 +59,7 @@
     <!-- Login Container -->
     <div class="min-w-fit w-96 max-md:w-full flex-col border bg-white px-6 py-14 shadow-md rounded-[4px] ">
       <div class="mb-8 flex justify-center">
-        <img id="logo" class="max-md:relative object-contain h-24 w-24" src="{{url('frontend/assets/images/logo/Logo_black.png')}}">
+        <img id="logo" class="max-md:relative object-contain h-24 w-24" src="{{secure_url('frontend/assets/images/logo/Logo_black.png')}}" alt="Logo">
       </div>
       <form action="{{route('login')}}" method="POST">
       @csrf
@@ -74,12 +74,12 @@
         @enderror
         @error('password')
         <li>{{ $message }}</li>
-        @enderror 
+        @enderror
     </ul>
       <div class="flex flex-col text-sm rounded-md">
         <input name="email" class="mb-2 rounded-[4px] border p-3 hover:outline-none focus:ring-pcolor focus:border-pcolor hover:border-pcolor " type="text" placeholder="Entrez votre Email" autocomplete="email"/>
-         
-        <input name="password" class="border mt-3 mb-2 rounded-[4px] p-3 hover:outline-none focus:ring-pcolor focus:border-pcolor hover:border-pcolor" type="password" placeholder="Mot de passe" autocomplete="password"/>
+
+        <input name="password" class="border mt-3 mb-2 rounded-[4px] p-3 hover:outline-none focus:ring-pcolor focus:border-pcolor hover:border-pcolor" type="password" placeholder="Mot de passe" autocomplete="current-password"/>
 
         <div class="block mt-4">
           <label for="remember_me" class="flex items-center">
@@ -96,7 +96,7 @@
         <a href="{{route('register')}}">Créer un compte</a>
       </div>
 
-      
+
     </div>
   </div>
 </section>

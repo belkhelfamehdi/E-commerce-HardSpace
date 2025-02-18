@@ -40,7 +40,7 @@ class AdminController extends Controller
     }
 
     public function loginForm(){
-        if (auth()->check() && auth()->user()->getTable() == 'users') {
+        if (auth()->check() && auth()->user() instanceof \App\Models\User) {
             throw new AuthorizationException('Vous n\'êtes pas autorisé.');
         }
     	return view('auth.admin_login', ['guard' => 'admin']);

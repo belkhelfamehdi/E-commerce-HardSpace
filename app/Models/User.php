@@ -30,6 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone_number',
         'password',
         'role',
+        'phone_number_verified_at', // Ensure this is included
     ];
 
     /**
@@ -63,11 +64,28 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
+    /**
+     * The verified timestamp for the phone number.
+     *
+     * @var \Illuminate\Support\Carbon|null
+     */
+    public $phone_number_verified_at; // Explicitly define the property
+
+    /**
+     * Check if the user's phone number has been verified.
+     *
+     * @return bool
+     */
     public function hasVerifiedPhoneNumber()
     {
         return !is_null($this->phone_number_verified_at);
     }
 
+    /**
+     * Mark the user's phone number as verified.
+     *
+     * @return void
+     */
     public function markPhoneNumberAsVerified()
     {
         $this->forceFill([
