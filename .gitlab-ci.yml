@@ -48,6 +48,7 @@ test:
   extends:
     - .config
   variables:
+    APP_ENV: testing
     XDEBUG_MODE: coverage  # Enable only coverage mode
     XDEBUG_CONFIG: "log_level=0"  # Optional: Reduce logging
   script:
