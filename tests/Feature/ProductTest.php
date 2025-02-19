@@ -123,5 +123,19 @@ class ProductTest extends TestCase
     /**
      * Test if a user can view the list of products.
      */
+         public function test_user_can_view_products()
+    {
+        // Create a user and authenticate
+        $admin = Admin::factory()->create();
+        $this->actingAs($admin, 'admin');
+        // Create a product
+        $product = Product::factory()->create();
+        // Make the GET request to the product list page
+        $response = $this->get(route('admin.products'));
+        // Assert the response is successful and contains the product data
+        $response->assertStatus(200);
+        $response->assertViewHas('products');
+        $response->assertSee($product->product_name);
+    }
 
 }
