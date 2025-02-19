@@ -45,6 +45,9 @@ test:
   stage: test
   extends:
     - .config
+  variables:
+    XDEBUG_MODE: coverage  # Enable only coverage mode
+    XDEBUG_CONFIG: "log_level=0"  # Optional: Reduce logging
   script:
     # run laravel tests
     - php vendor/bin/phpunit --coverage-text --colors=never
