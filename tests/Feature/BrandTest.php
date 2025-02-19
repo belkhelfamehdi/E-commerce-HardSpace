@@ -98,12 +98,18 @@ class BrandTest extends TestCase
         $admin = Admin::factory()->create(); // Use Admin model
         $this->actingAs($admin, 'admin'); // Specify the guard if applicable
 
+        // Create test brands
         Brand::factory()->create(['brand_name' => 'Adidas']);
         Brand::factory()->create(['brand_name' => 'Puma']);
 
+        // Test with keyword
         $response = $this->post(route('search.brand'), ['keyword' => 'Adi']);
-
         $response->assertJsonFragment(['brand_name' => 'Adidas']);
         $response->assertJsonMissing(['brand_name' => 'Puma']);
+
+        // Test with no keyword (should return all brands)
+        $response = $this->post(route('search.brand'), ['keyword' => '']);
+        $response->assertJsonFragment(['brand_name' => 'Adidas']);
+        $response->assertJsonFragment(['brand_name' => 'Puma']);
     }
 }

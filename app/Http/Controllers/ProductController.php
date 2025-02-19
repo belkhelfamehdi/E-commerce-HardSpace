@@ -23,7 +23,7 @@ class ProductController extends Controller
     }
 
 
-        public function addToCart(Request $request)
+    public function addToCart(Request $request)
     {
         \Cart::add([
             'id' => $request->id,
@@ -57,7 +57,7 @@ class ProductController extends Controller
         ]);
         $image_path = $request->file('image')->store('image/products/thumbnail', 'public');
 
-        
+
 
             $images = $request->file('images');
 
@@ -121,7 +121,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-    
+
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => 'required|mimes:png,jpg,jpeg,webp|max:2048'
@@ -130,13 +130,13 @@ class ProductController extends Controller
             $image_path = $request->file('image')->store('image/products', 'public');
             $product->product_thumbnail = $image_path;
         }
-    
+
                 // Update featured field based on checkbox value
                 $product->featured = $request->has('featured') ? 1 : 0;
-    
+
                 // Update new_arrival field based on checkbox value
                 $product->new_arrival = $request->has('new_arrival') ? 1 : 0;
-    
+
                 $product->product_name = $request->input('product_name');
                 $product->product_code = $request->input('product_code');
                 $product->product_qty = $request->input('product_qty');
@@ -158,16 +158,7 @@ class ProductController extends Controller
 
 
         $product = Product::findOrFail($id);
-        
-        $images = \App\Models\Image::where('product_id', $id)->get();
-        foreach ($images as $image) {
-            $image->delete();
-            Storage::delete('public/' . $image->photo_name);
-        }
         $product->delete();
-        Storage::delete('public/' . $product->product_thumbnail);
-
-
         return redirect()->route('admin.products')
                         ->with('success','Le produit a été supprimé.');
     }
