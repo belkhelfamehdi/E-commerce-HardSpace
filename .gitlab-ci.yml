@@ -50,10 +50,9 @@ test:
   variables:
     APP_ENV: testing
     XDEBUG_MODE: coverage  # Enable only coverage mode
-    XDEBUG_CONFIG: "log_level=0"  # Optional: Reduce logging
   script:
     # run laravel tests
-    - php vendor/bin/phpunit --coverage-text --colors=never
+    - php artisan test
     # run frontend tests
     # if you have any task for testing frontend
     # set it in your package.json script
