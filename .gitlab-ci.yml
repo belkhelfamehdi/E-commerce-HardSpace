@@ -40,6 +40,7 @@ stages:
     - php artisan route:clear
     - php artisan cache:clear
     - php artisan config:cache
+    - chmod -R 775 storage bootstrap/cache
     # Run database migrations.
     - php artisan migrate:refresh
     - php artisan db:seed
@@ -53,7 +54,7 @@ test:
     XDEBUG_MODE: coverage  # Enable only coverage mode
   script:
     # run laravel tests
-    - php artisan test
+    - php vendor/bin/phpunit --coverage-text --colors=never --env=testing
     # run frontend tests
     # if you have any task for testing frontend
     # set it in your package.json script
