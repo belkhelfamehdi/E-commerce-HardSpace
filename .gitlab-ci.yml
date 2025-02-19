@@ -37,6 +37,7 @@ stages:
     # Generate an application key. Re-cache.
     - php artisan key:generate
     - php artisan view:clear
+    - php artisan route:clear
     - php artisan cache:clear
     - php artisan config:cache
     # Run database migrations.
