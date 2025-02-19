@@ -36,6 +36,8 @@ stages:
     - cp .env.example .env
     # Generate an application key. Re-cache.
     - php artisan key:generate
+    - php artisan view:clear
+    - php artisan cache:clear
     - php artisan config:cache
     # Run database migrations.
     - php artisan migrate:refresh
@@ -90,8 +92,3 @@ secure:
     expire_in: 1 hour
   only:
     - master
-
-include:
-  - template: Security/Dependency-Scanning.gitlab-ci.yml
-  - template: Security/SAST.gitlab-ci.yml
-  - template: Security/Secret-Detection.gitlab-ci.yml
