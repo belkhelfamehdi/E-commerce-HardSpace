@@ -54,7 +54,7 @@ test:
     XDEBUG_MODE: coverage  # Enable only coverage mode
   script:
     # run laravel tests
-    - php vendor/bin/phpunit --coverage-text --colors=never --env=testing
+    - php vendor/bin/phpunit --coverage-text --colors=never
     # run frontend tests
     # if you have any task for testing frontend
     # set it in your package.json script
