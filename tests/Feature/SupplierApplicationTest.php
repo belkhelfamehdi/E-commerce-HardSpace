@@ -81,4 +81,5 @@ class SupplierApplicationTest extends TestCase
             'statut' => 'reject',
         ]);
     }
+
 }

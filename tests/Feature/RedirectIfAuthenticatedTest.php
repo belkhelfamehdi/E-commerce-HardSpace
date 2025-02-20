@@ -24,7 +24,6 @@ class RedirectIfAuthenticatedTest extends TestCase
         ];
 
         foreach ($guestRoutes as $route) {
-            // Send a GET request to a guest-only route
             $response = $this->get($route);
 
             // Assert the user is redirected to the home page

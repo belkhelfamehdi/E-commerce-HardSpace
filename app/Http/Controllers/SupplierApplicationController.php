@@ -94,28 +94,4 @@ class SupplierApplicationController extends Controller
         $application->save();
         return redirect()->route('admin.applications')->with('success','Application rejeté.');
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(SupplierApplication $supplierApplication)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, SupplierApplication $supplierApplication)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(SupplierApplication $supplierApplication)
-    {
-        //
-    }
 }

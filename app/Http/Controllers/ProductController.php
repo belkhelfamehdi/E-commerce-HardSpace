@@ -43,7 +43,7 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $brands = Brand::all();
-        return view('admin.products.create', compact('categories'));
+        return view('admin.products.create', compact('categories', 'brands'));
     }
 
     //ajouter de nouveau produit.
@@ -96,12 +96,12 @@ class ProductController extends Controller
     public function SearchProduct(Request $request)
     {
         $products = Product::all();
-    if($request->keyword != ''){
-    $products = Product::where('product_name','LIKE','%'.$request->keyword.'%')->get();
-    }
-    return response()->json([
-        'products' => $products
-    ]);
+        if($request->keyword != ''){
+        $products = Product::where('product_name','LIKE','%'.$request->keyword.'%')->get();
+        }
+        return response()->json([
+            'products' => $products
+        ]);
     }
 
     /**

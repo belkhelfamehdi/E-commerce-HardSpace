@@ -9,6 +9,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
+use Livewire\Livewire;
+use Darryldecode\Cart\Facades\CartFacade as Cart;
 class ProductTest extends TestCase
 {
     use RefreshDatabase;
@@ -16,7 +18,7 @@ class ProductTest extends TestCase
     /**
      * Test if a user can create a new product.
      */
-    public function test_supplier_can_create_product()
+    public function test_admin_can_create_product()
     {
         // Create a user and authenticate
         $admin = Admin::factory()->create();
@@ -56,6 +58,30 @@ class ProductTest extends TestCase
             $this->assertTrue(Storage::disk('public')->exists('image/products/images/' . $imageFile->hashName()));
         }
         $response->assertRedirect(route('admin.products'))->assertSessionHas('success');
+    }
+
+    /**
+     * Test if a user can view the product create page.
+     */
+    public function test_admin_can_access_create_product_page()
+    {
+        // Créer un admin et l'authentifier
+        $admin = Admin::factory()->create(['email_verified_at' => now()]);
+        $this->actingAs($admin, 'admin');
+
+        // Créer des catégories et des marques
+        $categories = Category::factory()->count(3)->create();
+        $brands = Brand::factory()->count(2)->create();
+
+        // Faire la requête GET vers la page de création
+        $response = $this->get(route('admin.products.create') );
+
+        // Vérifier que la page est accessible
+        $response->assertStatus(200);
+
+        // Vérifier que la vue contient bien les catégories et marques
+        $response->assertViewHas('categories', $categories);
+        $response->assertViewHas('brands', $brands);
     }
     /**
      * Test if a user can update an existing product.
@@ -198,12 +224,43 @@ class ProductTest extends TestCase
     }
 
     /**
+     * Test if a user can search for a product.
+     */
+    public function test_admin_can_search_products()
+    {
+        // Créer un admin et l'authentifier
+        $admin = Admin::factory()->create();
+        $this->actingAs($admin, 'admin');
+
+        // Créer des produits
+        $matchingProduct = Product::factory()->create(['product_name' => 'Laptop Gaming']);
+        $nonMatchingProduct = Product::factory()->create(['product_name' => 'Smartphone']);
+
+        // Effectuer une requête POST avec un mot-clé de recherche
+        $response = $this->postJson(route('search.product'), ['keyword' => 'Laptop']);
+
+        // Vérifier que la réponse est OK (200)
+        $response->assertStatus(200);
+
+        // Vérifier que le produit correspondant est bien retourné
+        $response->assertJsonFragment([
+            'product_name' => 'Laptop Gaming'
+        ]);
+
+        // Vérifier que le produit non correspondant n'est pas inclus
+        $response->assertJsonMissing([
+            'product_name' => 'Smartphone'
+        ]);
+    }
+
+
+    /**
      * Test if a user can view the list of products.
      */
-    public function test_user_can_view_products()
+    public function test_admin_can_view_products()
     {
         // Create a user and authenticate
-        $admin = Admin::factory()->create();
+        $admin = Admin::factory()->create(['email_verified_at' => now()]);
         $this->actingAs($admin, 'admin');
         // Create a product
         $product = Product::factory()->create();
