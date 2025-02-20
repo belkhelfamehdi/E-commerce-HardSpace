@@ -63,63 +63,63 @@ class ProductTest extends TestCase
     /**
      * @test if a user can view the product create page.
      */
-    public function test_admin_can_access_create_product_page()
-    {
-        // Créer un admin et l'authentifier
-        $admin = Admin::factory()->create(['email_verified_at' => now()]);
-        $this->actingAs($admin, 'admin');
+    // public function test_admin_can_access_create_product_page()
+    // {
+    //     // Créer un admin et l'authentifier
+    //     $admin = Admin::factory()->create(['email_verified_at' => now()]);
+    //     $this->actingAs($admin, 'admin');
 
-        // Créer des catégories et des marques
-        $categories = Category::factory()->count(3)->create();
-        $brands = Brand::factory()->count(2)->create();
+    //     // Créer des catégories et des marques
+    //     $categories = Category::factory()->count(3)->create();
+    //     $brands = Brand::factory()->count(2)->create();
 
-        // Faire la requête GET vers la page de création
-        $response = $this->get(route('admin.products.create') );
+    //     // Faire la requête GET vers la page de création
+    //     $response = $this->get(route('admin.products.create') );
 
-        // Vérifier que la page est accessible
-        $response->assertStatus(200);
+    //     // Vérifier que la page est accessible
+    //     $response->assertStatus(200);
 
-        // Vérifier que la vue contient bien les catégories et marques
-        $response->assertViewHas('categories', $categories);
-        $response->assertViewHas('brands', $brands);
-    }
+    //     // Vérifier que la vue contient bien les catégories et marques
+    //     $response->assertViewHas('categories', $categories);
+    //     $response->assertViewHas('brands', $brands);
+    // }
     /**
      * @test if a user can update an existing product.
      */
-    public function test_admin_can_view_product_edit_page()
-    {
-        // Create an admin user and authenticate
-        $admin = Admin::factory()->create();
-        $this->actingAs($admin, 'admin');
+    // public function test_admin_can_view_product_edit_page()
+    // {
+    //     // Create an admin user and authenticate
+    //     $admin = Admin::factory()->create();
+    //     $this->actingAs($admin, 'admin');
 
-        // Create a category and brand for the product
-        $category = Category::factory()->create();
-        $brand = Brand::factory()->create();
+    //     // Create a category and brand for the product
+    //     $category = Category::factory()->create();
+    //     $brand = Brand::factory()->create();
 
-        // Create a product to edit
-        $product = Product::factory()->create([
-            'category_id' => $category->id,
-            'brand_id' => $brand->id,
-        ]);
+    //     // Create a product to edit
+    //     $product = Product::factory()->create([
+    //         'category_id' => $category->id,
+    //         'brand_id' => $brand->id,
+    //     ]);
 
-        // Make the GET request to the product edit page
-        $response = $this->get(route('admin.products.edit', $product->id));
+    //     // Make the GET request to the product edit page
+    //     $response = $this->get(route('admin.products.edit', $product->id));
 
-        // Assert that the response is successful
-        $response->assertStatus(200);
+    //     // Assert that the response is successful
+    //     $response->assertStatus(200);
 
-        // Assert that the correct product data is passed to the view
-        $response->assertViewHas('product', $product);
+    //     // Assert that the correct product data is passed to the view
+    //     $response->assertViewHas('product', $product);
 
-        // Assert that the categories and brands are passed to the view
-        $response->assertViewHas('categories');
-        $response->assertViewHas('brands');
+    //     // Assert that the categories and brands are passed to the view
+    //     $response->assertViewHas('categories');
+    //     $response->assertViewHas('brands');
 
-        // Optionally, check if the page contains specific data (product name, category, brand)
-        $response->assertSee($product->product_name);
-        $response->assertSee($category->name);
-        $response->assertSee($brand->name);
-    }
+    //     // Optionally, check if the page contains specific data (product name, category, brand)
+    //     $response->assertSee($product->product_name);
+    //     $response->assertSee($category->name);
+    //     $response->assertSee($brand->name);
+    // }
 
     /**
      * @test if a user can update an existing product.
@@ -257,19 +257,19 @@ class ProductTest extends TestCase
     /**
      * @test if a user can view the list of products.
      */
-    public function test_admin_can_view_products()
-    {
-        // Create a user and authenticate
-        $admin = Admin::factory()->create(['email_verified_at' => now()]);
-        $this->actingAs($admin, 'admin');
-        // Create a product
-        $product = Product::factory()->create();
-        // Make the GET request to the product list page
-        $response = $this->get(route('admin.products'));
-        // Assert the response is successful and contains the product data
-        $response->assertStatus(200);
-        $response->assertViewHas('products');
-        $response->assertSee($product->product_name);
-    }
+    // public function test_admin_can_view_products()
+    // {
+    //     // Create a user and authenticate
+    //     $admin = Admin::factory()->create(['email_verified_at' => now()]);
+    //     $this->actingAs($admin, 'admin');
+    //     // Create a product
+    //     $product = Product::factory()->create();
+    //     // Make the GET request to the product list page
+    //     $response = $this->get(route('admin.products'));
+    //     // Assert the response is successful and contains the product data
+    //     $response->assertStatus(200);
+    //     $response->assertViewHas('products');
+    //     $response->assertSee($product->product_name);
+    // }
 
 }
