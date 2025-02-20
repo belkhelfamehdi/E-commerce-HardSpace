@@ -16,7 +16,7 @@ class ProductTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * Test if a user can create a new product.
+     * @test if a user can create a new product.
      */
     public function test_admin_can_create_product()
     {
@@ -61,7 +61,7 @@ class ProductTest extends TestCase
     }
 
     /**
-     * Test if a user can view the product create page.
+     * @test if a user can view the product create page.
      */
     public function test_admin_can_access_create_product_page()
     {
@@ -84,7 +84,7 @@ class ProductTest extends TestCase
         $response->assertViewHas('brands', $brands);
     }
     /**
-     * Test if a user can update an existing product.
+     * @test if a user can update an existing product.
      */
     public function test_admin_can_view_product_edit_page()
     {
@@ -122,7 +122,7 @@ class ProductTest extends TestCase
     }
 
     /**
-     * Test if a user can update an existing product.
+     * @test if a user can update an existing product.
      */
     public function test_admin_can_update_product()
     {
@@ -188,7 +188,7 @@ class ProductTest extends TestCase
     }
 
     /**
-     * Test if a user can delete a product.
+     * @test if a user can delete a product.
         */
     public function test_user_can_delete_product()
     {
@@ -224,7 +224,7 @@ class ProductTest extends TestCase
     }
 
     /**
-     * Test if a user can search for a product.
+     * @test if a user can search for a product.
      */
     public function test_admin_can_search_products()
     {
@@ -255,7 +255,7 @@ class ProductTest extends TestCase
 
 
     /**
-     * Test if a user can view the list of products.
+     * @test if a user can view the list of products.
      */
     public function test_admin_can_view_products()
     {
