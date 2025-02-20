@@ -58,17 +58,14 @@ test:
     # set it in your package.json script
     # comment this out if you don't have a frontend test
     #- npm test
-    - mkdir -p "$REPORT_DIR"
-    - echo "The report directory is $REPORT_DIR"
-    - wget https://repo1.maven.org/maven2/junit/junit/4.9/junit-4.9.jar
-    - javac -cp junit-4.9.jar HelloWorldJunit.java
-    - java -cp .:junit-4.9.jar org.junit.runner.JUnitCore HelloWorldJunit > "$REPORT_DIR/junit_report.txt"
-    - ls -la "$REPORT_DIR"
-
+    - mkdir -p tests/reports
+    - php vendor/bin/phpunit --log-junit tests/reports/junit-report.xml
   artifacts:
     when: always
+    reports:
+      junit: tests/reports/junit-report.xml
     paths:
-      - "$REPORT_DIR/junit_report.txt"
+      - tests/reports/junit-report.xml
     expire_in: 1 week
   only:
     - master
