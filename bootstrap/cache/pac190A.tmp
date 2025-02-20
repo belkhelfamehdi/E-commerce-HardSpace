@@ -1,9 +1,13 @@
 <?php return array (
-  'barryvdh/laravel-ide-helper' => 
+  'binarytorch/larecipe' => 
   array (
+    'aliases' => 
+    array (
+      'LaRecipe' => 'BinaryTorch\\LaRecipe\\LaRecipe',
+    ),
     'providers' => 
     array (
-      0 => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
+      0 => 'BinaryTorch\\LaRecipe\\LaRecipeServiceProvider',
     ),
   ),
   'darryldecode/cart' => 

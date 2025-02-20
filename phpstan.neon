@@ -1,5 +1,5 @@
 includes:
-  - vendor/nunomaduro/larastan/extension.neon
+  - vendor/larastan/larastan/extension.neon
 
 parameters:
   level: 5  # Adjust based on project needs (5-7 recommended)

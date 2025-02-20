@@ -46,3 +46,8 @@ Homestead.json
 /.vagrant
 .phpunit.result.cache
 >>>>>>> fa1ed31cff15c9adf71fdcbdd1f67d886eb4c3c6
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###

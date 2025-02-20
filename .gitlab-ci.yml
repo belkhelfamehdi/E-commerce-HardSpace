@@ -10,7 +10,6 @@ variables:
   CACHE_DRIVER: array
   SESSION_DRIVER: array
   QUEUE_CONNECTION: sync
-  REPORT_DIR: "public/${CI_COMMIT_BRANCH}_${CI_PIPELINE_CREATED_AT}_${CI_COMMIT_SHA}"
 cache:
   paths:
     - vendor/
@@ -58,15 +57,6 @@ test:
     # set it in your package.json script
     # comment this out if you don't have a frontend test
     #- npm test
-    - mkdir -p tests/reports
-    - php vendor/bin/phpunit --log-junit tests/reports/junit-report.xml
-  artifacts:
-    when: always
-    reports:
-      junit: tests/reports/junit-report.xml
-    paths:
-      - tests/reports/junit-report.xml
-    expire_in: 1 week
   only:
     - master
 
