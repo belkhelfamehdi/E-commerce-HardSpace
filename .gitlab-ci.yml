@@ -36,8 +36,6 @@ stages:
     - cp .env.example .env
     # Generate an application key. Re-cache.
     - php artisan key:generate
-    - php artisan view:clear
-    - php artisan route:clear
     - php artisan cache:clear
     - php artisan config:cache
     - chmod -R 775 storage bootstrap/cache
