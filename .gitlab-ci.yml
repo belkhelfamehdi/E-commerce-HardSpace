@@ -75,7 +75,6 @@ deploy:
   variables:
     SVC_ID: 39bb74ee-1202-45a1-8125-39306e3e4217
   script:
-    - railway login --token "$RAILWAY_TOKEN"
     - railway up --service=$SVC_ID
   environment:
     name: production
