@@ -95,3 +95,6 @@ secure:
     expire_in: 1 hour
   only:
     - master
+
+include:
+  - template: Security/Container-Scanning.gitlab-ci.yml
