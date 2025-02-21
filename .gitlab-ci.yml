@@ -88,7 +88,7 @@ secure:
     entrypoint: [""]
   script:
     # Scan the Laravel project directory for vulnerabilities
-    - trivy fs . --exit-code 1 --no-progress --format json -o trivy-report.json --skip-files "vendor/laravel/pint/builds/pint"
+    - trivy fs . --no-progress --format json -o trivy-report.json
 
   artifacts:
     paths:
