@@ -71,17 +71,15 @@ measure:
 
 deploy:
   stage: deploy
-  image: ghcr.io/railwayapp/cli:latest
-  variables:
-    SVC_ID: 39bb74ee-1202-45a1-8125-39306e3e4217
-  script:
-    - railway login
-    - railway up --service=$SVC_ID
-  environment:
-    name: production
+  image: ubuntu
   only:
     - master
-
+  script:
+    - apt-get clean
+    - apt-get -o Acquire::ForceIPv4=true update
+    - apt-get install -y curl
+    - curl -fsSL https://railway.app/install.sh | sh
+    - railway up --service=$RAILWAY_SERVICE_NAME -d
 secure:
   stage: secure
   image: aquasec/trivy:latest
