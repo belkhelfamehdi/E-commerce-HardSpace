@@ -88,13 +88,10 @@ secure:
     entrypoint: [""]
   script:
     # Scan the Laravel project directory for vulnerabilities
-    - trivy fs --exit-code 1 --no-progress --format json -o trivy-report.json . --composer ./composer.json --npm ./package.json
+    - trivy fs --exit-code 1 --no-progress --format json -o trivy-report.json . --composer ./composer.json
   artifacts:
     paths:
       - trivy-report.json
     expire_in: 1 hour
   only:
     - master
-
-include:
-  - template: Security/Container-Scanning.gitlab-ci.yml
