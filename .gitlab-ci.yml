@@ -83,7 +83,9 @@ deploy:
 
 secure:
   stage: secure
-  image: aquasec/trivy:latest
+  image:
+    name: aquasec/trivy:latest
+    entrypoint: [""]
   script:
     # Scan the Laravel project directory for vulnerabilities
     - trivy fs --exit-code 1 --no-progress --format json -o trivy-report.json .
