@@ -80,6 +80,7 @@ deploy:
     - apt-get install -y curl
     - curl -fsSL https://railway.app/install.sh | sh
     - railway up --service=$RAILWAY_SERVICE_NAME -d
+
 secure:
   stage: secure
   image: aquasec/trivy:latest
