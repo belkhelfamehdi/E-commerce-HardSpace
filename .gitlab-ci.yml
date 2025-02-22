@@ -66,6 +66,7 @@ measure:
     - .config
   script:
     - php vendor/bin/phpstan analyse --memory-limit=1G
+    - php vendor/bin/phpinsights --no-interaction --ansi
   only:
     - master
 
