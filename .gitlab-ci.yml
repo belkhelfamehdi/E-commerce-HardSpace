@@ -69,7 +69,7 @@ measure:
     - php vendor/bin/phpstan analyse --memory-limit=1G
 
     # Run PHP Insights (Code Quality & Security)
-    - php vendor/bin/phpinsights --no-interaction --ansi || exit 1
+    - php vendor/bin/phpinsights ./app --no-interaction --ansi || exit 1
   only:
     - master
 
