@@ -65,7 +65,11 @@ measure:
   extends:
     - .config
   script:
+    # Run PHPStan (Static Analysis)
     - php vendor/bin/phpstan analyse --memory-limit=1G
+
+    # Run PHP Insights (Code Quality & Security)
+    - php vendor/bin/phpinsights --no-interaction --ansi
   only:
     - master
 
