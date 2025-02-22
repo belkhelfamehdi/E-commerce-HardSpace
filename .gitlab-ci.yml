@@ -70,6 +70,15 @@ measure:
   only:
     - master
 
+documentation:
+  stage: documentation
+  extends:
+    - .config
+  script:
+    - php vendor/bin/phpdoc run -d app/ -t docs/api
+  only:
+    - master
+
 deploy:
   stage: deploy
   image: ubuntu
