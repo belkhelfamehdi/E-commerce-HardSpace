@@ -90,9 +90,6 @@ secure:
     # Scan the Laravel project directory for vulnerabilities
     - trivy fs . --no-progress --format json -o trivy-report.json
 
-  artifacts:
-    paths:
-      - trivy-report.json
-    expire_in: 1 hour
+
   only:
     - master
