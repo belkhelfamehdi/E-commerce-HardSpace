@@ -46,10 +46,6 @@ test:
     XDEBUG_MODE: coverage
   script:
     - php vendor/bin/phpunit --coverage-text --colors=never | tee test-report.txt
-  artifacts:
-    paths:
-      - test-report.txt
-    expire_in: 1 week
   only:
     - master
 
@@ -60,11 +56,6 @@ measure:
   script:
     - php vendor/bin/phpstan analyse --memory-limit=1G | tee phpstan-report.txt
     - php vendor/bin/phpinsights --no-interaction --ansi | tee phpinsights-report.txt || exit 1
-  artifacts:
-    paths:
-      - phpstan-report.txt
-      - phpinsights-report.txt
-    expire_in: 1 week
   only:
     - master
 
@@ -79,10 +70,6 @@ deploy:
     - apt-get install -y curl
     - curl -fsSL https://railway.app/install.sh | sh
     - railway up --service=$RAILWAY_SERVICE_NAME -d | tee deploy-log.txt
-  artifacts:
-    paths:
-      - deploy-log.txt
-    expire_in: 1 week
 
 secure:
   stage: secure
@@ -91,9 +78,5 @@ secure:
     entrypoint: [""]
   script:
     - trivy fs . --no-progress --format json -o trivy-report.json --skip-files vendor/laravel/pint/builds/pint
-  artifacts:
-    paths:
-      - trivy-report.json
-    expire_in: 1 week
   only:
     - master
