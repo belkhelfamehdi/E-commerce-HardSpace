@@ -10,7 +10,6 @@ variables:
   CACHE_DRIVER: array
   SESSION_DRIVER: array
   QUEUE_CONNECTION: sync
-
 cache:
   paths:
     - vendor/
@@ -27,13 +26,19 @@ stages:
   services:
     - mysql:latest
   before_script:
+    # Install Node dependencies.
     - npm install
+    # install composer dependencies
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress
+    # Copy over example configuration.
+    # Don't forget to set the database config in .env.example correctly
     - cp .env.example .env
+    # Generate an application key. Re-cache.
     - php artisan key:generate
     - php artisan cache:clear
     - php artisan config:cache
     - chmod -R 775 storage bootstrap/cache
+    # Run database migrations.
     - php artisan migrate:refresh
     - php artisan db:seed
 
@@ -45,7 +50,13 @@ test:
     APP_ENV: testing
     XDEBUG_MODE: coverage
   script:
-    - php vendor/bin/phpunit --coverage-text --colors=never | tee test-report.txt
+    # run laravel tests
+    - php vendor/bin/phpunit --coverage-text --colors=never
+    # run frontend tests
+    # if you have any task for testing frontend
+    # set it in your package.json script
+    # comment this out if you don't have a frontend test
+    #- npm test
   only:
     - master
 
@@ -54,8 +65,7 @@ measure:
   extends:
     - .config
   script:
-    - php vendor/bin/phpstan analyse --memory-limit=1G | tee phpstan-report.txt
-    - php vendor/bin/phpinsights --no-interaction --ansi | tee phpinsights-report.txt || exit 1
+    - php vendor/bin/phpstan analyse --memory-limit=1G
   only:
     - master
 
@@ -69,7 +79,7 @@ deploy:
     - apt-get -o Acquire::ForceIPv4=true update
     - apt-get install -y curl
     - curl -fsSL https://railway.app/install.sh | sh
-    - railway up --service=$RAILWAY_SERVICE_NAME -d | tee deploy-log.txt
+    - railway up --service=$RAILWAY_SERVICE_NAME -d
 
 secure:
   stage: secure
@@ -77,6 +87,7 @@ secure:
     name: aquasec/trivy:latest
     entrypoint: [""]
   script:
-    - trivy fs . --no-progress --format json -o trivy-report.json --skip-files vendor/laravel/pint/builds/pint
+    # Scan the Laravel project directory for vulnerabilities
+    - trivy fs . --no-progress --format json -o trivy-report.json
   only:
     - master
