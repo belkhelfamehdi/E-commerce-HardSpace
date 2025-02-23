@@ -47,6 +47,7 @@ test:
     XDEBUG_MODE: coverage
   script:
     - php vendor/bin/phpunit --coverage-text --colors=never | tee junit-report.txt
+    - ls -l
   artifacts:
     reports:
       junit: junit-report.txt
