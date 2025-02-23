@@ -10,6 +10,7 @@ variables:
   CACHE_DRIVER: array
   SESSION_DRIVER: array
   QUEUE_CONNECTION: sync
+
 cache:
   paths:
     - vendor/
@@ -27,19 +28,13 @@ stages:
   services:
     - mysql:latest
   before_script:
-    # Install Node dependencies.
     - npm install
-    # install composer dependencies
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress
-    # Copy over example configuration.
-    # Don't forget to set the database config in .env.example correctly
     - cp .env.example .env
-    # Generate an application key. Re-cache.
     - php artisan key:generate
     - php artisan cache:clear
     - php artisan config:cache
     - chmod -R 775 storage bootstrap/cache
-    # Run database migrations.
     - php artisan migrate:refresh
     - php artisan db:seed
 
@@ -51,13 +46,13 @@ test:
     APP_ENV: testing
     XDEBUG_MODE: coverage
   script:
-    # run laravel tests
-    - php vendor/bin/phpunit --coverage-text --colors=never
-    # run frontend tests
-    # if you have any task for testing frontend
-    # set it in your package.json script
-    # comment this out if you don't have a frontend test
-    #- npm test
+    - php vendor/bin/phpunit --coverage-text --colors=never | tee junit-report.txt
+  artifacts:
+    reports:
+      junit: junit-report.txt
+    paths:
+      - junit-report.txt
+    expire_in: 1 week
   only:
     - master
 
@@ -66,8 +61,13 @@ measure:
   extends:
     - .config
   script:
-    - php vendor/bin/phpstan analyse --memory-limit=1G
-    - php vendor/bin/phpinsights --no-interaction --ansi
+    - php vendor/bin/phpstan analyse --memory-limit=1G | tee phpstan-report.txt
+    - php vendor/bin/phpinsights --no-interaction --ansi | tee phpinsights-report.txt
+  artifacts:
+    paths:
+      - phpstan-report.txt
+      - phpinsights-report.txt
+    expire_in: 1 week
   only:
     - master
 
@@ -77,6 +77,10 @@ documentation:
     - .config
   script:
     - php vendor/bin/phpdoc run -d app/ -t docs/api
+  artifacts:
+    paths:
+      - docs/api
+    expire_in: 1 week
   only:
     - master
 
@@ -90,7 +94,11 @@ deploy:
     - apt-get -o Acquire::ForceIPv4=true update
     - apt-get install -y curl
     - curl -fsSL https://railway.app/install.sh | sh
-    - railway up --service=$RAILWAY_SERVICE_NAME -d
+    - railway up --service=$RAILWAY_SERVICE_NAME -d | tee deploy-report.txt
+  artifacts:
+    paths:
+      - deploy-report.txt
+    expire_in: 1 week
 
 secure:
   stage: secure
@@ -98,7 +106,10 @@ secure:
     name: aquasec/trivy:latest
     entrypoint: [""]
   script:
-    # Scan the Laravel project directory for vulnerabilities
     - trivy fs . --no-progress --format json -o trivy-report.json
+  artifacts:
+    paths:
+      - trivy-report.json
+    expire_in: 1 week
   only:
     - master
