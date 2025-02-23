@@ -88,9 +88,5 @@ secure:
     entrypoint: [""]
   script:
     - trivy fs . --no-progress --format json -o trivy-report.json
-  artifacts:
-    paths:
-      - trivy-report.json
-    expire_in: 1 week
   only:
     - master
