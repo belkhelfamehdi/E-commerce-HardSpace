@@ -46,14 +46,7 @@ test:
     APP_ENV: testing
     XDEBUG_MODE: coverage
   script:
-    - php vendor/bin/phpunit --coverage-text --colors=never | tee junit-report.txt
-    - ls -l
-  artifacts:
-    reports:
-      junit: junit-report.txt
-    paths:
-      - junit-report.txt
-    expire_in: 1 week
+    - php vendor/bin/phpunit --coverage-text --colors=never
   only:
     - master
 
@@ -62,13 +55,8 @@ measure:
   extends:
     - .config
   script:
-    - php vendor/bin/phpstan analyse --memory-limit=1G | tee phpstan-report.txt
-    - php vendor/bin/phpinsights --no-interaction --ansi | tee phpinsights-report.txt
-  artifacts:
-    paths:
-      - phpstan-report.txt
-      - phpinsights-report.txt
-    expire_in: 1 week
+    - php vendor/bin/phpstan analyse --memory-limit=1G
+    - php vendor/bin/phpinsights --no-interaction --ansi
   only:
     - master
 
@@ -78,10 +66,6 @@ documentation:
     - .config
   script:
     - php vendor/bin/phpdoc run -d app/ -t docs/api
-  artifacts:
-    paths:
-      - docs/api
-    expire_in: 1 week
   only:
     - master
 
@@ -95,11 +79,7 @@ deploy:
     - apt-get -o Acquire::ForceIPv4=true update
     - apt-get install -y curl
     - curl -fsSL https://railway.app/install.sh | sh
-    - railway up --service=$RAILWAY_SERVICE_NAME -d | tee deploy-report.txt
-  artifacts:
-    paths:
-      - deploy-report.txt
-    expire_in: 1 week
+    - railway up --service=$RAILWAY_SERVICE_NAME -d
 
 secure:
   stage: secure
