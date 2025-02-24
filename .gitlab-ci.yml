@@ -87,6 +87,6 @@ secure:
     name: aquasec/trivy:latest
     entrypoint: [""]
   script:
-    - trivy fs . --no-progress --format json -o trivy-report.json --include-dev-deps
+    - trivy fs . --no-progress --format json -o trivy-report.json
   only:
     - master
