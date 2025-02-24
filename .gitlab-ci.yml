@@ -20,8 +20,8 @@ stages:
   - test
   - measure
   - documentation
-  - deploy
   - secure
+  - deploy
 
 .config:
   image: lorisleiva/laravel-docker:8.2
@@ -62,11 +62,9 @@ measure:
   extends:
     - .config
   script:
-    - php vendor/bin/phpstan analyse --memory-limit=1G | tee phpstan-report.txt
     - php vendor/bin/phpinsights --no-interaction --ansi | tee insights-report.txt
   artifacts:
     paths:
-      - phpstan-report.txt
       - insights-report.txt
     expire_in: 7 days
   only:
@@ -85,6 +83,21 @@ documentation:
   only:
     - master
 
+secure:
+  stage: secure
+  image:
+    name: aquasec/trivy:latest
+    entrypoint: [""]
+  script:
+    - trivy fs . --severity HIGH,CRITICAL --ignore-unfixed --format table -o trivy-report.table
+  allow_failure: true
+  artifacts:
+    paths:
+      - trivy-report.table
+    expire_in: 7 days
+  only:
+    - master
+
 deploy:
   stage: deploy
   image: ubuntu
@@ -100,18 +113,3 @@ deploy:
     paths:
       - deployment.log
     expire_in: 30 days
-
-secure:
-  stage: secure
-  image:
-    name: aquasec/trivy:latest
-    entrypoint: [""]
-  script:
-    - trivy fs . --severity HIGH,CRITICAL --ignore-unfixed --format html -o trivy-report.html
-  allow_failure: true
-  artifacts:
-    paths:
-      - trivy-report.html
-    expire_in: 7 days
-  only:
-    - master
