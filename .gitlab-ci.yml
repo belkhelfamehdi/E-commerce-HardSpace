@@ -101,11 +101,11 @@ secure:
     name: aquasec/trivy:latest
     entrypoint: [""]
   script:
-    - trivy fs . --severity HIGH,CRITICAL --ignore-unfixed --format table -o trivy-report.table
+    - trivy fs . --severity HIGH,CRITICAL --ignore-unfixed --format template -o trivy-report.html
   allow_failure: true
   artifacts:
     paths:
-      - trivy-report.table
+      - trivy-report.html
     expire_in: 7 days
   only:
     - master
@@ -120,11 +120,6 @@ deploy:
     - apt-get -o Acquire::ForceIPv4=true update
     - apt-get install -y curl
     - curl -fsSL https://railway.app/install.sh | sh
-    - mkdir -p public/reports
-    - mv insights-report.txt public/reports/ || true
-    - mv junit.xml public/reports/ || true
-    - mv trivy-report.table public/reports/ || true
-    - mv docs/api/* public/ || true
     - railway up --service=$RAILWAY_SERVICE_NAME -d
   artifacts:
     paths:
