@@ -101,11 +101,11 @@ secure:
     name: aquasec/trivy:latest
     entrypoint: [""]
   script:
-    - trivy fs . --severity HIGH,CRITICAL --ignore-unfixed --format template -o trivy-report.template
+    - trivy fs . --severity HIGH,CRITICAL --ignore-unfixed --format template -o trivy-report.tpl
   allow_failure: true
   artifacts:
     paths:
-      - trivy-report.template
+      - trivy-report.tpl
     expire_in: 7 days
   only:
     - master
