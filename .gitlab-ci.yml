@@ -101,7 +101,7 @@ secure:
     name: aquasec/trivy:latest
     entrypoint: [""]
   script:
-    - trivy fs . --severity HIGH,CRITICAL --ignore-unfixed --skip-files "vendor/mockery/mockery/docs/*" --format table -o trivy-report.table
+    - trivy fs . --severity HIGH,CRITICAL --skip-files "vendor/bin/phpdoc" --format table -o trivy-report.table
   allow_failure: true
   artifacts:
     paths:
