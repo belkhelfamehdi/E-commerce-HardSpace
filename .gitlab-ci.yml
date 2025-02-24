@@ -62,7 +62,7 @@ measure:
   extends:
     - .config
   script:
-    - php vendor/bin/phpinsights --no-interaction --ansi | tee insights-report.txt
+    - php vendor/bin/phpinsights app/ --no-interaction --ansi | tee insights-report.txt
   artifacts:
     paths:
       - insights-report.txt
@@ -89,7 +89,7 @@ secure:
     name: aquasec/trivy:latest
     entrypoint: [""]
   script:
-    - trivy fs . --ignore-unfixed --format table --output reports/trivy-report.table composer.json composer.lock
+    - trivy fs . --ignore-unfixed --format table --output reports/trivy-report.table
   allow_failure: true
   artifacts:
     paths:
