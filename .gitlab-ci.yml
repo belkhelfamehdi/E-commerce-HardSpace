@@ -75,7 +75,7 @@ documentation:
   extends:
     - .config
   script:
-    - php vendor/bin/phpdoc run -d -t docs/api -e "vendor/*"
+    - php vendor/bin/phpdoc run -d -t docs/api --ignore vendor/
   artifacts:
     paths:
       - docs/api/
@@ -89,7 +89,7 @@ secure:
     name: aquasec/trivy:latest
     entrypoint: [""]
   script:
-    - trivy fs . --severity HIGH,CRITICAL --ignore-unfixed --format table -o trivy-report.table
+    - trivy fs --composer . --severity HIGH,CRITICAL --ignore-unfixed --format table -o trivy-report.table
   allow_failure: true
   artifacts:
     paths:
