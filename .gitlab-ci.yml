@@ -75,7 +75,7 @@ documentation:
   extends:
     - .config
   script:
-    - php vendor/bin/phpdoc run -d app/ -t docs/api
+    - php vendor/bin/phpdoc run -d -t docs/api -e "vendor/*"
   artifacts:
     paths:
       - docs/api/
