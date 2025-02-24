@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Storage;
 class SupplierController extends Controller
 {
     /**
-     * Afficher la liste des demandes fournisseur.
+     * Display a listing of the supplier's products.
+     *
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -21,14 +23,19 @@ class SupplierController extends Controller
         return view('supplier.products.index', compact('products'));
     }
 
-
-    //afficher index fournisseur
+    /**
+     * Display the supplier's dashboard home page.
+     *
+     * @return \Illuminate\View\View
+     */
     public function home(){
         return view('supplier.index');
     }
 
     /**
-     * Show the form for creating a new products.
+     * Show the form for creating a new product.
+     *
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -38,7 +45,10 @@ class SupplierController extends Controller
     }
 
     /**
-     * Store a newly created products in database.
+     * Store a newly created product in the database.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -80,7 +90,10 @@ class SupplierController extends Controller
     }
 
     /**
-     * Methode pour recherche des produits.
+     * Search for products based on a keyword.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function SearchProduct(Request $request)
     {
@@ -94,7 +107,10 @@ class SupplierController extends Controller
     }
 
     /**
-     * Show the form for editing the products.
+     * Show the form for editing a specific product.
+     *
+     * @param  string  $id
+     * @return \Illuminate\View\View
      */
     public function edit(string $id)
     {
@@ -103,7 +119,11 @@ class SupplierController extends Controller
     }
 
     /**
-     * Update the specified products.
+     * Update the specified product in the database.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, string $id)
     {
@@ -122,8 +142,12 @@ class SupplierController extends Controller
                         ->with('success','Le produit a été mis à jour.');
     }
 
+
     /**
-     * Remove the specified products.
+     * Remove the specified product and its associated images from storage.
+     *
+     * @param  string  $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(string $id)
     {

@@ -5,10 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+/**
+ * Class HomeController
+ *
+ * This controller handles the main home page and resource management related to it.
+ */
 class HomeController extends Controller
 {
     /**
-     * Display Home page.
+     * Display the home page with new arrival and recommended products.
+     *
+     * This method fetches new arrival and featured products to display on the homepage,
+     * along with the list of available brands.
+     *
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -16,53 +26,5 @@ class HomeController extends Controller
         $recommended = \App\Models\Product::where('featured', 1)->get();
         $brand = \App\Models\Brand::all();
         return view('frontend.index', compact('new_arrival', 'recommended', 'brand'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

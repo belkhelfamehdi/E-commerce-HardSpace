@@ -14,7 +14,9 @@ use Image;
 class ProductController extends Controller
 {
     /**
-     * Display a listing of the list products page.
+     * Display a listing of the products on the admin page.
+     *
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -23,6 +25,12 @@ class ProductController extends Controller
     }
 
 
+    /**
+     * Add a product to the shopping cart.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function addToCart(Request $request)
     {
         \Cart::add([
@@ -36,8 +44,11 @@ class ProductController extends Controller
 
         return redirect()->route('cart');
     }
+
     /**
      * Show the form for creating a new product.
+     *
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -46,8 +57,12 @@ class ProductController extends Controller
         return view('admin.products.create', compact('categories', 'brands'));
     }
 
-    //ajouter de nouveau produit.
-
+    /**
+     * Store a newly created product in the database.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -91,7 +106,10 @@ class ProductController extends Controller
     }
 
     /**
-     * Une methode pour la rechrche dynamique.
+     * Perform a dynamic search for products.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function SearchProduct(Request $request)
     {
@@ -105,7 +123,10 @@ class ProductController extends Controller
     }
 
     /**
-     * Afficher la page modifier produit.
+     * Show the form to edit the specified product.
+     *
+     * @param  int  $id
+     * @return \Illuminate\View\View
      */
     public function edit($id)
     {
@@ -116,7 +137,11 @@ class ProductController extends Controller
     }
 
     /**
-     * modifier les informations du produit.
+     * Update the specified product in the database.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -151,7 +176,10 @@ class ProductController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified product from the database.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {

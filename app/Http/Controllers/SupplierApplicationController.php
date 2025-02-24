@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Auth;
 class SupplierApplicationController extends Controller
 {
     /**
-     * Afficher la liste des demandes fourniseurs.
+     * Display a listing of the supplier applications that are pending approval.
+     *
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -20,7 +22,9 @@ class SupplierApplicationController extends Controller
     }
 
     /**
-     * Show the form for creating a new supplier apply.
+     * Show the form for creating a new supplier application.
+     *
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -28,7 +32,10 @@ class SupplierApplicationController extends Controller
     }
 
     /**
-     * Store a newly created applications.
+     * Store a newly created supplier application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -66,7 +73,10 @@ class SupplierApplicationController extends Controller
     }
 
     /**
-     * Afficher la page demande fournisseur.
+     * Display the details of a specific supplier application.
+     *
+     * @param  int  $id
+     * @return \Illuminate\View\View
      */
     public function show($id)
     {
@@ -75,7 +85,12 @@ class SupplierApplicationController extends Controller
     }
 
 
-    //methode pour accepter la demande
+    /**
+     * Accept the supplier application and assign the 'supplier' role to the user.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function accept($id){
         $application = SupplierApplication::find($id);
         $user = User::find($application->user_id);
@@ -86,8 +101,12 @@ class SupplierApplicationController extends Controller
         return redirect()->route('admin.applications')->with('success','Application accepté.');
     }
 
-    //methode pour refuser la demandes
-
+    /**
+     * Reject the supplier application.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function reject($id){
         $application = SupplierApplication::find($id);
         $application->statut = 'reject';

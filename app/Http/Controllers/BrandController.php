@@ -6,19 +6,28 @@ use App\Models\Brand;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+/**
+ * Class BrandController
+ *
+ * This controller handles the CRUD operations for brands.
+ */
 class BrandController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the brands.
+     *
+     * @return \Illuminate\View\View
      */
     public function index()
     {
-        $brands = Brand::paginate(5); 
+        $brands = Brand::paginate(5);
         return view('admin.brands.index', compact('brands'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new brand.
+     *
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -26,7 +35,10 @@ class BrandController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created brand in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -38,7 +50,10 @@ class BrandController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Search for brands by keyword.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function SearchCategory(Request $request)
     {
@@ -51,8 +66,14 @@ class BrandController extends Controller
     ]);
     }
 
-    //show edit brands page
-
+    /**
+     * Show the form for editing the specified brand.
+     *
+     * @param  int  $id
+     * @return \Illuminate\View\View
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     */
     public function edit($id)
     {
         $brand = Brand::findOrFail($id);
@@ -60,7 +81,11 @@ class BrandController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified brand in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -71,7 +96,12 @@ class BrandController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified brand from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function destroy($id)
     {

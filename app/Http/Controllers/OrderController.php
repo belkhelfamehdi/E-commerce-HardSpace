@@ -9,26 +9,23 @@ use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
+/**
+ * Class OrderController
+ *
+ * This controller handles order processing, invoice generation, and displaying user orders.
+ */
 class OrderController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Store an order, generate an invoice, and process the cart items.
+     *
+     * This method is responsible for storing the order information in the database,
+     * decrementing product quantities, clearing the cart, and generating a PDF invoice for the user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-
-    //effectuer une commande et generer une facture
     public function store(Request $request)
     {
         $user_id = Auth::user()->id;
@@ -62,11 +59,16 @@ class OrderController extends Controller
 
         $response = $pdf->stream('bill.pdf');
         \Cart::clear();
-        return $response; 
+        return $response;
     }
 
     /**
-     * Afficher la page mes commandes.
+     * Display the user's orders on the "Mes commandes" page.
+     *
+     * This method retrieves the orders of the authenticated user and displays them on the profile's orders page.
+     *
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\View\View
      */
     public function show(Order $order)
     {
@@ -74,29 +76,5 @@ class OrderController extends Controller
         $orders = Order::where('user_id', $user_id)->get();
         $products = Product::all();
         return view('profile.orders', compact('orders', 'products'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Order $order)
-    {
-        //
     }
 }
