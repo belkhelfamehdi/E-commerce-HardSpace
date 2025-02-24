@@ -62,7 +62,7 @@ measure:
   extends:
     - .config
   script:
-    - php vendor/bin/phpinsights --no-interaction --ansi app/ | tee insights-report.txt
+    - php vendor/bin/phpinsights --no-interaction --ansi | tee insights-report.txt
   artifacts:
     paths:
       - insights-report.txt
