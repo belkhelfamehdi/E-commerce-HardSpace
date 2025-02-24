@@ -48,10 +48,6 @@ build:
     - .config
   script:
     - npm run build
-  artifacts:
-    paths:
-      - public/build/
-    expire_in: 7 days
   only:
     - master
 
@@ -91,7 +87,7 @@ documentation:
   extends:
     - .config
   script:
-    - php vendor/bin/phpdoc run -d -t docs/api --ignore "vendor/*"
+    - php vendor/bin/phpdoc run -d -t docs/api
   artifacts:
     paths:
       - docs/api/
