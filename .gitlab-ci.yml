@@ -47,7 +47,13 @@ test:
     APP_ENV: testing
     XDEBUG_MODE: coverage
   script:
-    - php vendor/bin/phpunit --coverage-text --colors=never
+    - php vendor/bin/phpunit --coverage-text --colors=never --log-junit junit.xml
+  artifacts:
+    paths:
+      - junit.xml
+    reports:
+      junit: junit.xml
+    expire_in: 7 days
   only:
     - master
 
@@ -56,8 +62,13 @@ measure:
   extends:
     - .config
   script:
-    - php vendor/bin/phpstan analyse --memory-limit=1G
-    - php vendor/bin/phpinsights --no-interaction --ansi
+    - php vendor/bin/phpstan analyse --memory-limit=1G | tee phpstan-report.txt
+    - php vendor/bin/phpinsights --no-interaction --ansi | tee insights-report.txt
+  artifacts:
+    paths:
+      - phpstan-report.txt
+      - insights-report.txt
+    expire_in: 7 days
   only:
     - master
 
@@ -67,6 +78,10 @@ documentation:
     - .config
   script:
     - php vendor/bin/phpdoc run -d app/ -t docs/api
+  artifacts:
+    paths:
+      - docs/api/
+    expire_in: 30 days
   only:
     - master
 
@@ -81,6 +96,10 @@ deploy:
     - apt-get install -y curl
     - curl -fsSL https://railway.app/install.sh | sh
     - railway up --service=$RAILWAY_SERVICE_NAME -d
+  artifacts:
+    paths:
+      - deployment.log
+    expire_in: 30 days
 
 secure:
   stage: secure
@@ -89,6 +108,12 @@ secure:
     entrypoint: [""]
   script:
     - trivy fs . --no-progress --format json -o trivy-report.json
+  artifacts:
+    paths:
+      - trivy-report.json
+    reports:
+      dotenv: trivy-report.json
+    expire_in: 7 days
   only:
     - master
 
