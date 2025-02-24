@@ -101,7 +101,7 @@ secure:
     name: aquasec/trivy:latest
     entrypoint: [""]
   script:
-    - trivy fs --composer . --severity HIGH,CRITICAL --ignore-unfixed --format table -o trivy-report.table
+    - trivy fs . --severity HIGH,CRITICAL --ignore-unfixed --format table -o trivy-report.table
   allow_failure: true
   artifacts:
     paths:
