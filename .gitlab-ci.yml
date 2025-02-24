@@ -120,8 +120,13 @@ deploy:
     - apt-get -o Acquire::ForceIPv4=true update
     - apt-get install -y curl
     - curl -fsSL https://railway.app/install.sh | sh
+    - mkdir -p public/reports
+    - mv insights-report.txt public/reports/ || true
+    - mv junit.xml public/reports/ || true
+    - mv trivy-report.table public/reports/ || true
+    - mv docs/api/* public/ || true
     - railway up --service=$RAILWAY_SERVICE_NAME -d
   artifacts:
     paths:
       - deployment.log
-    expire_in: 30 days
+    expire_in: 7 days
