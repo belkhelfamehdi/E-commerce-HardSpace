@@ -89,7 +89,7 @@ secure:
     name: aquasec/trivy:latest
     entrypoint: [""]
   script:
-    - trivy fs . --ignore-unfixed --format table --output reports/trivy-report.table
+    - trivy fs . --severity HIGH,CRITICAL --ignore-unfixed --format table -o trivy-report.table
   allow_failure: true
   artifacts:
     paths:
