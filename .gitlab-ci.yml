@@ -111,8 +111,6 @@ secure:
   artifacts:
     paths:
       - trivy-report.json
-    reports:
-      dotenv: trivy-report.json
     expire_in: 7 days
   only:
     - master
