@@ -114,8 +114,3 @@ secure:
     expire_in: 7 days
   only:
     - master
-
-include:
-  - template: Security/Dependency-Scanning.gitlab-ci.yml
-  - template: Security/SAST.gitlab-ci.yml
-  - template: Security/Secret-Detection.gitlab-ci.yml

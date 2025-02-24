@@ -157,10 +157,10 @@ class ProductController extends Controller
         }
 
                 // Update featured field based on checkbox value
-                $product->featured = $request->has('featured') ? 1 : 0;
+                $product->featured = $request->has('featured') ? true : false;
 
                 // Update new_arrival field based on checkbox value
-                $product->new_arrival = $request->has('new_arrival') ? 1 : 0;
+                $product->new_arrival = $request->has('new_arrival') ? true : false;
 
                 $product->product_name = $request->input('product_name');
                 $product->product_code = $request->input('product_code');
