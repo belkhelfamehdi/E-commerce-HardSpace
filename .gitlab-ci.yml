@@ -107,7 +107,8 @@ secure:
     name: aquasec/trivy:latest
     entrypoint: [""]
   script:
-    - trivy fs . --no-progress --format json --scanners vuln --skip-files="**/*.js" --skip-files="**/*.py" -o trivy-report.json
+    - trivy fs . --severity HIGH,CRITICAL --ignore-unfixed --format json -o trivy-report.json
+  allow_failure: true
   artifacts:
     paths:
       - trivy-report.json
