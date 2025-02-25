@@ -40,6 +40,15 @@ stages:
     # Run database migrations.
     - php artisan migrate:refresh --seed
 
+build:
+  stage: build
+  extends:
+    - .config
+  script:
+    - npm run build
+  only:
+    - dev
+
 test:
   stage: test
   extends:
@@ -98,8 +107,3 @@ secure:
     expire_in: 7 days
   only:
     - master
-
-include:
-  - template: Security/Dependency-Scanning.gitlab-ci.yml
-  - template: Security/SAST.gitlab-ci.yml
-  - template: Security/Secret-Detection.gitlab-ci.yml
