@@ -121,7 +121,3 @@ deploy:
     - apt-get install -y curl
     - curl -fsSL https://railway.app/install.sh | sh
     - railway up --service=$RAILWAY_SERVICE_NAME -d
-  artifacts:
-    paths:
-      - deployment.log
-    expire_in: 7 days
