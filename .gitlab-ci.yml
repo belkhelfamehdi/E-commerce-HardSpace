@@ -87,7 +87,7 @@ documentation:
   extends:
     - .config
   script:
-    - php vendor/bin/phpdoc run -d app/ -t docs/api
+    - php vendor/bin/phpdoc run -d app/ -t public/docs/api
   artifacts:
     paths:
       - docs/api/
