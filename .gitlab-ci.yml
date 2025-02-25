@@ -118,6 +118,7 @@ deploy:
   dependencies:
     - documentation
   script:
+    - ls -la
     - apt-get clean
     - apt-get -o Acquire::ForceIPv4=true update
     - apt-get install -y curl
