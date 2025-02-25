@@ -37,19 +37,8 @@ stages:
     - php artisan key:generate
     - php artisan cache:clear
     - php artisan config:cache
-    - chmod -R 775 storage bootstrap/cache
-
-    - php artisan migrate:refresh
-    - php artisan db:seed
-
-build:
-  stage: build
-  extends:
-    - .config
-  script:
-    - npm run build
-  only:
-    - master
+    # Run database migrations.
+    - php artisan migrate:refresh --seed
 
 test:
   stage: test
@@ -110,18 +99,7 @@ secure:
   only:
     - master
 
-deploy:
-  stage: deploy
-  image: ubuntu
-  only:
-    - master
-  script:
-    - apt-get clean
-    - apt-get -o Acquire::ForceIPv4=true update
-    - apt-get install -y curl
-    - curl -fsSL https://railway.app/install.sh | sh
-    - railway up --service=$RAILWAY_SERVICE_NAME -d
-  artifacts:
-    paths:
-      - deployment.log
-    expire_in: 7 days
+include:
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/Secret-Detection.gitlab-ci.yml
