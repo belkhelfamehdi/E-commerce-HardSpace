@@ -65,7 +65,7 @@ test:
       junit: junit.xml
     expire_in: 7 days
   only:
-    - master
+    - dev
 
 measure:
   stage: measure
@@ -78,7 +78,7 @@ measure:
       - insights-report.txt
     expire_in: 7 days
   only:
-    - master
+    - dev
 
 documentation:
   stage: documentation
