@@ -89,9 +89,10 @@ documentation:
   script:
     - php vendor/bin/phpdoc run -d app/ -t public/docs/api
     - mv public/docs/api public/
+    - mv public docs
   artifacts:
     paths:
-      - public
+      - docs
     expire_in: 7 days
   only:
     - master
