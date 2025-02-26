@@ -13,10 +13,7 @@ export default defineConfig({
                 'resources/js/store.js',
                 'resources/js/product.js',
             ],
-            refresh: [
-                ...refreshPaths,
-                'app/Http/Livewire/**',
-            ],
+            refresh: true,
         }),
     ],
 });
