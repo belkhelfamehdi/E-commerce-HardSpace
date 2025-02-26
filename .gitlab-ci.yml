@@ -88,9 +88,10 @@ documentation:
     - .config
   script:
     - php vendor/bin/phpdoc run -d app/ -t public/docs/api
+    - mv public/docs/api public/
   artifacts:
     paths:
-      - docs/api/
+      - public
     expire_in: 7 days
   only:
     - master
