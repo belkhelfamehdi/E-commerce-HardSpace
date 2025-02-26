@@ -1,128 +1,18 @@
-variables:
-  MYSQL_ROOT_PASSWORD: root
-  MYSQL_DATABASE: laravel
-  DB_CONNECTION: mysql
-  DB_HOST: mysql
-  DB_PORT: 3306
-  DB_DATABASE: laravel
-  DB_USERNAME: root
-  DB_PASSWORD: root
-  CACHE_DRIVER: array
-  SESSION_DRIVER: array
-  QUEUE_CONNECTION: sync
-
-cache:
-  paths:
-    - vendor/
-    - node_modules/
-    - public/build/
-    - storage/framework/cache/data/
-
-stages:
-  - build
-  - test
-  - measure
-  - documentation
-  - secure
-  - deploy
-
-.config:
-  image: lorisleiva/laravel-docker:8.2
-  services:
-    - mysql:latest
-  before_script:
-    - npm install
-    - composer install --prefer-dist --no-ansi --no-interaction --no-progress
-    - cp .env.example .env
-    - php artisan key:generate
-    - php artisan cache:clear
-    - php artisan config:cache
-    - chmod -R 775 storage bootstrap/cache
-
-    - php artisan migrate:refresh
-    - php artisan db:seed
-
-build:
-  stage: build
-  extends:
-    - .config
-  script:
-    - npm run build
-  only:
-    - master
-
-test:
-  stage: test
-  extends:
-    - .config
-  variables:
-    APP_ENV: testing
-    XDEBUG_MODE: coverage
-  script:
-    - php vendor/bin/phpunit --coverage-text --colors=never --log-junit junit.xml
-  artifacts:
-    paths:
-      - junit.xml
-    reports:
-      junit: junit.xml
-    expire_in: 7 days
-  only:
-    - master
-
-measure:
-  stage: measure
-  extends:
-    - .config
-  script:
-    - php vendor/bin/phpinsights --no-interaction --ansi | tee insights-report.txt
-  artifacts:
-    paths:
-      - insights-report.txt
-    expire_in: 7 days
-  only:
-    - master
-
-documentation:
-  stage: documentation
-  extends:
-    - .config
+# The Docker image that will be used to build your app
+image: lorisleiva/laravel-docker:8.2
+# Functions that should be executed before the build script is run
+before_script:
+  - composer install --prefer-dist --no-ansi --no-interaction --no-progress
+pages:
   script:
     - php vendor/bin/phpdoc run -d app/ -t public/docs/api
     - mv public/docs/api public/
     - mv public docs
   artifacts:
     paths:
-      - docs
-    expire_in: 7 days
-  only:
-    - master
-
-secure:
-  stage: secure
-  image:
-    name: aquasec/trivy:latest
-    entrypoint: [""]
-  script:
-    - trivy fs . --severity HIGH,CRITICAL --scanners vuln --skip-files "vendor/bin/phpdoc" --skip-files "vendor/laravel/pint/builds/pint" --format table -o trivy-report.table
-  allow_failure: true
-  artifacts:
-    paths:
-      - trivy-report.table
-    expire_in: 7 days
-  only:
-    - master
-
-deploy:
-  stage: deploy
-  image: ubuntu
-  only:
-    - master
-  dependencies:
-    - documentation
-  script:
-    - ls -la
-    - apt-get clean
-    - apt-get -o Acquire::ForceIPv4=true update
-    - apt-get install -y curl
-    - curl -fsSL https://railway.app/install.sh | sh
-    - railway up --service=$RAILWAY_SERVICE_NAME -d
+      # The folder that contains the files to be exposed at the Page URL
+      - public
+  rules:
+    # This ensures that only pushes to the default branch will trigger
+    # a pages deploy
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
