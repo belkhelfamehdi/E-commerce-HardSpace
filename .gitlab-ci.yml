@@ -44,6 +44,8 @@ stages:
 
 build:
   stage: build
+  extends:
+    - .config
   script:
     - npm run build
   only:
