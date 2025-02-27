@@ -19,7 +19,7 @@ cache:
     - storage/framework/cache/data/
 
 stages:
-
+  - build
   - test
   - measure
   - documentation
@@ -38,11 +38,18 @@ stages:
     - php artisan cache:clear
     - php artisan config:cache
     - chmod -R 775 storage bootstrap/cache
-
+    - until mysqladmin ping -h"$DB_HOST" --silent; do sleep 5; done
     - php artisan migrate:refresh
     - php artisan db:seed
 
-
+build:
+  stage: build
+  extends:
+    - .config
+  script:
+    - npm run build
+  only:
+    - master
 
 test:
   stage: test
