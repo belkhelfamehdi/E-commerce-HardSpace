@@ -16,7 +16,6 @@ cache:
     - vendor/
     - node_modules/
     - public/build/
-    - storage/framework/cache/data/
 
 stages:
   - build
