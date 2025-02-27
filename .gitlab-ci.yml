@@ -116,8 +116,6 @@ deploy:
   image: ubuntu
   only:
     - master
-  dependencies:
-    - documentation
   script:
     - ls -la
     - apt-get clean
@@ -129,43 +127,51 @@ deploy:
 pages:
   stage: publish
   script:
-    # Créer un fichier index.html de base
-    - mkdir -p public
+    - echo "<html lang='en'>" > public/index.html
+    - echo "<head>" >> public/index.html
+    - echo "<meta charset='UTF-8'>" >> public/index.html
+    - echo "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" >> public/index.html
+    - echo "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'>" >> public/index.html
+    - echo "<title>Consolidated Reports</title>" >> public/index.html
+    - echo "</head>" >> public/index.html
+    - echo "<body>" >> public/index.html
+    - echo "<div class='container'>" >> public/index.html
+    - echo "<h1>Consolidated Reports</h1>" >> public/index.html
+    - echo "<table class='striped'>" >> public/index.html
+    - echo "<thead><tr><th>Report Type</th><th>Link</th></tr></thead><tbody>" >> public/index.html
 
-    # Créer l'entête HTML avec tee pour gérer correctement l'ordre d'écriture
-    - echo "<html lang='en'>" | tee public/index.html
-    - echo "<head>" | tee -a public/index.html
-    - echo "<meta charset='UTF-8'>" | tee -a public/index.html
-    - echo "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" | tee -a public/index.html
-    - echo "<title>Consolidated Reports</title>" | tee -a public/index.html
-    - echo "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'>" | tee -a public/index.html
-    - echo "</head>" | tee -a public/index.html
-    - echo "<body>" | tee -a public/index.html
-    - echo "<div class='container'>" | tee -a public/index.html
-    - echo "<h1>Consolidated Reports</h1>" | tee -a public/index.html
-    - echo "<table class='striped'>" | tee -a public/index.html
-    - echo "<thead><tr><th>Report Type</th><th>Link</th></tr></thead><tbody>" | tee -a public/index.html
+    # Add JUnit Report link
+    - if [ -f junit.xml ]; then
+        cp junit.xml public/junit_report.xml;
+        echo "<tr><td>JUnit Report</td><td><a href='junit_report.xml'>View JUnit Report</a></td></tr>" >> public/index.html;
+      fi
 
-    # Parcourir les répertoires pour ajouter les liens dynamiques
-    - for dir in public/*; do
-        if [ -d "$dir" ]; then
-          branch_pipeline=$(basename "$dir")
-          echo "<tr><td>JUnit Report</td><td><a href='$branch_pipeline/junit_report.txt' target='_blank'>View</a></td></tr>" | tee -a public/index.html
-          echo "<tr><td>PMD Report</td><td><a href='$branch_pipeline/result.xml' target='_blank'>View</a></td></tr>" | tee -a public/index.html
-          echo "<tr><td>Javadoc</td><td><a href='$branch_pipeline/javadoc/index.html' target='_blank'>View</a></td></tr>" | tee -a public/index.html
-        fi
-      done
+    # Add PHP Insights Report link
+    - if [ -f insights-report.txt ]; then
+        cp insights-report.txt public/insights_report.txt;
+        echo "<tr><td>PHP Insights Report</td><td><a href='insights_report.txt'>View PHP Insights Report</a></td></tr>" >> public/index.html;
+      fi
 
-    # Clôturer le fichier HTML
-    - echo "</tbody></table>" | tee -a public/index.html
-    - echo "</div>" | tee -a public/index.html
-    - echo "<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script>" | tee -a public/index.html
-    - echo "</body>" | tee -a public/index.html
-    - echo "</html>" | tee -a public/index.html
+    # Add API Documentation link
+    - if [ -d docs/api ]; then
+        cp -r docs/api public/api_docs;
+        echo "<tr><td>API Documentation</td><td><a href='api_docs/index.html'>View API Documentation</a></td></tr>" >> public/index.html;
+      fi
 
+    # Add Trivy Security Report link
+    - if [ -f trivy-report.table ]; then
+        cp trivy-report.table public/trivy_report.txt;
+        echo "<tr><td>Security Report (Trivy)</td><td><a href='trivy_report.txt'>View Security Report</a></td></tr>" >> public/index.html;
+      fi
+
+    - echo "</tbody></table>" >> public/index.html
+    - echo "</div>" >> public/index.html
+    - echo "<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script>" >> public/index.html
+    - echo "</body>" >> public/index.html
+    - echo "</html>" >> public/index.html
   artifacts:
     paths:
-      - public/index.html
+      - public
+    expire_in: 7 days
   only:
     - master
-
