@@ -129,54 +129,43 @@ deploy:
 pages:
   stage: publish
   script:
-    # Ensure public directory exists
+    # Créer un fichier index.html de base
     - mkdir -p public
 
-    # Create index.html with a styled table
-    - cat <<EOF > public/index.html
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Consolidated Reports</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    </head>
-    <body>
-        <div class="container mt-5">
-            <h1 class="text-center">Consolidated Reports</h1>
-            <table class="striped mt-4">
-                <thead>
-                    <tr>
-                        <th>Report Type</th>
-                        <th>Link</th>
-                    </tr>
-                </thead>
-                <tbody>
-    EOF
+    # Créer l'entête HTML avec tee pour gérer correctement l'ordre d'écriture
+    - echo "<html lang='en'>" | tee public/index.html
+    - echo "<head>" | tee -a public/index.html
+    - echo "<meta charset='UTF-8'>" | tee -a public/index.html
+    - echo "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" | tee -a public/index.html
+    - echo "<title>Consolidated Reports</title>" | tee -a public/index.html
+    - echo "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'>" | tee -a public/index.html
+    - echo "</head>" | tee -a public/index.html
+    - echo "<body>" | tee -a public/index.html
+    - echo "<div class='container'>" | tee -a public/index.html
+    - echo "<h1>Consolidated Reports</h1>" | tee -a public/index.html
+    - echo "<table class='striped'>" | tee -a public/index.html
+    - echo "<thead><tr><th>Report Type</th><th>Link</th></tr></thead><tbody>" | tee -a public/index.html
 
-    # Loop through directories and add report links dynamically
+    # Parcourir les répertoires pour ajouter les liens dynamiques
     - for dir in public/*; do
         if [ -d "$dir" ]; then
           branch_pipeline=$(basename "$dir")
-          echo "                <tr><td>JUnit Report</td><td><a href='$branch_pipeline/junit_report.txt' target='_blank'>View</a></td></tr>" >> public/index.html
-          echo "                <tr><td>PMD Report</td><td><a href='$branch_pipeline/result.xml' target='_blank'>View</a></td></tr>" >> public/index.html
-          echo "                <tr><td>Javadoc</td><td><a href='$branch_pipeline/javadoc/index.html' target='_blank'>View</a></td></tr>" >> public/index.html
+          echo "<tr><td>JUnit Report</td><td><a href='$branch_pipeline/junit_report.txt' target='_blank'>View</a></td></tr>" | tee -a public/index.html
+          echo "<tr><td>PMD Report</td><td><a href='$branch_pipeline/result.xml' target='_blank'>View</a></td></tr>" | tee -a public/index.html
+          echo "<tr><td>Javadoc</td><td><a href='$branch_pipeline/javadoc/index.html' target='_blank'>View</a></td></tr>" | tee -a public/index.html
         fi
       done
 
-    # Close HTML tags
-    - cat <<EOF >> public/index.html
-                </tbody>
-            </table>
-        </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    </body>
-    </html>
-    EOF
+    # Clôturer le fichier HTML
+    - echo "</tbody></table>" | tee -a public/index.html
+    - echo "</div>" | tee -a public/index.html
+    - echo "<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script>" | tee -a public/index.html
+    - echo "</body>" | tee -a public/index.html
+    - echo "</html>" | tee -a public/index.html
 
   artifacts:
     paths:
       - public/index.html
   only:
     - master
+
