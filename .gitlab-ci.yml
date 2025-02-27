@@ -25,6 +25,7 @@ stages:
   - documentation
   - secure
   - deploy
+  - pages  # Add GitLab Pages stage
 
 .config:
   image: lorisleiva/laravel-docker:8.2
