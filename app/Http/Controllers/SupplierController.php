@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,7 +27,8 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function home(){
+    public function home()
+    {
         return view('supplier.index');
     }
 
@@ -48,6 +48,7 @@ class SupplierController extends Controller
      * Store a newly created product in the database.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
@@ -56,12 +57,11 @@ class SupplierController extends Controller
             'image' => 'required|mimes:png,jpg,jpeg,webp|max:2048',
             'images.*' => 'required|mimes:png,jpg,jpeg,webp|max:2048',
             'images' => 'max:3',
-            '*' => 'required'
+            '*' => 'required',
         ]);
         $image_path = $request->file('image')->store('image/products/thumbnail', 'public');
 
-
-            $images = $request->file('images');
+        $images = $request->file('images');
 
         $product = Product::create([
             'brand_id' => $request->input('brands'),
@@ -74,42 +74,44 @@ class SupplierController extends Controller
             'price' => $request->input('price'),
 
             'description' => $request->input('description'),
+        ]);
+
+        $imagePaths = [];
+        foreach ($images as $images_path) {
+            $path = $images_path->store('image/products/images', 'public');
+            $imagePaths[] = $path;
+            $image = \App\Models\Image::create([
+                'product_id' => $product->id,
+                'photo_name' => $path,
             ]);
+        }
 
-            $imagePaths = [];
-            foreach ($images as $images_path) {
-                $path = $images_path->store('image/products/images', 'public');
-                $imagePaths[] = $path;
-                $image = \App\Models\Image::create([
-                    'product_id' => $product->id,
-                    'photo_name' => $path,
-                ]);
-            }
-
-            return redirect()->route('supplier.products')->with('success','Le produit a été créé.');
+        return redirect()->route('supplier.products')->with('success', 'Le produit a été créé.');
     }
 
     /**
      * Search for products based on a keyword.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function SearchProduct(Request $request)
     {
         $products = collect();
-        if($request->keyword != ''){
-        $products = Product::where('supplier_id', auth()->id())->where('product_name','LIKE','%'.$request->keyword.'%')->get();
-    }
-    return response()->json([
-        'products' => $products
-    ]);
+        if ($request->keyword !== '') {
+            $products = Product::where('supplier_id', auth()->id())->where('product_name', 'LIKE', '%'.$request->keyword.'%')->get();
+        }
+        return response()->json([
+            'products' => $products,
+        ]);
     }
 
     /**
      * Show the form for editing a specific product.
      *
      * @param  string  $id
+     *
      * @return \Illuminate\View\View
      */
     public function edit(string $id)
@@ -123,6 +125,7 @@ class SupplierController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  string  $id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, string $id)
@@ -131,7 +134,7 @@ class SupplierController extends Controller
 
         if ($request->hasFile('image')) {
             $request->validate([
-                'image' => 'required|mimes:png,jpg,jpeg,webp|max:2048'
+                'image' => 'required|mimes:png,jpg,jpeg,webp|max:2048',
             ]);
             Storage::delete('public/' . $product->product_thumbnail);
             $image_path = $request->file('image')->store('image/products', 'public');
@@ -139,19 +142,18 @@ class SupplierController extends Controller
         }
         $product->update($request->all());
         return redirect()->route('supplier.products')
-                        ->with('success','Le produit a été mis à jour.');
+            ->with('success', 'Le produit a été mis à jour.');
     }
-
 
     /**
      * Remove the specified product and its associated images from storage.
      *
      * @param  string  $id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(string $id)
     {
-
         $product = Product::findOrFail($id);
 
         $images = \App\Models\Image::where('product_id', $id)->get();
@@ -162,8 +164,7 @@ class SupplierController extends Controller
         $product->delete();
         Storage::delete('public/' . $product->product_thumbnail);
 
-
         return redirect()->route('supplier.products')
-                        ->with('success','Le produit a été supprimé.');
+            ->with('success', 'Le produit a été supprimé.');
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\SupplierApplication;
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +16,7 @@ class SupplierApplicationController extends Controller
      */
     public function index()
     {
-        $applications = SupplierApplication::where('statut', NULL)->paginate(5);
+        $applications = SupplierApplication::where('statut', null)->paginate(5);
         return view('admin.applications.index', compact('applications'));
     }
 
@@ -35,6 +34,7 @@ class SupplierApplicationController extends Controller
      * Store a newly created supplier application.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
@@ -69,13 +69,14 @@ class SupplierApplicationController extends Controller
 
         $supplierApplication->save();
 
-        return redirect()->route('supplier.application')->with('success','Informations envoyé.');
+        return redirect()->route('supplier.application')->with('success', 'Informations envoyé.');
     }
 
     /**
      * Display the details of a specific supplier application.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\View\View
      */
     public function show($id)
@@ -84,33 +85,36 @@ class SupplierApplicationController extends Controller
         return view('admin.applications.info', compact('application'));
     }
 
-
     /**
      * Accept the supplier application and assign the 'supplier' role to the user.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function accept($id){
+    public function accept($id)
+    {
         $application = SupplierApplication::find($id);
         $user = User::find($application->user_id);
         $user->role = 'supplier';
         $user->save();
         $application->statut = 'accept';
         $application->save();
-        return redirect()->route('admin.applications')->with('success','Application accepté.');
+        return redirect()->route('admin.applications')->with('success', 'Application accepté.');
     }
 
     /**
      * Reject the supplier application.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function reject($id){
+    public function reject($id)
+    {
         $application = SupplierApplication::find($id);
         $application->statut = 'reject';
         $application->save();
-        return redirect()->route('admin.applications')->with('success','Application rejeté.');
+        return redirect()->route('admin.applications')->with('success', 'Application rejeté.');
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -17,6 +16,13 @@ class Admin extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+
+    /**
+     * The verified timestamp for the phone number.
+     *
+     * @var \Illuminate\Support\Carbon|null
+     */
+    public $phone_number_verified_at; // Explicitly define the property
 
     /**
      * The attributes that are mass assignable.
@@ -63,16 +69,9 @@ class Admin extends Authenticatable
         'profile_photo_url',
     ];
 
-    /**
-     * The verified timestamp for the phone number.
-     *
-     * @var \Illuminate\Support\Carbon|null
-     */
-    public $phone_number_verified_at; // Explicitly define the property
-
     public function hasVerifiedPhoneNumber()
     {
-        return !is_null($this->phone_number_verified_at);
+        return ! is_null($this->phone_number_verified_at);
     }
 
     public function markPhoneNumberAsVerified()

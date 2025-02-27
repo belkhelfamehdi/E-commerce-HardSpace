@@ -20,6 +20,6 @@ class Product extends Model
         'product_thumbnail',
         'featured',
         'new_arrival',
-        'supplier_id'
+        'supplier_id',
     ];
 }

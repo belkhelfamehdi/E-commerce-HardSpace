@@ -31,6 +31,7 @@ class RedirectIfTwoFactorAuthenticatable
      *
      * @param  \Illuminate\Contracts\Auth\StatefulGuard  $guard
      * @param  \Laravel\Fortify\LoginRateLimiter  $limiter
+     *
      * @return void
      */
     public function __construct(StatefulGuard $guard, LoginRateLimiter $limiter)
@@ -44,6 +45,7 @@ class RedirectIfTwoFactorAuthenticatable
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  callable  $next
+     *
      * @return mixed
      */
     public function handle($request, $next)
@@ -55,9 +57,8 @@ class RedirectIfTwoFactorAuthenticatable
                 ! is_null(optional($user)->two_factor_confirmed_at) &&
                 in_array(TwoFactorAuthenticatable::class, class_uses_recursive($user))) {
                 return $this->twoFactorChallengeResponse($request, $user);
-            } else {
-                return $next($request);
             }
+            return $next($request);
         }
 
         if (optional($user)->two_factor_secret &&
@@ -72,6 +73,7 @@ class RedirectIfTwoFactorAuthenticatable
      * Attempt to validate the incoming credentials.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return mixed
      */
     protected function validateCredentials($request)
@@ -107,6 +109,7 @@ class RedirectIfTwoFactorAuthenticatable
      * Throw a failed authentication validation exception.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return void
      *
      * @throws \Illuminate\Validation\ValidationException
@@ -125,6 +128,7 @@ class RedirectIfTwoFactorAuthenticatable
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     *
      * @return void
      */
     protected function fireFailedEvent($request, $user = null)
@@ -140,6 +144,7 @@ class RedirectIfTwoFactorAuthenticatable
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  mixed  $user
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function twoFactorChallengeResponse($request, $user)

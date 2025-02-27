@@ -9,7 +9,7 @@ class Brand extends Model
 {
     use HasFactory;
 
-        protected $fillable = [
+    protected $fillable = [
         'brand_name',
     ];
 }

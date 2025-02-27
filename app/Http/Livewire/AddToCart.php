@@ -10,7 +10,6 @@ use Livewire\WithPagination;
 
 class AddToCart extends Component
 {
-
     use WithPagination;
 
     public $productId;
@@ -21,14 +20,17 @@ class AddToCart extends Component
     public $isNewArrival = false;
     public $isRecommended = false;
     public $selectedCategory = null;
+    public $minPrice;
+    public $maxPrice;
 
+    public $sortBy = 'default';
 
     //ajouter au panier
     public function addToCart($product)
     {
         // Ensure $product is an object with an "id" property
         $productObject = (object) $product;
-    
+
         \Cart::add([
             'id' => $productObject->id,
             'name' => $productObject->product_name,
@@ -36,16 +38,10 @@ class AddToCart extends Component
             'quantity' => $this->quantity,
             'attributes' => [
                 'image' => $productObject->product_thumbnail,
-            ]
+            ],
         ]);
         $this->emit('cartUpdated');
     }
-    public $minPrice;
-public $maxPrice;
-
-
-    public $sortBy = 'default';
-
 
     //la façon de trier par
     public function sortBy($order)
@@ -55,20 +51,20 @@ public $maxPrice;
 
     //afficher nouve arrivage
     public function updatedIsNewArrival()
-{
-    $this->render();
-}
+    {
+        $this->render();
+    }
 
-//afficher les produits recommendes
-public function updatedIsRecommended()
-{
-    $this->render();
-}
+    //afficher les produits recommendes
+    public function updatedIsRecommended()
+    {
+        $this->render();
+    }
 
-public function filterByCategory($categoryId)
-{
-    $this->selectedCategory = $categoryId;
-}
+    public function filterByCategory($categoryId)
+    {
+        $this->selectedCategory = $categoryId;
+    }
     public function render()
     {
         $query = Product::query();
@@ -89,10 +85,10 @@ public function filterByCategory($categoryId)
         if ($this->searchTerm) {
             $query->where(function ($q) {
                 $q->where('product_name', 'like', '%' . $this->searchTerm . '%')
-                ->orWhere('description', 'like', '%' . $this->searchTerm . '%');
+                    ->orWhere('description', 'like', '%' . $this->searchTerm . '%');
             });
         }
-    
+
         // Apply sorting
         switch ($this->sortBy) {
             case 'popular':
@@ -116,20 +112,20 @@ public function filterByCategory($categoryId)
             default:
                 break;
         }
-    
+
         // Apply price filters
         if ($this->minPrice) {
             $query->where('price', '>=', $this->minPrice);
         }
-    
+
         if ($this->maxPrice) {
             $query->where('price', '<=', $this->maxPrice);
         }
-    
+
         $products = $query->paginate(9);
         $brand = Brand::all();
         $categories = Category::all();
-    
+
         return view('livewire.add-to-cart', [
             'products' => $products,
             'brand' => $brand,

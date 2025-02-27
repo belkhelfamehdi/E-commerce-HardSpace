@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 
 /**
  * Class CategoryController
@@ -39,38 +37,41 @@ class CategoryController extends Controller
      * Store a newly created category in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $category = Category::create([
             'category_name' => $request->input('category_name'),
-            ]);
+        ]);
 
-            return redirect()->route('admin.category')->with('success','La categorie a été créé.');
+        return redirect()->route('admin.category')->with('success', 'La categorie a été créé.');
     }
 
     /**
      * Search for categories by keyword.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function SearchCategory(Request $request)
     {
         $categories = Category::all();
-    if($request->keyword != ''){
-    $categories = Category::where('category_name','LIKE','%'.$request->keyword.'%')->get();
-    }
-    return response()->json([
-        'categories' => $categories
-    ]);
+        if ($request->keyword !== '') {
+            $categories = Category::where('category_name', 'LIKE', '%'.$request->keyword.'%')->get();
+        }
+        return response()->json([
+            'categories' => $categories,
+        ]);
     }
 
     /**
      * Show the form for editing the specified category.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\View\View
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
@@ -86,6 +87,7 @@ class CategoryController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
@@ -93,13 +95,14 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->update($request->all());
         return redirect()->route('admin.category')
-                        ->with('success','La categorie a été mis à jour.');
+            ->with('success', 'La categorie a été mis à jour.');
     }
 
     /**
      * Remove the specified category from storage.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
@@ -110,6 +113,6 @@ class CategoryController extends Controller
         $category->delete();
 
         return redirect()->route('admin.category')
-                        ->with('success','La categorie a été supprimé.');
+            ->with('success', 'La categorie a été supprimé.');
     }
 }

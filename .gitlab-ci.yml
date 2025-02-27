@@ -39,7 +39,6 @@ stages:
     - php artisan cache:clear
     - php artisan config:cache
     - chmod -R 775 storage bootstrap/cache
-    - until mysqladmin ping -h"$DB_HOST" --silent; do sleep 5; done
     - php artisan migrate:refresh
     - php artisan db:seed
 
