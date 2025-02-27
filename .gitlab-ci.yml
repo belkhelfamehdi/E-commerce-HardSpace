@@ -19,7 +19,7 @@ cache:
     - storage/framework/cache/data/
 
 stages:
-  - build
+
   - test
   - measure
   - documentation
@@ -42,14 +42,7 @@ stages:
     - php artisan migrate:refresh
     - php artisan db:seed
 
-build:
-  stage: build
-  extends:
-    - .config
-  script:
-    - npm run build
-  only:
-    - master
+
 
 test:
   stage: test
