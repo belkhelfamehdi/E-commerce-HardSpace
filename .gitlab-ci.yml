@@ -127,46 +127,59 @@ deploy:
 pages:
   stage: publish
   script:
-    - echo "<html lang='en'>" > public/index.html
+    # Create the public directory if it doesn't exist
+    - mkdir -p public
+
+    # Generate the index.html file with Tailwind CSS
+    - echo "<!DOCTYPE html>" > public/index.html
+    - echo "<html lang='en'>" >> public/index.html
     - echo "<head>" >> public/index.html
     - echo "<meta charset='UTF-8'>" >> public/index.html
     - echo "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" >> public/index.html
-    - echo "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'>" >> public/index.html
     - echo "<title>Consolidated Reports</title>" >> public/index.html
+    - echo "<script src='https://cdn.tailwindcss.com'></script>" >> public/index.html
     - echo "</head>" >> public/index.html
-    - echo "<body>" >> public/index.html
-    - echo "<div class='container'>" >> public/index.html
-    - echo "<h1>Consolidated Reports</h1>" >> public/index.html
-    - echo "<table class='striped'>" >> public/index.html
-    - echo "<thead><tr><th>Report Type</th><th>Link</th></tr></thead><tbody>" >> public/index.html
+    - echo "<body class='bg-gray-100 font-sans'>" >> public/index.html
+    - echo "<div class='container mx-auto px-4 py-8'>" >> public/index.html
+    - echo "<h1 class='text-3xl font-bold text-center text-gray-800 mb-8'>Consolidated Reports</h1>" >> public/index.html
+    - echo "<div class='bg-white shadow-md rounded-lg overflow-hidden'>" >> public/index.html
+    - echo "<table class='min-w-full divide-y divide-gray-200'>" >> public/index.html
+    - echo "<thead class='bg-gray-50'>" >> public/index.html
+    - echo "<tr>" >> public/index.html
+    - echo "<th class='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>Report Type</th>" >> public/index.html
+    - echo "<th class='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>Link</th>" >> public/index.html
+    - echo "</tr>" >> public/index.html
+    - echo "</thead>" >> public/index.html
+    - echo "<tbody class='bg-white divide-y divide-gray-200'>" >> public/index.html
 
     # Add JUnit Report link
     - if [ -f junit.xml ]; then
         cp junit.xml public/junit_report.xml;
-        echo "<tr><td>JUnit Report</td><td><a href='junit_report.xml'>View JUnit Report</a></td></tr>" >> public/index.html;
+        echo "<tr><td class='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>JUnit Report</td><td class='px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:text-blue-700'><a href='junit_report.xml'>View JUnit Report</a></td></tr>" >> public/index.html;
       fi
 
     # Add PHP Insights Report link
     - if [ -f insights-report.txt ]; then
         cp insights-report.txt public/insights_report.txt;
-        echo "<tr><td>PHP Insights Report</td><td><a href='insights_report.txt'>View PHP Insights Report</a></td></tr>" >> public/index.html;
+        echo "<tr><td class='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>PHP Insights Report</td><td class='px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:text-blue-700'><a href='insights_report.txt'>View PHP Insights Report</a></td></tr>" >> public/index.html;
       fi
 
     # Add API Documentation link
     - if [ -d docs/api ]; then
         cp -r docs/api public/api_docs;
-        echo "<tr><td>API Documentation</td><td><a href='api_docs/index.html'>View API Documentation</a></td></tr>" >> public/index.html;
+        echo "<tr><td class='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>API Documentation</td><td class='px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:text-blue-700'><a href='api_docs/index.html'>View API Documentation</a></td></tr>" >> public/index.html;
       fi
 
     # Add Trivy Security Report link
     - if [ -f trivy-report.table ]; then
         cp trivy-report.table public/trivy_report.txt;
-        echo "<tr><td>Security Report (Trivy)</td><td><a href='trivy_report.txt'>View Security Report</a></td></tr>" >> public/index.html;
+        echo "<tr><td class='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>Security Report (Trivy)</td><td class='px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:text-blue-700'><a href='trivy_report.txt'>View Security Report</a></td></tr>" >> public/index.html;
       fi
 
-    - echo "</tbody></table>" >> public/index.html
+    - echo "</tbody>" >> public/index.html
+    - echo "</table>" >> public/index.html
     - echo "</div>" >> public/index.html
-    - echo "<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script>" >> public/index.html
+    - echo "</div>" >> public/index.html
     - echo "</body>" >> public/index.html
     - echo "</html>" >> public/index.html
   artifacts:
