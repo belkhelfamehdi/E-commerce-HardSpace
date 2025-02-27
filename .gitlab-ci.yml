@@ -182,6 +182,7 @@ pages:
     - echo "</div>" >> public/index.html
     - echo "</body>" >> public/index.html
     - echo "</html>" >> public/index.html
+    - echo "url -> https://$CI_PROJECT_NAMESPACE.gitlab.io/$CI_PROJECT_NAME/"
   artifacts:
     paths:
       - public
