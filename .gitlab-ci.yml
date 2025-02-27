@@ -67,7 +67,7 @@ test:
       junit: junit.xml
     expire_in: 7 days
   only:
-    - master
+    - merge_requests
 
 measure:
   stage: measure
@@ -80,7 +80,7 @@ measure:
       - insights-report.json
     expire_in: 7 days
   only:
-    - master
+    - merge_requests
 
 documentation:
   stage: documentation
@@ -93,7 +93,7 @@ documentation:
       - docs
     expire_in: 7 days
   only:
-    - master
+    - merge_requests
 
 secure:
   stage: secure
@@ -108,13 +108,13 @@ secure:
       - trivy-report.table
     expire_in: 7 days
   only:
-    - master
+    - merge_requests
 
 deploy:
   stage: deploy
   image: ubuntu
   only:
-    - master
+    - merge_requests
   script:
     - ls -la
     - apt-get clean
