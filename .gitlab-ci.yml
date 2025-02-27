@@ -158,9 +158,9 @@ pages:
       fi
 
     # Add PHP Insights Report link
-    - if [ -f insights-report.txt ]; then
-        cp insights-report.txt public/insights_report.txt;
-        echo "<tr><td class='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>PHP Insights Report</td><td class='px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:text-blue-700'><a href='insights_report.txt'>View PHP Insights Report</a></td></tr>" >> public/index.html;
+    - if [ -f insights-report.json ]; then
+        cp insights-report.json public/insights_report.json;
+        echo "<tr><td class='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>PHP Insights Report</td><td class='px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:text-blue-700'><a href='insights_report.json'>View PHP Insights Report</a></td></tr>" >> public/index.html;
       fi
 
     # Add API Documentation link
