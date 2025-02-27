@@ -129,41 +129,52 @@ deploy:
 pages:
   stage: publish
   script:
-    - echo "<html lang='en'>" > public/index.html
-    - echo "<head>" >> public/index.html
-    - echo "<meta charset='UTF-8'>" >> public/index.html
-    - echo "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" >> public/index.html
-    - echo "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'>" >> public/index.html
-    - echo "<title>Consolidated Reports</title>" >> public/index.html
-    - echo "</head>" >> public/index.html
-    - echo "<body>" >> public/index.html
-    - echo "<div class='container'>" >> public/index.html
-    - echo "<h1>Consolidated Reports</h1>" >> public/index.html
-    - echo "<table class='striped'>" >> public/index.html
-    - echo "<thead><tr><th>Report Type</th><th>Link</th></tr></thead><tbody>" >> public/index.html
+    # Ensure public directory exists
+    - mkdir -p public
 
-    - if [ -f public/index.html ]; then
-        cat public/index.html | grep -v '</tbody>' | grep -v '</table>' | grep -v '</div>' | grep -v '</body>' | grep -v '</html>' > temp_index.html;
-      else
-        echo "<tbody>" > temp_index.html;
-      fi
+    # Create index.html with a styled table
+    - cat <<EOF > public/index.html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Consolidated Reports</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    </head>
+    <body>
+        <div class="container mt-5">
+            <h1 class="text-center">Consolidated Reports</h1>
+            <table class="striped mt-4">
+                <thead>
+                    <tr>
+                        <th>Report Type</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+    EOF
 
+    # Loop through directories and add report links dynamically
     - for dir in public/*; do
         if [ -d "$dir" ]; then
-          branch_pipeline=$(basename "$dir");
-          echo "<tr><td>JUnit Report</td><td><a href='$branch_pipeline/junit_report.txt'>View JUnit Report</a></td></tr>" >> temp_index.html;
-          echo "<tr><td>PMD Report</td><td><a href='$branch_pipeline/result.xml'>View PMD Report</a></td></tr>" >> temp_index.html;
-          echo "<tr><td>Javadoc</td><td><a href='$branch_pipeline/javadoc/index.html'>View Javadoc</a></td></tr>" >> temp_index.html;
-        fi;
+          branch_pipeline=$(basename "$dir")
+          echo "                <tr><td>JUnit Report</td><td><a href='$branch_pipeline/junit_report.txt' target='_blank'>View</a></td></tr>" >> public/index.html
+          echo "                <tr><td>PMD Report</td><td><a href='$branch_pipeline/result.xml' target='_blank'>View</a></td></tr>" >> public/index.html
+          echo "                <tr><td>Javadoc</td><td><a href='$branch_pipeline/javadoc/index.html' target='_blank'>View</a></td></tr>" >> public/index.html
+        fi
       done
 
-    - echo "</tbody></table>" >> temp_index.html
-    - echo "</div>" >> temp_index.html
-    - echo "<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script>" >> temp_index.html
-    - echo "</body>" >> temp_index.html
-    - echo "</html>" >> temp_index.html
+    # Close HTML tags
+    - cat <<EOF >> public/index.html
+                </tbody>
+            </table>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </body>
+    </html>
+    EOF
 
-    - mv temp_index.html public/index.html
   artifacts:
     paths:
       - public/index.html
