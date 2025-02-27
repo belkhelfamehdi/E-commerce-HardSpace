@@ -48,7 +48,9 @@ build:
   script:
     - npm run build
   only:
-    - master
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "dev"'
+    - if: '$CI_COMMIT_BRANCH == "master" && $CI_PIPELINE_SOURCE == "merge_request_event"'
 
 test:
   stage: test
@@ -65,8 +67,9 @@ test:
     reports:
       junit: junit.xml
     expire_in: 7 days
-  only:
-    - master
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "dev"'
+    - if: '$CI_COMMIT_BRANCH == "master" && $CI_PIPELINE_SOURCE == "merge_request_event"'
 
 measure:
   stage: measure
@@ -78,8 +81,9 @@ measure:
     paths:
       - insights-report.json
     expire_in: 7 days
-  only:
-    - master
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "dev"'
+    - if: '$CI_COMMIT_BRANCH == "master" && $CI_PIPELINE_SOURCE == "merge_request_event"'
 
 documentation:
   stage: documentation
@@ -112,8 +116,8 @@ secure:
 deploy:
   stage: deploy
   image: ubuntu
-  only:
-    - master
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" && $CI_PIPELINE_SOURCE == "push"'
   script:
     - ls -la
     - apt-get clean
