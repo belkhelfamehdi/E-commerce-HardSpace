@@ -126,10 +126,8 @@ deploy:
 pages:
   stage: publish
   script:
-    # Create the public directory if it doesn't exist
     - mkdir -p public
 
-    # Generate the index.html file with Tailwind CSS
     - echo "<!DOCTYPE html>" > public/index.html
     - echo "<html lang='en'>" >> public/index.html
     - echo "<head>" >> public/index.html
@@ -151,7 +149,7 @@ pages:
     - echo "</thead>" >> public/index.html
     - echo "<tbody class='bg-white divide-y divide-gray-200'>" >> public/index.html
 
-    # Add JUnit Report link
+    # Add PHPUnit Report link
     - if [ -f phpunit.xml ]; then
         cp phpunit.xml public/phpunit_report.xml;
         echo "<tr><td class='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>PHPUnit Report</td><td class='px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:text-blue-700'><a href='phpunit_report.xml'>View PHPUnit Report</a></td></tr>" >> public/index.html;
@@ -163,7 +161,7 @@ pages:
         echo "<tr><td class='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>PHP Insights Report</td><td class='px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:text-blue-700'><a href='insights_report.json'>View PHP Insights Report</a></td></tr>" >> public/index.html;
       fi
 
-    # Add API Documentation link
+    # Add Documentation link
     - if [ -d docs/api ]; then
         cp -r docs/api public/api_docs;
         echo "<tr><td class='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>Documentation</td><td class='px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:text-blue-700'><a href='api_docs/index.html'>View Documentation</a></td></tr>" >> public/index.html;
