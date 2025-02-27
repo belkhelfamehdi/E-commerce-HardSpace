@@ -124,3 +124,58 @@ deploy:
     - apt-get install -y curl
     - curl -fsSL https://railway.app/install.sh | sh
     - railway up --service=$RAILWAY_SERVICE_NAME -d
+
+pages:
+  stage: publish
+  script:
+    # Ensure public directory exists
+    - mkdir -p public
+
+    # Create index.html with a styled table
+    - cat <<EOF > public/index.html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Consolidated Reports</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container mt-5">
+            <h1 class="text-center">Consolidated Reports</h1>
+            <table class="table table-striped mt-4">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Report Type</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+    EOF
+
+    # Loop through directories and add report links dynamically
+    - for dir in public/*; do
+        if [ -d "$dir" ]; then
+          branch_pipeline=$(basename "$dir");
+          echo "                <tr><td>JUnit Report</td><td><a href='$branch_pipeline/junit_report.txt' target='_blank'>View</a></td></tr>" >> public/index.html;
+          echo "                <tr><td>PMD Report</td><td><a href='$branch_pipeline/result.xml' target='_blank'>View</a></td></tr>" >> public/index.html;
+          echo "                <tr><td>Javadoc</td><td><a href='$branch_pipeline/javadoc/index.html' target='_blank'>View</a></td></tr>" >> public/index.html;
+        fi;
+      done
+
+    # Close HTML tags
+    - cat <<EOF >> public/index.html
+                </tbody>
+            </table>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+    </html>
+    EOF
+
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
