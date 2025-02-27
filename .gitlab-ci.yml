@@ -158,11 +158,11 @@ pages:
     # Loop through directories and add report links dynamically
     - for dir in public/*; do
         if [ -d "$dir" ]; then
-          branch_pipeline=$(basename "$dir");
-          echo "                <tr><td>JUnit Report</td><td><a href='$branch_pipeline/junit_report.txt' target='_blank'>View</a></td></tr>" >> public/index.html;
-          echo "                <tr><td>PMD Report</td><td><a href='$branch_pipeline/result.xml' target='_blank'>View</a></td></tr>" >> public/index.html;
-          echo "                <tr><td>Javadoc</td><td><a href='$branch_pipeline/javadoc/index.html' target='_blank'>View</a></td></tr>" >> public/index.html;
-        fi;
+          branch_pipeline=$(basename "$dir")
+          echo "                <tr><td>JUnit Report</td><td><a href='$branch_pipeline/junit_report.txt' target='_blank'>View</a></td></tr>" >> public/index.html
+          echo "                <tr><td>PMD Report</td><td><a href='$branch_pipeline/result.xml' target='_blank'>View</a></td></tr>" >> public/index.html
+          echo "                <tr><td>Javadoc</td><td><a href='$branch_pipeline/javadoc/index.html' target='_blank'>View</a></td></tr>" >> public/index.html
+        fi
       done
 
     # Close HTML tags
