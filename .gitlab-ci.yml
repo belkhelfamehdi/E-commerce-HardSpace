@@ -78,7 +78,7 @@ measure:
     - php vendor/bin/phpinsights analyse --no-interaction --ansi --format=json > insights-report.json
   artifacts:
     paths:
-      - insights-report.txt
+      - insights-report.json
     expire_in: 7 days
   only:
     - master
