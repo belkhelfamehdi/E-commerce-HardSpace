@@ -140,7 +140,7 @@ pages:
     - echo "</head>" >> public/index.html
     - echo "<body class='bg-gray-100 font-sans'>" >> public/index.html
     - echo "<div class='container mx-auto px-4 py-8'>" >> public/index.html
-    - echo "<h1 class='text-3xl font-bold text-center text-gray-800 mb-8'>Consolidated Reports</h1>" >> public/index.html
+    - echo "<h1 class='text-3xl font-bold text-center text-gray-800 mb-8'>Pipeline Reports</h1>" >> public/index.html
     - echo "<div class='bg-white shadow-md rounded-lg overflow-hidden'>" >> public/index.html
     - echo "<table class='min-w-full divide-y divide-gray-200'>" >> public/index.html
     - echo "<thead class='bg-gray-50'>" >> public/index.html
