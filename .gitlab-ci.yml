@@ -141,46 +141,49 @@ pages:
     - echo "<body class='bg-gray-100 font-sans'>" >> public/index.html
     - echo "<div class='container mx-auto px-4 py-8'>" >> public/index.html
     - echo "<h1 class='text-3xl font-bold text-center text-gray-800 mb-8'>Pipeline Reports</h1>" >> public/index.html
-    - echo "<div class='bg-white shadow-md rounded-lg overflow-hidden'>" >> public/index.html
-    - echo "<table class='min-w-full divide-y divide-gray-200'>" >> public/index.html
-    - echo "<thead class='bg-gray-50'>" >> public/index.html
-    - echo "<tr>" >> public/index.html
-    - echo "<th class='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>Report Type</th>" >> public/index.html
-    - echo "<th class='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>Link</th>" >> public/index.html
-    - echo "</tr>" >> public/index.html
-    - echo "</thead>" >> public/index.html
-    - echo "<tbody class='bg-white divide-y divide-gray-200'>" >> public/index.html
+    - echo "<div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>" >> public/index.html
 
     # Add JUnit Report link
     - if [ -f phpunit.xml ]; then
-        cp phpunit.xml public/phpunit_report.xml;
-        echo "<tr><td class='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>PHPUnit Report</td><td class='px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:text-blue-700'><a href='phpunit_report.xml'>View PHPUnit Report</a></td></tr>" >> public/index.html;
-      fi
+        - cp phpunit.xml public/phpunit_report.xml
+        - echo "<div class='bg-white shadow-md rounded-lg p-6'>" >> public/index.html
+        - echo "<h2 class='text-xl font-semibold text-gray-700'>PHPUnit Report</h2>" >> public/index.html
+        - echo "<a href='phpunit_report.xml' class='text-blue-500 hover:text-blue-700'>View PHPUnit Report</a>" >> public/index.html
+        - echo "</div>" >> public/index.html
+    - fi
 
     # Add PHP Insights Report link
     - if [ -f insights-report.json ]; then
-        cp insights-report.json public/insights_report.json;
-        echo "<tr><td class='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>PHP Insights Report</td><td class='px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:text-blue-700'><a href='insights_report.json'>View PHP Insights Report</a></td></tr>" >> public/index.html;
-      fi
+        - cp insights-report.json public/insights_report.json
+        - echo "<div class='bg-white shadow-md rounded-lg p-6'>" >> public/index.html
+        - echo "<h2 class='text-xl font-semibold text-gray-700'>PHP Insights Report</h2>" >> public/index.html
+        - echo "<a href='insights_report.json' class='text-blue-500 hover:text-blue-700'>View PHP Insights Report</a>" >> public/index.html
+        - echo "</div>" >> public/index.html
+    - fi
 
     # Add API Documentation link
     - if [ -d docs/api ]; then
-        cp -r docs/api public/api_docs;
-        echo "<tr><td class='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>Documentation</td><td class='px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:text-blue-700'><a href='api_docs/index.html'>View Documentation</a></td></tr>" >> public/index.html;
-      fi
+        - cp -r docs/api public/api_docs
+        - echo "<div class='bg-white shadow-md rounded-lg p-6'>" >> public/index.html
+        - echo "<h2 class='text-xl font-semibold text-gray-700'>Documentation</h2>" >> public/index.html
+        - echo "<a href='api_docs/index.html' class='text-blue-500 hover:text-blue-700'>View Documentation</a>" >> public/index.html
+        - echo "</div>" >> public/index.html
+    - fi
 
     # Add Trivy Security Report link
     - if [ -f trivy-report.table ]; then
-        cp trivy-report.table public/trivy_report.txt;
-        echo "<tr><td class='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>Security Report (Trivy)</td><td class='px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:text-blue-700'><a href='trivy_report.txt'>View Security Report</a></td></tr>" >> public/index.html;
-      fi
+        - cp trivy-report.table public/trivy_report.txt
+        - echo "<div class='bg-white shadow-md rounded-lg p-6'>" >> public/index.html
+        - echo "<h2 class='text-xl font-semibold text-gray-700'>Security Report (Trivy)</h2>" >> public/index.html
+        - echo "<a href='trivy_report.txt' class='text-blue-500 hover:text-blue-700'>View Security Report</a>" >> public/index.html
+        - echo "</div>" >> public/index.html
+    - fi
 
-    - echo "</tbody>" >> public/index.html
-    - echo "</table>" >> public/index.html
     - echo "</div>" >> public/index.html
     - echo "</div>" >> public/index.html
     - echo "</body>" >> public/index.html
     - echo "</html>" >> public/index.html
+
     - echo "url -> https://$CI_PROJECT_NAMESPACE.gitlab.io/$CI_PROJECT_NAME/"
   artifacts:
     paths:
