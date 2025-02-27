@@ -19,6 +19,13 @@ class User extends Authenticatable implements MustVerifyEmail
     use TwoFactorAuthenticatable;
 
     /**
+     * The verified timestamp for the phone number.
+     *
+     * @var \Illuminate\Support\Carbon|null
+     */
+    public $phone_number_verified_at; // Explicitly define the property
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -65,20 +72,13 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
-     * The verified timestamp for the phone number.
-     *
-     * @var \Illuminate\Support\Carbon|null
-     */
-    public $phone_number_verified_at; // Explicitly define the property
-
-    /**
      * Check if the user's phone number has been verified.
      *
      * @return bool
      */
     public function hasVerifiedPhoneNumber()
     {
-        return !is_null($this->phone_number_verified_at);
+        return ! is_null($this->phone_number_verified_at);
     }
 
     /**

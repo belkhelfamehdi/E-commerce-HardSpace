@@ -25,6 +25,7 @@ stages:
   - documentation
   - secure
   - deploy
+  - publish
 
 .config:
   image: lorisleiva/laravel-docker:8.2
@@ -37,8 +38,9 @@ stages:
     - php artisan key:generate
     - php artisan cache:clear
     - php artisan config:cache
-    # Run database migrations.
-    - php artisan migrate:refresh --seed
+    - chmod -R 775 storage bootstrap/cache
+    - php artisan migrate:refresh
+    - php artisan db:seed
 
 build:
   stage: build
@@ -47,7 +49,7 @@ build:
   script:
     - npm run build
   only:
-    - dev
+    - master
 
 test:
   stage: test
@@ -57,28 +59,28 @@ test:
     APP_ENV: testing
     XDEBUG_MODE: coverage
   script:
-    - php vendor/bin/phpunit --coverage-text --colors=never --log-junit junit.xml
+    - php vendor/bin/phpunit --coverage-text --colors=never --log-junit phpunit.xml
   artifacts:
     paths:
-      - junit.xml
+      - phpunit.xml
     reports:
       junit: junit.xml
     expire_in: 7 days
   only:
-    - dev
+    - master
 
 measure:
   stage: measure
   extends:
     - .config
   script:
-    - php vendor/bin/phpinsights --no-interaction --ansi | tee insights-report.txt
+    - php vendor/bin/phpinsights analyse --no-interaction --ansi --format=json > insights-report.json
   artifacts:
     paths:
-      - insights-report.txt
+      - insights-report.json
     expire_in: 7 days
   only:
-    - dev
+    - master
 
 documentation:
   stage: documentation
@@ -88,7 +90,7 @@ documentation:
     - php vendor/bin/phpdoc run -d app/ -t docs/api
   artifacts:
     paths:
-      - docs/api/
+      - docs
     expire_in: 7 days
   only:
     - master
@@ -104,6 +106,85 @@ secure:
   artifacts:
     paths:
       - trivy-report.table
+    expire_in: 7 days
+  only:
+    - master
+
+deploy:
+  stage: deploy
+  image: ubuntu
+  only:
+    - master
+  script:
+    - ls -la
+    - apt-get clean
+    - apt-get -o Acquire::ForceIPv4=true update
+    - apt-get install -y curl
+    - curl -fsSL https://railway.app/install.sh | sh
+    - railway up --service=$RAILWAY_SERVICE_NAME -d
+
+pages:
+  stage: publish
+  script:
+    # Create the public directory if it doesn't exist
+    - mkdir -p public
+
+    # Generate the index.html file with Tailwind CSS
+    - echo "<!DOCTYPE html>" > public/index.html
+    - echo "<html lang='en'>" >> public/index.html
+    - echo "<head>" >> public/index.html
+    - echo "<meta charset='UTF-8'>" >> public/index.html
+    - echo "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" >> public/index.html
+    - echo "<title>Consolidated Reports</title>" >> public/index.html
+    - echo "<script src='https://cdn.tailwindcss.com'></script>" >> public/index.html
+    - echo "</head>" >> public/index.html
+    - echo "<body class='bg-gray-100 font-sans'>" >> public/index.html
+    - echo "<div class='container mx-auto px-4 py-8'>" >> public/index.html
+    - echo "<h1 class='text-3xl font-bold text-center text-gray-800 mb-8'>Pipeline Reports</h1>" >> public/index.html
+    - echo "<div class='bg-white shadow-md rounded-lg overflow-hidden'>" >> public/index.html
+    - echo "<table class='min-w-full divide-y divide-gray-200'>" >> public/index.html
+    - echo "<thead class='bg-gray-50'>" >> public/index.html
+    - echo "<tr>" >> public/index.html
+    - echo "<th class='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>Report Type</th>" >> public/index.html
+    - echo "<th class='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>Link</th>" >> public/index.html
+    - echo "</tr>" >> public/index.html
+    - echo "</thead>" >> public/index.html
+    - echo "<tbody class='bg-white divide-y divide-gray-200'>" >> public/index.html
+
+    # Add JUnit Report link
+    - if [ -f phpunit.xml ]; then
+        cp phpunit.xml public/phpunit_report.xml;
+        echo "<tr><td class='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>PHPUnit Report</td><td class='px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:text-blue-700'><a href='phpunit_report.xml'>View PHPUnit Report</a></td></tr>" >> public/index.html;
+      fi
+
+    # Add PHP Insights Report link
+    - if [ -f insights-report.json ]; then
+        cp insights-report.json public/insights_report.json;
+        echo "<tr><td class='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>PHP Insights Report</td><td class='px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:text-blue-700'><a href='insights_report.json'>View PHP Insights Report</a></td></tr>" >> public/index.html;
+      fi
+
+    # Add API Documentation link
+    - if [ -d docs/api ]; then
+        cp -r docs/api public/api_docs;
+        echo "<tr><td class='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>Documentation</td><td class='px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:text-blue-700'><a href='api_docs/index.html'>View Documentation</a></td></tr>" >> public/index.html;
+      fi
+
+    # Add Trivy Security Report link
+    - if [ -f trivy-report.table ]; then
+        cp trivy-report.table public/trivy_report.txt;
+        echo "<tr><td class='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>Security Report (Trivy)</td><td class='px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:text-blue-700'><a href='trivy_report.txt'>View Security Report</a></td></tr>" >> public/index.html;
+      fi
+
+    - echo "</tbody>" >> public/index.html
+    - echo "</table>" >> public/index.html
+    - echo "</div>" >> public/index.html
+    - echo "</div>" >> public/index.html
+    - echo "</body>" >> public/index.html
+    - echo "</html>" >> public/index.html
+    - echo "url -> https://$CI_PROJECT_NAMESPACE.gitlab.io/$CI_PROJECT_NAME/"
+  artifacts:
+    paths:
+      - public
     expire_in: 7 days
   only:
     - master

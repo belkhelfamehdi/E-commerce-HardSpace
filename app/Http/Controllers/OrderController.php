@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
 
 /**
  * Class OrderController
@@ -24,6 +22,7 @@ class OrderController extends Controller
      * decrementing product quantities, clearing the cart, and generating a PDF invoice for the user.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -56,7 +55,6 @@ class OrderController extends Controller
 
         $pdf->render();
 
-
         $response = $pdf->stream('bill.pdf');
         \Cart::clear();
         return $response;
@@ -68,6 +66,7 @@ class OrderController extends Controller
      * This method retrieves the orders of the authenticated user and displays them on the profile's orders page.
      *
      * @param  \App\Models\Order  $order
+     *
      * @return \Illuminate\View\View
      */
     public function show(Order $order)

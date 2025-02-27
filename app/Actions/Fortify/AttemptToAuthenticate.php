@@ -29,6 +29,7 @@ class AttemptToAuthenticate
      *
      * @param  \Illuminate\Contracts\Auth\StatefulGuard  $guard
      * @param  \Laravel\Fortify\LoginRateLimiter  $limiter
+     *
      * @return void
      */
     public function __construct(StatefulGuard $guard, LoginRateLimiter $limiter)
@@ -42,6 +43,7 @@ class AttemptToAuthenticate
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  callable  $next
+     *
      * @return mixed
      */
     public function handle($request, $next)
@@ -52,7 +54,8 @@ class AttemptToAuthenticate
 
         if ($this->guard->attempt(
             $request->only(Fortify::username(), 'password'),
-            $request->boolean('remember'))
+            $request->boolean('remember')
+        )
         ) {
             return $next($request);
         }
@@ -65,6 +68,7 @@ class AttemptToAuthenticate
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  callable  $next
+     *
      * @return mixed
      */
     protected function handleUsingCustomCallback($request, $next)
@@ -86,6 +90,7 @@ class AttemptToAuthenticate
      * Throw a failed authentication validation exception.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return void
      *
      * @throws \Illuminate\Validation\ValidationException
@@ -103,6 +108,7 @@ class AttemptToAuthenticate
      * Fire the failed authentication attempt event with the given arguments.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return void
      */
     protected function fireFailedEvent($request)

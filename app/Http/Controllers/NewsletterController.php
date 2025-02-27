@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Newsletter;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 /**
@@ -20,13 +19,14 @@ class NewsletterController extends Controller
      * their email address to the database.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $newsletter = Newsletter::create([
-                'email' => $request->input('email'),
-            ]);
-            return redirect()->route('index');
+            'email' => $request->input('email'),
+        ]);
+        return redirect()->route('index');
     }
 }

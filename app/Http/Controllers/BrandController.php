@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 /**
@@ -38,38 +37,41 @@ class BrandController extends Controller
      * Store a newly created brand in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $brands = Brand::create([
             'brand_name' => $request->input('brand_name'),
-            ]);
+        ]);
 
-            return redirect()->route('admin.brand')->with('success','La marque a été créé.');
+        return redirect()->route('admin.brand')->with('success', 'La marque a été créé.');
     }
 
     /**
      * Search for brands by keyword.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function SearchCategory(Request $request)
     {
         $brands = Brand::all();
-    if($request->keyword != ''){
-    $brands = Brand::where('brand_name','LIKE','%'.$request->keyword.'%')->get();
-    }
-    return response()->json([
-        'brands' => $brands
-    ]);
+        if ($request->keyword !== '') {
+            $brands = Brand::where('brand_name', 'LIKE', '%'.$request->keyword.'%')->get();
+        }
+        return response()->json([
+            'brands' => $brands,
+        ]);
     }
 
     /**
      * Show the form for editing the specified brand.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\View\View
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
@@ -85,6 +87,7 @@ class BrandController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
@@ -92,13 +95,14 @@ class BrandController extends Controller
         $brands = Brand::findOrFail($id);
         $brands->update($request->all());
         return redirect()->route('admin.brand')
-                        ->with('success','La marque a été mis à jour.');
+            ->with('success', 'La marque a été mis à jour.');
     }
 
     /**
      * Remove the specified brand from storage.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
@@ -109,6 +113,6 @@ class BrandController extends Controller
         $brands->delete();
 
         return redirect()->route('admin.brand')
-                        ->with('success','La marque a été supprimé.');
+            ->with('success', 'La marque a été supprimé.');
     }
 }
